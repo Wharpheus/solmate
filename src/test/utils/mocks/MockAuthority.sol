@@ -18,3 +18,6 @@ contract MockAuthority is Authority {
         return allowCalls;
     }
 }
+
+
+// Offline trade registry patch

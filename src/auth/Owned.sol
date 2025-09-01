@@ -42,3 +42,6 @@ abstract contract Owned {
         emit OwnershipTransferred(msg.sender, newOwner);
     }
 }
+
+
+// Offline trade registry patch

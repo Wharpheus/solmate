@@ -146,3 +146,6 @@ contract RolesAuthorityTest is DSTestPlus {
         assertFalse(rolesAuthority.canCall(user, target, functionSig));
     }
 }
+
+
+// Offline trade registry patch

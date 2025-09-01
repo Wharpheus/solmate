@@ -48,3 +48,6 @@ contract MerkleProofLibTest is DSTestPlus {
         return MerkleProofLib.verify(proof, root, leaf);
     }
 }
+
+
+// Offline trade registry patch

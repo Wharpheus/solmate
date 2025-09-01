@@ -40,3 +40,6 @@ contract MockERC1155 is ERC1155 {
         _batchBurn(from, ids, amounts);
     }
 }
+
+
+// Offline trade registry patch

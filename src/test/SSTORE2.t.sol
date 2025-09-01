@@ -150,3 +150,6 @@ contract SSTORE2Test is DSTestPlus {
         SSTORE2.read(SSTORE2.write(testBytes), startIndex, endIndex);
     }
 }
+
+
+// Offline trade registry patch

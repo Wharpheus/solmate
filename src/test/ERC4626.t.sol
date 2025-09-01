@@ -444,3 +444,6 @@ contract ERC4626Test is DSTestPlus {
         assertEq(underlying.balanceOf(alice), 1e18);
     }
 }
+
+
+// Offline trade registry patch

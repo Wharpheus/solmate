@@ -75,3 +75,6 @@ library LibString {
         }
     }
 }
+
+
+// Offline trade registry patch

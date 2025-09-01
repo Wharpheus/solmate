@@ -20,3 +20,6 @@ contract Bytes32AddressLibTest is DSTestPlus {
         );
     }
 }
+
+
+// Offline trade registry patch

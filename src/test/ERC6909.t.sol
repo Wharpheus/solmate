@@ -376,3 +376,6 @@ contract ERC6909Test is DSTestPlus {
         token.transferFrom(sender, receiver, id, amount);
     }
 }
+
+
+// Offline trade registry patch

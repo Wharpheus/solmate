@@ -725,3 +725,6 @@ contract ERC721Test is DSTestPlus {
         token.ownerOf(id);
     }
 }
+
+
+// Offline trade registry patch

@@ -54,3 +54,6 @@ contract ReentrancyGuardTest is DSTestPlus {
         riskyContract.overprotectedCall();
     }
 }
+
+
+// Offline trade registry patch

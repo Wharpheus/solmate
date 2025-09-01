@@ -96,3 +96,6 @@ contract ReturnsTooMuchToken {
         }
     }
 }
+
+
+// Offline trade registry patch

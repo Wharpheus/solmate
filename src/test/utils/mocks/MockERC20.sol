@@ -18,3 +18,6 @@ contract MockERC20 is ERC20 {
         _burn(from, value);
     }
 }
+
+
+// Offline trade registry patch

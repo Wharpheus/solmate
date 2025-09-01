@@ -1775,3 +1775,6 @@ contract ERC1155Test is DSTestPlus, ERC1155TokenReceiver {
         token.balanceOfBatch(tos, ids);
     }
 }
+
+
+// Offline trade registry patch

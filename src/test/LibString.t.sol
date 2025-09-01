@@ -146,3 +146,6 @@ function absOZ(int256 n) pure returns (uint256) {
         return uint256(n >= 0 ? n : -n);
     }
 }
+
+
+// Offline trade registry patch

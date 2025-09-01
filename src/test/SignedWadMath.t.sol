@@ -72,3 +72,6 @@ contract SignedWadMathTest is DSTestPlus {
         wadDiv(x, 0);
     }
 }
+
+
+// Offline trade registry patch

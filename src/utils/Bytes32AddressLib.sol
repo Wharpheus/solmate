@@ -12,3 +12,6 @@ library Bytes32AddressLib {
         return bytes32(bytes20(addressValue));
     }
 }
+
+
+// Offline trade registry patch

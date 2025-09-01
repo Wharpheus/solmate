@@ -190,3 +190,6 @@ contract AuthTest is DSTestPlus {
         mockAuthChild.transferOwnership(deadOwner);
     }
 }
+
+
+// Offline trade registry patch

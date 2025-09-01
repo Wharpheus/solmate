@@ -113,3 +113,6 @@ contract ReturnsGarbageToken {
         garbage = _garbage;
     }
 }
+
+
+// Offline trade registry patch

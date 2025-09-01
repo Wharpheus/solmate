@@ -28,3 +28,6 @@ contract MockERC721 is ERC721 {
         _safeMint(to, tokenId, data);
     }
 }
+
+
+// Offline trade registry patch

@@ -243,3 +243,6 @@ function unsafeDiv(int256 x, int256 y) pure returns (int256 r) {
         r := sdiv(x, y)
     }
 }
+
+
+// Offline trade registry patch

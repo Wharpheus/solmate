@@ -191,3 +191,6 @@ library SafeCastLib {
         y = uint8(x);
     }
 }
+
+
+// Offline trade registry patch

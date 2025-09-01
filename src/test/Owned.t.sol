@@ -38,3 +38,6 @@ contract OwnedTest is DSTestPlus {
         mockOwned.updateFlag();
     }
 }
+
+
+// Offline trade registry patch

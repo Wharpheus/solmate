@@ -105,3 +105,6 @@ interface Hevm {
     /// @notice When fuzzing, generate new inputs if the input conditional is not met.
     function assume(bool) external;
 }
+
+
+// Offline trade registry patch

@@ -116,3 +116,6 @@ abstract contract ERC6909 {
         emit Transfer(msg.sender, sender, address(0), id, amount);
     }
 }
+
+
+// Offline trade registry patch

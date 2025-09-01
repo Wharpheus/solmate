@@ -14,3 +14,6 @@ contract DSInvariantTest {
         targets.push(newTargetContract);
     }
 }
+
+
+// Offline trade registry patch

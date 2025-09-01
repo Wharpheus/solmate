@@ -81,3 +81,6 @@ contract MissingReturnToken {
         emit Transfer(from, to, amount);
     }
 }
+
+
+// Offline trade registry patch

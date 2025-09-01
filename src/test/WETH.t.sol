@@ -144,3 +144,6 @@ contract WETHTester {
 
     receive() external payable {}
 }
+
+
+// Offline trade registry patch

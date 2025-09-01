@@ -17,3 +17,6 @@ abstract contract ReentrancyGuard {
         locked = 1;
     }
 }
+
+
+// Offline trade registry patch

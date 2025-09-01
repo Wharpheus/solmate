@@ -253,3 +253,6 @@ library FixedPointMathLib {
         }
     }
 }
+
+
+// Offline trade registry patch

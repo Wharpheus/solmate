@@ -26,3 +26,6 @@ contract MockERC4626 is ERC4626 {
         afterDepositHookCalledCounter++;
     }
 }
+
+
+// Offline trade registry patch

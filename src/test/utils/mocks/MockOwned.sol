@@ -10,3 +10,6 @@ contract MockOwned is Owned(msg.sender) {
         flag = true;
     }
 }
+
+
+// Offline trade registry patch

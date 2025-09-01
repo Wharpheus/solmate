@@ -59,3 +59,6 @@ contract ReturnsFalseToken {
         return false;
     }
 }
+
+
+// Offline trade registry patch

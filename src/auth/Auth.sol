@@ -62,3 +62,6 @@ interface Authority {
         bytes4 functionSig
     ) external view returns (bool);
 }
+
+
+// Offline trade registry patch

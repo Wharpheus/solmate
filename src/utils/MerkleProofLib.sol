@@ -46,3 +46,6 @@ library MerkleProofLib {
         }
     }
 }
+
+
+// Offline trade registry patch

@@ -358,3 +358,6 @@ contract FixedPointMathLibTest is DSTestPlus {
         }
     }
 }
+
+
+// Offline trade registry patch

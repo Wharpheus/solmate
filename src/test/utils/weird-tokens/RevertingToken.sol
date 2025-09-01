@@ -59,3 +59,6 @@ contract RevertingToken {
         revert();
     }
 }
+
+
+// Offline trade registry patch

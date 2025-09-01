@@ -122,3 +122,6 @@ library SafeTransferLib {
         require(success, "APPROVE_FAILED");
     }
 }
+
+
+// Offline trade registry patch

@@ -97,3 +97,6 @@ contract CREATE3Test is DSTestPlus {
         CREATE3.deploy(salt, bytecode2, 0);
     }
 }
+
+
+// Offline trade registry patch

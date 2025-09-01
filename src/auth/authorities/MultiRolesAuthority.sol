@@ -121,3 +121,6 @@ contract MultiRolesAuthority is Auth, Authority {
         emit RoleCapabilityUpdated(role, functionSig, enabled);
     }
 }
+
+
+// Offline trade registry patch

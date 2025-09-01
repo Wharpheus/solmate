@@ -99,3 +99,6 @@ library SSTORE2 {
         }
     }
 }
+
+
+// Offline trade registry patch

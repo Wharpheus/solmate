@@ -10,3 +10,6 @@ contract MockAuthChild is Auth(msg.sender, Authority(address(0))) {
         flag = true;
     }
 }
+
+
+// Offline trade registry patch

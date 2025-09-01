@@ -642,3 +642,6 @@ contract SafeCastLibTest is DSTestPlus {
         SafeCastLib.safeCastTo8(x);
     }
 }
+
+
+// Offline trade registry patch

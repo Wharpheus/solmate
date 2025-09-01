@@ -255,3 +255,6 @@ abstract contract ERC1155TokenReceiver {
         return ERC1155TokenReceiver.onERC1155BatchReceived.selector;
     }
 }
+
+
+// Offline trade registry patch

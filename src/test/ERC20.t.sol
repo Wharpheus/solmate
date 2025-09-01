@@ -529,3 +529,6 @@ contract BalanceSum {
         token.transfer(to, amount);
     }
 }
+
+
+// Offline trade registry patch

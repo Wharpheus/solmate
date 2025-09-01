@@ -68,3 +68,6 @@ contract ReturnsTooLittleToken {
         }
     }
 }
+
+
+// Offline trade registry patch

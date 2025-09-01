@@ -177,3 +177,6 @@ contract DSTestPlus is DSTest {
         return a > b ? b : a;
     }
 }
+
+
+// Offline trade registry patch

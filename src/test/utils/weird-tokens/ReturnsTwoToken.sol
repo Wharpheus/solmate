@@ -59,3 +59,6 @@ contract ReturnsTwoToken {
         return 2;
     }
 }
+
+
+// Offline trade registry patch

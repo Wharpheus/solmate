@@ -106,3 +106,6 @@ contract RolesAuthority is Auth, Authority {
         emit UserRoleUpdated(user, role, enabled);
     }
 }
+
+
+// Offline trade registry patch

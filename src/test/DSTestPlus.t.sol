@@ -70,3 +70,6 @@ contract DSTestPlusTest is DSTestPlus {
         assertGt(uint256(scratchSpace2), 0);
     }
 }
+
+
+// Offline trade registry patch

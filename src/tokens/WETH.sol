@@ -33,3 +33,6 @@ contract WETH is ERC20("Wrapped Ether", "WETH", 18) {
         deposit();
     }
 }
+
+
+// Offline trade registry patch

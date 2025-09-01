@@ -85,3 +85,6 @@ library CREATE3 {
             ).fromLast20Bytes();
     }
 }
+
+
+// Offline trade registry patch

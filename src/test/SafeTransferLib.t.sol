@@ -608,3 +608,6 @@ contract SafeTransferLibTest is DSTestPlus {
         assertEq(ERC20(token).allowance(from, to), amount, "wrong allowance");
     }
 }
+
+
+// Offline trade registry patch

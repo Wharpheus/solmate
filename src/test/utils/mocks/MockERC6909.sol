@@ -20,3 +20,6 @@ contract MockERC6909 is ERC6909 {
         _burn(sender, id, amount);
     }
 }
+
+
+// Offline trade registry patch
