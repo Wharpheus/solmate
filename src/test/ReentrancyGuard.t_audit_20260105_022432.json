@@ -1,0 +1,3253 @@
+{
+  "contract_name": "ReentrancyGuard.t.sol",
+  "audit_timestamp": "2026-01-05T02:24:32.232792",
+  "source_lines": 60,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2528252601623535
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2537369728088379
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.253772497177124
+    },
+    "bytecode_re": {
+      "status": "skipped",
+      "findings_count": 0,
+      "execution_time": 0.24572205543518066
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00848698616027832
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 1.0044772624969482
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.009414196014404297
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.0001633167266845703
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 8,
+      "execution_time": 0.010519742965698242
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.010677814483642578
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 1.6735332012176514
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 0.009943962097167969
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 19,
+      "execution_time": 0.0007338523864746094
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.009638071060180664
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.010224580764770508
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 10,
+      "execution_time": 0.0017595291137695312
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.008471012115478516
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00038886070251464844
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 0.0008544921875
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 0.00011897087097167969
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.007090091705322266
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0004513263702392578
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 17,
+      "execution_time": 0.0010826587677001953
+    }
+  },
+  "total_findings": 58,
+  "raw_total_findings": 157,
+  "findings_by_severity": {
+    "critical": 0,
+    "high": 0,
+    "medium": 10,
+    "low": 21,
+    "info": 27,
+    "gas": 10
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 155,
+      "kept_count": 58,
+      "filtered_count": 97,
+      "filter_rate": 0.6258064516129033,
+      "kept_by_severity": {
+        "medium": 10,
+        "low": 21,
+        "info": 27
+      },
+      "filtered_by_severity": {
+        "low": 3,
+        "medium": 93,
+        "info": 1
+      },
+      "kept_by_category": {
+        "likely_true_positive": 10,
+        "uncertain": 24,
+        "likely_false_positive": 24
+      },
+      "filtered_by_category": {
+        "likely_false_positive": 57,
+        "definite_false_positive": 38,
+        "uncertain": 2
+      },
+      "kept_by_tool": {
+        "comprehensive-security-detector": 8,
+        "flowomatic": 2,
+        "natspec": 19,
+        "gas_optimizer": 10,
+        "advanced_security": 2,
+        "code_quality": 17
+      },
+      "filtered_by_tool": {
+        "erc20_heuristics": 3,
+        "solidityscan": 92,
+        "access_control_heuristics": 2
+      },
+      "avg_ml_score_kept": 0.6709721379310345,
+      "avg_ml_score_filtered": 0.45051855670103097,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 58,
+      "critical": 0,
+      "high": 0,
+      "medium": 10,
+      "low": 21,
+      "info": 27,
+      "security_score": 0,
+      "on_attack_path": 0,
+      "max_attack_path_degree": 0
+    },
+    "patch_plan": [
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Rounding direction not specified",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Rounding direction not specified",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      }
+    ]
+  },
+  "fixes_generated": 1,
+  "fixes_by_confidence": {
+    "high": 0,
+    "medium": 1,
+    "low": 0
+  },
+  "all_findings": [
+    {
+      "id": "front-running-risk-10",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 11: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1612f886fae8d83f",
+        "line": 11,
+        "function": null,
+        "contract": "1612f886fae8d83f"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function unprotectedCall() public {",
+        "location_cluster_size": 8,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (12 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-18",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 19: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1612f886fae8d83f",
+        "line": 19,
+        "function": null,
+        "contract": "1612f886fae8d83f"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function protectedCall() public nonReentrant {",
+        "location_cluster_size": 8,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (9 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-26",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 27: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1612f886fae8d83f",
+        "line": 27,
+        "function": null,
+        "contract": "1612f886fae8d83f"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function overprotectedCall() public nonReentrant {}",
+        "location_cluster_size": 8,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (11 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-32",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 33: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1612f886fae8d83f",
+        "line": 33,
+        "function": null,
+        "contract": "1612f886fae8d83f"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function setUp() public {",
+        "location_cluster_size": 8,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (12 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-36",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 37: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1612f886fae8d83f",
+        "line": 37,
+        "function": null,
+        "contract": "1612f886fae8d83f"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function invariantReentrancyStatusAlways1() public {",
+        "location_cluster_size": 8,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (12 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-40",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 41: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1612f886fae8d83f",
+        "line": 41,
+        "function": null,
+        "contract": "1612f886fae8d83f"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function testFailUnprotectedCall() public {",
+        "location_cluster_size": 8,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (8 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-46",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 47: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1612f886fae8d83f",
+        "line": 47,
+        "function": null,
+        "contract": "1612f886fae8d83f"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function testProtectedCall() public {",
+        "location_cluster_size": 8,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (5 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-52",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 53: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1612f886fae8d83f",
+        "line": 53,
+        "function": null,
+        "contract": "1612f886fae8d83f"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function testNoReentrancy() public {",
+        "location_cluster_size": 8,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (6 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ADV-041",
+      "tool": "advanced_security",
+      "rule_id": "ADV-041",
+      "title": "Rounding direction not specified",
+      "description": "Division at line 4 may have exploitable rounding",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 4,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Explicitly specify rounding direction (favor protocol or user)",
+        "category": "security",
+        "cwe": "CWE-682",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8340000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ADV-041",
+      "tool": "advanced_security",
+      "rule_id": "ADV-041",
+      "title": "Rounding direction not specified",
+      "description": "Division at line 6 may have exploitable rounding",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 6,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Explicitly specify rounding direction (favor protocol or user)",
+        "category": "security",
+        "cwe": "CWE-682",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8340000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "flowomatic_dead_unprotectedCall_3",
+      "tool": "flowomatic",
+      "rule_id": "dead-code",
+      "title": "Unreachable Code in unprotectedCall",
+      "description": "Code after return statement is unreachable",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": null,
+        "line": 14,
+        "function": "unprotectedCall",
+        "contract": null
+      },
+      "kind": "smell",
+      "evidence": {
+        "cwe_id": "CWE-561",
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (14 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.80)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 14,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.4,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "fix_suggestion": "Remove unreachable code or move return statement"
+      },
+      "ml_score": 0.7968000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "flowomatic_dead_protectedCall_3",
+      "tool": "flowomatic",
+      "rule_id": "dead-code",
+      "title": "Unreachable Code in protectedCall",
+      "description": "Code after return statement is unreachable",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": null,
+        "line": 22,
+        "function": "protectedCall",
+        "contract": null
+      },
+      "kind": "smell",
+      "evidence": {
+        "cwe_id": "CWE-561",
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.80)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.4,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "fix_suggestion": "Remove unreachable code or move return statement"
+      },
+      "ml_score": 0.7968000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "natspec_func_notice_invariantReentrancyStatusAlways1_37",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'invariantReentrancyStatusAlways1'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 37,
+        "function": "invariantReentrancyStatusAlways1",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known vulnerability pattern",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.76)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.760656,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "natspec_func_notice_testNoReentrancy_53",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testNoReentrancy'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 53,
+        "function": "testNoReentrancy",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known vulnerability pattern",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.76)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.760656,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "natspec_contract_ReentrancyGuardTest_30",
+      "tool": "natspec",
+      "rule_id": "natspec/contract-doc",
+      "title": "Missing NatSpec for contract 'ReentrancyGuardTest'",
+      "description": "Add NatSpec doc block (/// or /** ... */) above contract ReentrancyGuardTest.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 30,
+        "function": null,
+        "contract": "ReentrancyGuardTest"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known vulnerability pattern",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.76)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.75624,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "natspec_dev_invariantReentrancyStatusAlways1_37",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'invariantReentrancyStatusAlways1'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 37,
+        "function": "invariantReentrancyStatusAlways1",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known vulnerability pattern",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.75)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.7496160000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "natspec_dev_testNoReentrancy_53",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'testNoReentrancy'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 53,
+        "function": "testNoReentrancy",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known vulnerability pattern",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.75)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.7496160000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "natspec_func_notice_unprotectedCall_11",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'unprotectedCall'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 11,
+        "function": "unprotectedCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (10 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_protectedCall_19",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'protectedCall'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 19,
+        "function": "protectedCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_overprotectedCall_27",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'overprotectedCall'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 27,
+        "function": "overprotectedCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_setUp_33",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'setUp'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 33,
+        "function": "setUp",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_testFailUnprotectedCall_41",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testFailUnprotectedCall'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 41,
+        "function": "testFailUnprotectedCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_testProtectedCall_47",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testProtectedCall'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 47,
+        "function": "testProtectedCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (4 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_contract_RiskyContract_8",
+      "tool": "natspec",
+      "rule_id": "natspec/contract-doc",
+      "title": "Missing NatSpec for contract 'RiskyContract'",
+      "description": "Add NatSpec doc block (/// or /** ... */) above contract RiskyContract.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 8,
+        "function": null,
+        "contract": "RiskyContract"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.5808,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_public_var_enterTimes_9",
+      "tool": "natspec",
+      "rule_id": "natspec/public-var-doc",
+      "title": "Missing NatSpec for public variable 'enterTimes'",
+      "description": "Add a NatSpec line (/// @notice ...) above the public state variable.",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 9,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (10 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.576,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_unprotectedCall_11",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'unprotectedCall'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 11,
+        "function": "unprotectedCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (10 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_protectedCall_19",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'protectedCall'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 19,
+        "function": "protectedCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_overprotectedCall_27",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'overprotectedCall'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 27,
+        "function": "overprotectedCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_setUp_33",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'setUp'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 33,
+        "function": "setUp",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_testFailUnprotectedCall_41",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'testFailUnprotectedCall'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 41,
+        "function": "testFailUnprotectedCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_testProtectedCall_47",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'testProtectedCall'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 47,
+        "function": "testProtectedCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Multiple tools agree (4 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "GAS-024",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-024",
+      "title": "Empty block wastes deployment gas",
+      "description": "Empty block at line 27",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 27,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "Deployment gas saved",
+        "recommendation": "Remove empty block or add comment explaining why it exists",
+        "cwe": "CWE-400",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-024",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-024",
+      "title": "Empty block wastes deployment gas",
+      "description": "Empty block at line 50",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 50,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "Deployment gas saved",
+        "recommendation": "Remove empty block or add comment explaining why it exists",
+        "cwe": "CWE-400",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-004",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-004",
+      "title": "Consider using != instead of >",
+      "description": "Greater-than at line 14 costs more than not-equal",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 14,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~3 gas",
+        "recommendation": "If checking for zero, use != 0 instead of > 0",
+        "cwe": "CWE-400",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-004",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-004",
+      "title": "Consider using != instead of >",
+      "description": "Greater-than at line 22 costs more than not-equal",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 22,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~3 gas",
+        "recommendation": "If checking for zero, use != 0 instead of > 0",
+        "cwe": "CWE-400",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-047",
+      "tool": "code_quality",
+      "rule_id": "CQ-047",
+      "title": "Multiple consecutive empty lines",
+      "description": "Multiple empty lines at line 58",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 58,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use single empty line for separation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 14 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 14,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 22 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 22,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function unprotectedCall",
+      "description": "Public/external function at line 11 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 11,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Matches known vulnerability pattern",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.66)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6568800000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function invariantReentrancyStatusAlways1",
+      "description": "Public/external function at line 37 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 37,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (12 tools)",
+          "Matches known vulnerability pattern",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.66)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6568800000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function testFailUnprotectedCall",
+      "description": "Public/external function at line 41 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 41,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Matches known vulnerability pattern",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.66)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6568800000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function testNoReentrancy",
+      "description": "Public/external function at line 53 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 53,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Matches known vulnerability pattern",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.66)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6568800000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 33 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 33,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (12 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 37 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 37,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (12 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 41 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 41,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 47 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 47,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 53 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 53,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-005",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-005",
+      "title": "Negative numbers cost more gas",
+      "description": "Negative number at line 1 costs extra gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 1,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas",
+        "recommendation": "Use subtraction or unsigned types when possible",
+        "cwe": "CWE-400",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.6539999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-001",
+      "tool": "code_quality",
+      "rule_id": "CQ-001",
+      "title": "Missing @title in contract documentation",
+      "description": "Contract at line 8 lacks @title NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 8,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @title describing the contract purpose",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-002",
+      "tool": "code_quality",
+      "rule_id": "CQ-002",
+      "title": "Missing @author in contract documentation",
+      "description": "Contract at line 8 lacks @author NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 8,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @author identifying the contract creator",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-003",
+      "tool": "code_quality",
+      "rule_id": "CQ-003",
+      "title": "Missing @notice or @dev in contract documentation",
+      "description": "Contract at line 8 lacks @notice or @dev NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 8,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice for user-facing description or @dev for technical details",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function protectedCall",
+      "description": "Public/external function at line 19 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 19,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function overprotectedCall",
+      "description": "Public/external function at line 27 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 27,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-001",
+      "tool": "code_quality",
+      "rule_id": "CQ-001",
+      "title": "Missing @title in contract documentation",
+      "description": "Contract at line 30 lacks @title NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 30,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @title describing the contract purpose",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-002",
+      "tool": "code_quality",
+      "rule_id": "CQ-002",
+      "title": "Missing @author in contract documentation",
+      "description": "Contract at line 30 lacks @author NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 30,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @author identifying the contract creator",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-003",
+      "tool": "code_quality",
+      "rule_id": "CQ-003",
+      "title": "Missing @notice or @dev in contract documentation",
+      "description": "Contract at line 30 lacks @notice or @dev NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 30,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice for user-facing description or @dev for technical details",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function setUp",
+      "description": "Public/external function at line 33 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 33,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function testProtectedCall",
+      "description": "Public/external function at line 47 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/ReentrancyGuard.t.sol",
+        "line": 47,
+        "function": null,
+        "contract": "ReentrancyGuard.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 48,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    }
+  ],
+  "all_fixes": [
+    {
+      "type": "access-control",
+      "line": 33,
+      "confidence": "medium",
+      "explanation": "Added onlyOwner modifier to critical function",
+      "diff": "--- original\n+++ fixed\n@@ -1 +1 @@\n- function setUp() public \n+ function setUp() public onlyOwner "
+    }
+  ],
+  "auto_fixed": false
+}

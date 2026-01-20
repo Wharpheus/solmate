@@ -1,0 +1,2326 @@
+{
+  "contract_name": "DSTestPlus.t.sol",
+  "audit_timestamp": "2026-01-06T14:03:54.044169",
+  "source_lines": 76,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2442159652709961
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.24593877792358398
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2460181713104248
+    },
+    "bytecode_re": {
+      "status": "skipped",
+      "findings_count": 0,
+      "execution_time": 0.2366626262664795
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.01057577133178711
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.6343545913696289
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.011622190475463867
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.00018405914306640625
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 0.012412309646606445
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.012617826461791992
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 1.6197552680969238
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.011870861053466797
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 13,
+      "execution_time": 0.0008249282836914062
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.011645078659057617
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.012241363525390625
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 9,
+      "execution_time": 0.002111673355102539
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.010137081146240234
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0007421970367431641
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 6,
+      "execution_time": 0.0008542537689208984
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 6.866455078125e-05
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.008452653884887695
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00044274330139160156
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 12,
+      "execution_time": 0.0008435249328613281
+    }
+  },
+  "total_findings": 39,
+  "raw_total_findings": 138,
+  "findings_by_severity": {
+    "critical": 0,
+    "high": 3,
+    "medium": 4,
+    "low": 12,
+    "info": 20,
+    "gas": 9
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 138,
+      "kept_count": 39,
+      "filtered_count": 99,
+      "filter_rate": 0.717391304347826,
+      "kept_by_severity": {
+        "medium": 4,
+        "low": 12,
+        "info": 20,
+        "high": 3
+      },
+      "filtered_by_severity": {
+        "low": 4,
+        "medium": 92,
+        "high": 1,
+        "info": 2
+      },
+      "kept_by_category": {
+        "likely_true_positive": 6,
+        "likely_false_positive": 19,
+        "uncertain": 14
+      },
+      "filtered_by_category": {
+        "likely_false_positive": 58,
+        "definite_false_positive": 39,
+        "uncertain": 2
+      },
+      "kept_by_tool": {
+        "comprehensive-security-detector": 2,
+        "natspec": 12,
+        "gas_optimizer": 9,
+        "advanced_security": 5,
+        "code_quality": 11
+      },
+      "filtered_by_tool": {
+        "erc20_heuristics": 3,
+        "natspec": 1,
+        "solidityscan": 92,
+        "advanced_security": 1,
+        "access_control_heuristics": 1,
+        "code_quality": 1
+      },
+      "avg_ml_score_kept": 0.6401935897435899,
+      "avg_ml_score_filtered": 0.450449494949495,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 39,
+      "critical": 0,
+      "high": 3,
+      "medium": 4,
+      "low": 12,
+      "info": 20,
+      "security_score": 6,
+      "on_attack_path": 0,
+      "max_attack_path_degree": 0
+    },
+    "patch_plan": [
+      {
+        "title": "Memory operation in assembly",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Memory operation in assembly",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Memory operation in assembly",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Integer Overflow in Unchecked Block",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Rounding direction not specified",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Assembly block without documentation",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing NatSpec @notice for function 'testBound'",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing NatSpec @notice for function 'testFailBoundMinBiggerThanMax'",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing NatSpec @notice for function 'testRelApproxEqBothZeroesPasses'",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      }
+    ]
+  },
+  "fixes_generated": 0,
+  "fixes_by_confidence": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "all_findings": [
+    {
+      "id": "ASM-003",
+      "tool": "advanced_security",
+      "rule_id": "ASM-003",
+      "title": "Memory operation in assembly",
+      "description": "Memory operation at line 61 can corrupt Solidity memory",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 61,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure memory operations don't overlap with Solidity",
+        "category": "assembly",
+        "cwe": "CWE-119",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8700000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ASM-003",
+      "tool": "advanced_security",
+      "rule_id": "ASM-003",
+      "title": "Memory operation in assembly",
+      "description": "Memory operation at line 62 can corrupt Solidity memory",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 62,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure memory operations don't overlap with Solidity",
+        "category": "assembly",
+        "cwe": "CWE-119",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.81,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ASM-003",
+      "tool": "advanced_security",
+      "rule_id": "ASM-003",
+      "title": "Memory operation in assembly",
+      "description": "Memory operation at line 63 can corrupt Solidity memory",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 63,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure memory operations don't overlap with Solidity",
+        "category": "assembly",
+        "cwe": "CWE-119",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.62)"
+        ],
+        "ml_confidence": 0.5,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 0.3333333333333333,
+          "consensus_count": 1,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.625,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "front-running-risk-53",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 54: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "98d855cf16050f96",
+        "line": 54,
+        "function": null,
+        "contract": "98d855cf16050f96"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function testBrutalizeMemory() public brutalizeMemory(\"FEEDFACECAFEBEEFFEEDFACECAFEBEEF\") {",
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (10 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "integer-overflow-44",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "integer-overflow-unchecked",
+      "title": "Potential Integer Overflow in Unchecked Block",
+      "description": "Line 45: Arithmetic operation in unchecked block may overflow. Ensure this is intentional and safe.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "98d855cf16050f96",
+        "line": 45,
+        "function": null,
+        "contract": "98d855cf16050f96"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "min++; // Overflow is handled below.",
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.85)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 0.3333333333333333,
+          "consensus_count": 1,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8521500000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ADV-041",
+      "tool": "advanced_security",
+      "rule_id": "ADV-041",
+      "title": "Rounding direction not specified",
+      "description": "Division at line 4 may have exploitable rounding",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 4,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Explicitly specify rounding direction (favor protocol or user)",
+        "category": "security",
+        "cwe": "CWE-682",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8340000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ASM-001",
+      "tool": "advanced_security",
+      "rule_id": "ASM-001",
+      "title": "Assembly block without documentation",
+      "description": "Assembly at line 60 lacks comments explaining the code",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 60,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Add detailed comments explaining assembly operations",
+        "category": "assembly",
+        "cwe": "CWE-1078",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8340000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_func_notice_testBound_7",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testBound'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 7,
+        "function": "testBound",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_testFailBoundMinBiggerThanMax_16",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testFailBoundMinBiggerThanMax'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 16,
+        "function": "testFailBoundMinBiggerThanMax",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Multiple tools agree (4 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_testRelApproxEqBothZeroesPasses_20",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testRelApproxEqBothZeroesPasses'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 20,
+        "function": "testRelApproxEqBothZeroesPasses",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_testBound_25",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testBound'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 25,
+        "function": "testBound",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Multiple tools agree (4 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_testBrutalizeMemory_54",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testBrutalizeMemory'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 54,
+        "function": "testBrutalizeMemory",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_contract_DSTestPlusTest_6",
+      "tool": "natspec",
+      "rule_id": "natspec/contract-doc",
+      "title": "Missing NatSpec for contract 'DSTestPlusTest'",
+      "description": "Add NatSpec doc block (/// or /** ... */) above contract DSTestPlusTest.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 6,
+        "function": null,
+        "contract": "DSTestPlusTest"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Multiple tools agree (6 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.5808,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_testBound_7",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'testBound'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 7,
+        "function": "testBound",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_testFailBoundMinBiggerThanMax_16",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'testFailBoundMinBiggerThanMax'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 16,
+        "function": "testFailBoundMinBiggerThanMax",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Multiple tools agree (4 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_testRelApproxEqBothZeroesPasses_20",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'testRelApproxEqBothZeroesPasses'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 20,
+        "function": "testRelApproxEqBothZeroesPasses",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_testBound_25",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'testBound'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 25,
+        "function": "testBound",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Multiple tools agree (4 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_testBrutalizeMemory_54",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'testBrutalizeMemory'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 54,
+        "function": "testBrutalizeMemory",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_testFailBoundMinBiggerThanMax_38",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testFailBoundMinBiggerThanMax'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 38,
+        "function": "testFailBoundMinBiggerThanMax",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.41)"
+        ],
+        "ml_confidence": 0.65,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 0.3333333333333333,
+          "consensus_count": 1,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.4072,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "GAS-001",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-001",
+      "title": "State variable could potentially be immutable",
+      "description": "State variable at line 55 might be immutable if only set in constructor",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 55,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read (SLOAD \u2192 cheaper)",
+        "recommendation": "If this variable is only set once in the constructor, declare it as immutable to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-001",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-001",
+      "title": "State variable could potentially be immutable",
+      "description": "State variable at line 56 might be immutable if only set in constructor",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 56,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read (SLOAD \u2192 cheaper)",
+        "recommendation": "If this variable is only set once in the constructor, declare it as immutable to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-001",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-001",
+      "title": "State variable could potentially be immutable",
+      "description": "State variable at line 57 might be immutable if only set in constructor",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 57,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read (SLOAD \u2192 cheaper)",
+        "recommendation": "If this variable is only set once in the constructor, declare it as immutable to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-001",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-001",
+      "title": "State variable could potentially be immutable",
+      "description": "State variable at line 58 might be immutable if only set in constructor",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 58,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read (SLOAD \u2192 cheaper)",
+        "recommendation": "If this variable is only set once in the constructor, declare it as immutable to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-005",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-005",
+      "title": "Negative numbers cost more gas",
+      "description": "Negative number at line 1 costs extra gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 1,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas",
+        "recommendation": "Use subtraction or unsigned types when possible",
+        "cwe": "CWE-400",
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-004",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-004",
+      "title": "Consider using != instead of >",
+      "description": "Greater-than at line 30 costs more than not-equal",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 30,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~3 gas",
+        "recommendation": "If checking for zero, use != 0 instead of > 0",
+        "cwe": "CWE-400",
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-004",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-004",
+      "title": "Consider using != instead of >",
+      "description": "Greater-than at line 49 costs more than not-equal",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 49,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~3 gas",
+        "recommendation": "If checking for zero, use != 0 instead of > 0",
+        "cwe": "CWE-400",
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 54 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 54,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 25 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 25,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 20 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 20,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 54 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 54,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 38 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 38,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-042",
+      "tool": "code_quality",
+      "rule_id": "CQ-042",
+      "title": "Magic number should be a named constant",
+      "description": "Magic number at line 17 should be defined as a named constant",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 17,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Define magic numbers as named constants for clarity",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.63)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.4,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.63,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-001",
+      "tool": "code_quality",
+      "rule_id": "CQ-001",
+      "title": "Missing @title in contract documentation",
+      "description": "Contract at line 6 lacks @title NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 6,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @title describing the contract purpose",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-002",
+      "tool": "code_quality",
+      "rule_id": "CQ-002",
+      "title": "Missing @author in contract documentation",
+      "description": "Contract at line 6 lacks @author NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 6,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @author identifying the contract creator",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-003",
+      "tool": "code_quality",
+      "rule_id": "CQ-003",
+      "title": "Missing @notice or @dev in contract documentation",
+      "description": "Contract at line 6 lacks @notice or @dev NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 6,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice for user-facing description or @dev for technical details",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function testBound",
+      "description": "Public/external function at line 7 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 7,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function testFailBoundMinBiggerThanMax",
+      "description": "Public/external function at line 16 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 16,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function testRelApproxEqBothZeroesPasses",
+      "description": "Public/external function at line 20 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 20,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 24,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function testBrutalizeMemory",
+      "description": "Public/external function at line 54 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/DSTestPlus.t.sol",
+        "line": 54,
+        "function": null,
+        "contract": "DSTestPlus.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 16,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    }
+  ],
+  "all_fixes": [],
+  "auto_fixed": false
+}

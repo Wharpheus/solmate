@@ -1,0 +1,2081 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Security Audit Report - WETH.t.sol</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #333; border-bottom: 3px solid #4CAF50; padding-bottom: 10px; }
+        h2 { color: #555; margin-top: 30px; }
+        .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0; }
+        .card { background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #4CAF50; }
+        .card h3 { margin: 0 0 10px 0; color: #666; font-size: 14px; }
+        .card .number { font-size: 32px; font-weight: bold; color: #333; }
+        .severity { padding: 4px 8px; border-radius: 4px; font-weight: bold; color: white; }
+        .critical { background: #d32f2f; }
+        .high { background: #f57c00; }
+        .medium { background: #fbc02d; color: #333; }
+        .low { background: #388e3c; }
+        .info { background: #1976d2; }
+        .finding { background: #fff; border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 4px; }
+        .fix { background: #e8f5e9; border-left: 4px solid #4CAF50; padding: 15px; margin: 10px 0; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        .confidence { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+        .high-conf { background: #4CAF50; color: white; }
+        .medium-conf { background: #FFC107; color: black; }
+        .low-conf { background: #9E9E9E; color: white; }
+        .tag { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-right: 6px; }
+        .tag-chain { background: #6a1b9a; color: #fff; }
+        .tag-path { background: #283593; color: #fff; }
+        .context { margin-top: 6px; font-size: 12px; color: #555; }
+        .context-badge { display: inline-block; padding: 3px 8px; margin: 0 6px 6px 0; border-radius: 4px; background: #e3f2fd; color: #0d47a1; font-size: 11px; }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .card-note { margin-top: 8px; font-size: 13px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 Security Audit Report</h1>
+        <p><strong>Contract:</strong> WETH.t.sol</p>
+        <p><strong>Audit Date:</strong> 2026-01-05T02:25:58.458238</p>
+        <p><strong>Lines of Code:</strong> 150</p>
+
+        <h2>📊 Summary</h2>
+        <div class="summary">
+            <div class="card">
+                <h3>Total Findings</h3>
+                <div class="number">223</div>
+            </div>
+            <div class="card">
+                <h3>Fixes Generated</h3>
+                <div class="number">2</div>
+            </div>
+            <div class="card">
+                <h3>Auto-Applied</h3>
+                <div class="number">No</div>
+            </div>
+        </div>
+
+        <h2>🧠 Brainstem & Attack Paths</h2>
+        <div class="summary">
+            <div class="card">
+                <h3>False-Positive Filter</h3>
+                <div class="number">223/326</div>
+                <p class="card-note">
+                    Kept after filtering (filtered out 99 likely false positives).
+                </p>
+            </div>
+            <div class="card">
+                <h3>Security Score</h3>
+                <div class="number">0</div>
+                <p class="card-note">
+                    0 = worst, 100 = best (attack-path aware).
+                </p>
+            </div>
+            <div class="card">
+                <h3>Attack Path Depth</h3>
+                <div class="number">23</div>
+                <p class="card-note">
+                    Findings on active attack paths; max chain length 11.
+                </p>
+            </div>
+        </div>
+
+        <h2>🧩 Context Overview</h2>
+        <div class="finding">
+
+            <span class="context-badge">contextual security (36)</span>
+
+            <span class="context-badge">flash loan (32)</span>
+
+            <span class="context-badge">economic attack (1)</span>
+
+        </div>
+
+        <h2>🎯 Findings by Severity</h2>
+        <div class="finding">
+            <span class="severity critical">CRITICAL: {findings_by_sev['critical']}</span>
+            <span class="severity high">HIGH: {findings_by_sev['high']}</span>
+            <span class="severity medium">MEDIUM: {findings_by_sev['medium']}</span>
+            <span class="severity low">LOW: {findings_by_sev['low']}</span>
+            <span class="severity info">INFO: {findings_by_sev['info']}</span>
+        </div>
+
+        <h2>🔧 Fixes by Confidence</h2>
+        <div class="finding">
+            <span class="confidence high-conf">HIGH: {fixes_by_conf['high']} (safe to auto-apply)</span>
+            <span class="confidence medium-conf">MEDIUM: {fixes_by_conf['medium']} (review recommended)</span>
+            <span class="confidence low-conf">LOW: {fixes_by_conf['low']} (manual review required)</span>
+        </div>
+
+        <h2>🩹 Chain-Breaker Fixes</h2>
+
+        <div class="fix">
+            
+            <span class="severity critical">CRITICAL</span>
+            <strong>Unlimited Withdrawal: withdraw()</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <h2>📋 All Findings</h2>
+
+        <div class="finding">
+            <span class="severity critical">CRITICAL</span>
+            <strong>Unlimited Withdrawal: withdraw()</strong>
+            <p>Function `withdraw()` allows withdrawal without amount limits. Attacker can drain all available funds in single transaction. Missing: maxWithdrawal check or amount restrictions.</p>
+            <small>Tool: fund-draining-detector | Rule: unlimited-withdrawal | Origin: fund-draining-detector | Line: 141</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Line 62: Using contract balance for pricing can be manipulated. Consider using TWAP or other manipulation-resistant oracles.</p>
+            <small>Tool: comprehensive-security-detector | Rule: price-manipulation | Origin: comprehensive-security-detector | Line: 62</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Line 67: Using contract balance for pricing can be manipulated. Consider using TWAP or other manipulation-resistant oracles.</p>
+            <small>Tool: comprehensive-security-detector | Rule: price-manipulation | Origin: comprehensive-security-detector | Line: 67</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Line 69: Using contract balance for pricing can be manipulated. Consider using TWAP or other manipulation-resistant oracles.</p>
+            <small>Tool: comprehensive-security-detector | Rule: price-manipulation | Origin: comprehensive-security-detector | Line: 69</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Line 74: Using contract balance for pricing can be manipulated. Consider using TWAP or other manipulation-resistant oracles.</p>
+            <small>Tool: comprehensive-security-detector | Rule: price-manipulation | Origin: comprehensive-security-detector | Line: 74</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Line 79: Using contract balance for pricing can be manipulated. Consider using TWAP or other manipulation-resistant oracles.</p>
+            <small>Tool: comprehensive-security-detector | Rule: price-manipulation | Origin: comprehensive-security-detector | Line: 79</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Line 81: Using contract balance for pricing can be manipulated. Consider using TWAP or other manipulation-resistant oracles.</p>
+            <small>Tool: comprehensive-security-detector | Rule: price-manipulation | Origin: comprehensive-security-detector | Line: 81</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Line 86: Using contract balance for pricing can be manipulated. Consider using TWAP or other manipulation-resistant oracles.</p>
+            <small>Tool: comprehensive-security-detector | Rule: price-manipulation | Origin: comprehensive-security-detector | Line: 86</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Line 91: Using contract balance for pricing can be manipulated. Consider using TWAP or other manipulation-resistant oracles.</p>
+            <small>Tool: comprehensive-security-detector | Rule: price-manipulation | Origin: comprehensive-security-detector | Line: 91</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Line 96: Using contract balance for pricing can be manipulated. Consider using TWAP or other manipulation-resistant oracles.</p>
+            <small>Tool: comprehensive-security-detector | Rule: price-manipulation | Origin: comprehensive-security-detector | Line: 96</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Line 100: Using contract balance for pricing can be manipulated. Consider using TWAP or other manipulation-resistant oracles.</p>
+            <small>Tool: comprehensive-security-detector | Rule: price-manipulation | Origin: comprehensive-security-detector | Line: 100</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Potential Price Manipulation via Balance</strong>
+            <p>Line 103: Using contract balance for pricing can be manipulated. Consider using TWAP or other manipulation-resistant oracles.</p>
+            <small>Tool: comprehensive-security-detector | Rule: price-manipulation | Origin: comprehensive-security-detector | Line: 103</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity HIGH">HIGH</span>
+            <strong>Missing Access Control on Withdrawal Function</strong>
+            <p>Function `withdraw()` is withdrawal without access control modifiers. Any caller can invoke this function. NFTBTC C001/H001/H002: Add onlyOwner, onlyAdmin, or role-based access control.</p>
+            <small>Tool: access-control-detector | Rule: missing-access-control | Origin: access-control-detector | Line: 141</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Missing nonReentrant Modifier on testFallbackDeposit()</strong>
+            <p>Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.</p>
+            <small>Tool: reentrancy-detector | Rule: reentrancy-missing-guard | Origin: reentrancy-detector | Line: 17</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Missing nonReentrant Modifier on testDeposit()</strong>
+            <p>Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.</p>
+            <small>Tool: reentrancy-detector | Rule: reentrancy-missing-guard | Origin: reentrancy-detector | Line: 27</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Missing nonReentrant Modifier on testWithdraw()</strong>
+            <p>Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.</p>
+            <small>Tool: reentrancy-detector | Rule: reentrancy-missing-guard | Origin: reentrancy-detector | Line: 37</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Missing nonReentrant Modifier on deposit()</strong>
+            <p>Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.</p>
+            <small>Tool: reentrancy-detector | Rule: reentrancy-missing-guard | Origin: reentrancy-detector | Line: 132</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Missing nonReentrant Modifier on fallbackDeposit()</strong>
+            <p>Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.</p>
+            <small>Tool: reentrancy-detector | Rule: reentrancy-missing-guard | Origin: reentrancy-detector | Line: 136</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Missing nonReentrant Modifier on withdraw()</strong>
+            <p>Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.</p>
+            <small>Tool: reentrancy-detector | Rule: reentrancy-missing-guard | Origin: reentrancy-detector | Line: 140</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Missing nonReentrant Modifier on testPartialWithdraw()</strong>
+            <p>Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.</p>
+            <small>Tool: reentrancy-detector | Rule: reentrancy-missing-guard | Origin: reentrancy-detector | Line: 51</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Missing nonReentrant Modifier on testFallbackDeposit()</strong>
+            <p>Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.</p>
+            <small>Tool: reentrancy-detector | Rule: reentrancy-missing-guard | Origin: reentrancy-detector | Line: 65</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Missing nonReentrant Modifier on testDeposit()</strong>
+            <p>Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.</p>
+            <small>Tool: reentrancy-detector | Rule: reentrancy-missing-guard | Origin: reentrancy-detector | Line: 77</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Missing nonReentrant Modifier on testWithdraw()</strong>
+            <p>Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.</p>
+            <small>Tool: reentrancy-detector | Rule: reentrancy-missing-guard | Origin: reentrancy-detector | Line: 89</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 18: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 18</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 28: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 28</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 38: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 38</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 52: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 52</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 66: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 66</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 78: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 78</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 90: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 90</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 107: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 107</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 114: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 114</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 121: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 121</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 133: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 133</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 137: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 137</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 141: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 141</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 145: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 145</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Rounding direction not specified</strong>
+            <p>Division at line 7 may have exploitable rounding</p>
+            <small>Tool: advanced_security | Rule: ADV-041 | Origin: advanced_security | Line: 7</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Rounding direction not specified</strong>
+            <p>Division at line 9 may have exploitable rounding</p>
+            <small>Tool: advanced_security | Rule: ADV-041 | Origin: advanced_security | Line: 9</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 18 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 18</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 28 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 28</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 32 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 32</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 38 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 38</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 41 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 41</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 43 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 43</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 45 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 45</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 47 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 47</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 52 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 52</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 53 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 53</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 55 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 55</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 57 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 57</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 59 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 59</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 61 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 61</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 66 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 66</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 78 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 78</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 84 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 84</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 90 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 90</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 91 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 91</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 92 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 92</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 94 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 94</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 96 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 96</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 98 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 98</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 100 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 100</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 102 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 102</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 103 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 103</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 104 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 104</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 133 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 133</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 134 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 134</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 137 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 137</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 141 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 141</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Flash loan attack - unchecked deposit/withdraw</strong>
+            <p>Deposit/withdraw at line 142 lacks validation</p>
+            <small>Tool: advanced_security | Rule: USEC-015 | Origin: advanced_security | Line: 142</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, flash loan</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Economic attack - donation vulnerability</strong>
+            <p>Balance check at line 19 can be manipulated via direct transfer</p>
+            <small>Tool: advanced_security | Rule: USEC-052 | Origin: advanced_security | Line: 19</small>
+
+            <p class="context"><strong>Context:</strong> contextual security, economic attack</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 18 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 18</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 20 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 20</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 25 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 25</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 28 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 28</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 30 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 30</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 32 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 32</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 35 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 35</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 41 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 41</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 49 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 49</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 53 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 53</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 63 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 63</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 66 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 66</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 70 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 70</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 75 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 75</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 78 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 78</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 82 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 82</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 84 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 84</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 87 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 87</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 90 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 90</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 91 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 91</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 92 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 92</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 94 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 94</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 103 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 103</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 104 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 104</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 121 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 121</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 122 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 122</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 133 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 133</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 134 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 134</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Supply function without cap</strong>
+            <p>Supply at line 137 has no maximum limit</p>
+            <small>Tool: defi_security | Rule: DEFI-028 | Origin: defi_security | Line: 137</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Imported Finding</strong>
+            <p>{'id': 'solidityscan-1', 'title': 'ANCE CHANGE RACE CONDITION IN APPROVE()', 'description': "IMBALANCE ADD REMOVE LIQUIDITY MATH ERRORS\nBLOCK.NUMBER INCONSISTENCIES ON VARIOUS L2S\nLIMITATIONS OF SOLIDITY'S TRY-CATCH IN EXTERNAL CALLS\nERC20 NON STANDARD BEHAVIOR\nINSECURE OWNERSHIP TRANSFER\nMISSING IGOVERNANCE INTERFACE DEFINITION IN PROVIDED CODE\nMISSING EVENTS\nOUTDATED COMPILER VERSION\nUNDECLARED CUSTOM ERRORS CAUSE COMPILATION FAILURE\nUNINITIALIZED OWNERSHIP\nBLOCK VALUES AS A PROXY FOR TIME", 'severity': 'Low', 'confidence': 1.0, 'line': 0, 'source_tool': 'SolidityScan', 'cwe_id': None, 'fix_suggestion': None}</p>
+            <small>Tool: solidityscan | Rule: None | Origin: solidityscan</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Imported Finding</strong>
+            <p>{'id': 'solidityscan-1', 'title': 'ANCE CHANGE RACE CONDITION IN APPROVE()', 'description': "IMBALANCE ADD REMOVE LIQUIDITY MATH ERRORS\nBLOCK.NUMBER INCONSISTENCIES ON VARIOUS L2S\nLIMITATIONS OF SOLIDITY'S TRY-CATCH IN EXTERNAL CALLS\nERC20 NON STANDARD BEHAVIOR\nINSECURE OWNERSHIP TRANSFER\nMISSING IGOVERNANCE INTERFACE DEFINITION IN PROVIDED CODE\nMISSING EVENTS\nOUTDATED COMPILER VERSION\nUNDECLARED CUSTOM ERRORS CAUSE COMPILATION FAILURE\nUNINITIALIZED OWNERSHIP\nBLOCK VALUES AS A PROXY FOR TIME", 'severity': 'Low', 'confidence': 1.0, 'line': 0, 'source_tool': 'SolidityScan', 'cwe_id': None, 'fix_suggestion': None}</p>
+            <small>Tool: solidityscan | Rule: None | Origin: solidityscan</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing @param _weth for constructor 'constructor'</strong>
+            <p>Document parameter '_weth' with an @param entry.</p>
+            <small>Tool: natspec | Rule: natspec/param | Origin: natspec | Line: 129</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 38 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 38</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 43 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 43</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 45 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 45</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 47 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 47</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 52 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 52</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 55 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 55</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 57 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 57</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 59 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 59</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 61 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 61</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 90 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 90</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 92 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 92</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 96 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 96</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 98 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 98</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 100 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 100</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 102 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 102</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 103 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 103</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 104 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 104</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 141 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 141</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Withdrawal without cooldown period</strong>
+            <p>Withdrawal at line 142 has no cooldown</p>
+            <small>Tool: defi_security | Rule: DEFI-032 | Origin: defi_security | Line: 142</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'setUp'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 14</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFallbackDeposit'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 18</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testDeposit'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 28</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testWithdraw'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 38</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testPartialWithdraw'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 52</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFallbackDeposit'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 66</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testDeposit'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 78</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testWithdraw'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 90</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for receive 'receive'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 107</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'setUp'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 114</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'invariantTotalSupplyEqualsBalance'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 121</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for constructor 'constructor'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 129</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'deposit'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 133</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'fallbackDeposit'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 137</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'withdraw'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 141</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for receive 'receive'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 145</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec for contract 'WETHTest'</strong>
+            <p>Add NatSpec doc block (/// or /** ... */) above contract WETHTest.</p>
+            <small>Tool: natspec | Rule: natspec/contract-doc | Origin: natspec | Line: 11</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec for contract 'WETHInvariants'</strong>
+            <p>Add NatSpec doc block (/// or /** ... */) above contract WETHInvariants.</p>
+            <small>Tool: natspec | Rule: natspec/contract-doc | Origin: natspec | Line: 110</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec for contract 'WETHTester'</strong>
+            <p>Add NatSpec doc block (/// or /** ... */) above contract WETHTester.</p>
+            <small>Tool: natspec | Rule: natspec/contract-doc | Origin: natspec | Line: 126</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'setUp'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 14</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFallbackDeposit'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 18</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testDeposit'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 28</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testWithdraw'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 38</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testPartialWithdraw'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 52</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFallbackDeposit'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 66</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testDeposit'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 78</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testWithdraw'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 90</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for receive 'receive'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 107</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'setUp'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 114</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'invariantTotalSupplyEqualsBalance'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 121</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for constructor 'constructor'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 129</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'deposit'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 133</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'fallbackDeposit'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 137</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'withdraw'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 141</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for receive 'receive'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 145</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Struct field ordering may be inefficient</strong>
+            <p>Struct at line 129 should pack fields for gas efficiency</p>
+            <small>Tool: advanced_security | Rule: MEM-003 | Origin: advanced_security | Line: 129</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Empty block wastes deployment gas</strong>
+            <p>Empty block at line 107</p>
+            <small>Tool: gas_optimizer | Rule: GAS-024 | Origin: gas_optimizer | Line: 107</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Empty block wastes deployment gas</strong>
+            <p>Empty block at line 145</p>
+            <small>Tool: gas_optimizer | Rule: GAS-024 | Origin: gas_optimizer | Line: 145</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 19 repeated 5 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 19</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 24 repeated 2 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 24</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 29 repeated 5 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 29</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 34 repeated 2 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 34</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Variable set in constructor should be immutable</strong>
+            <p>Variable at line 39 could be immutable</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-011 | Origin: gas_optimizer | Line: 39</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Variable set in constructor should be immutable</strong>
+            <p>Variable at line 45 could be immutable</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-011 | Origin: gas_optimizer | Line: 45</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 45 repeated 3 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 45</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 48 repeated 5 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 48</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Variable set in constructor should be immutable</strong>
+            <p>Variable at line 55 could be immutable</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-011 | Origin: gas_optimizer | Line: 55</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 55 repeated 2 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 55</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Variable set in constructor should be immutable</strong>
+            <p>Variable at line 59 could be immutable</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-011 | Origin: gas_optimizer | Line: 59</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 59 repeated 3 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 59</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Variable set in constructor should be immutable</strong>
+            <p>Variable at line 67 could be immutable</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-011 | Origin: gas_optimizer | Line: 67</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 67 repeated 2 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 67</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 69 repeated 5 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 69</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 74 repeated 2 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 74</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Variable set in constructor should be immutable</strong>
+            <p>Variable at line 79 could be immutable</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-011 | Origin: gas_optimizer | Line: 79</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 79 repeated 2 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 79</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 81 repeated 5 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 81</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 86 repeated 2 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 86</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Variable set in constructor should be immutable</strong>
+            <p>Variable at line 91 could be immutable</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-011 | Origin: gas_optimizer | Line: 91</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Variable set in constructor should be immutable</strong>
+            <p>Variable at line 96 could be immutable</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-011 | Origin: gas_optimizer | Line: 96</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 96 repeated 2 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 96</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Variable set in constructor should be immutable</strong>
+            <p>Variable at line 100 could be immutable</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-011 | Origin: gas_optimizer | Line: 100</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Cache repeated external call result</strong>
+            <p>External call at line 100 repeated 3 times</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-012 | Origin: gas_optimizer | Line: 100</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Variable set in constructor should be immutable</strong>
+            <p>Variable at line 116 could be immutable</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-011 | Origin: gas_optimizer | Line: 116</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 66 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 66</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 78 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 78</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 90 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 90</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 133 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 133</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 137 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 137</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 141 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 141</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Multiple consecutive empty lines</strong>
+            <p>Multiple empty lines at line 148</p>
+            <small>Tool: code_quality | Rule: CQ-047 | Origin: code_quality | Line: 148</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Public function could be external</strong>
+            <p>Function at line 14 is public but appears to only be called externally</p>
+            <small>Tool: gas_optimizer | Rule: GAS-036 | Origin: gas_optimizer | Line: 14</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Public function could be external</strong>
+            <p>Function at line 52 is public but appears to only be called externally</p>
+            <small>Tool: gas_optimizer | Rule: GAS-036 | Origin: gas_optimizer | Line: 52</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Public function could be external</strong>
+            <p>Function at line 114 is public but appears to only be called externally</p>
+            <small>Tool: gas_optimizer | Rule: GAS-036 | Origin: gas_optimizer | Line: 114</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Public function could be external</strong>
+            <p>Function at line 121 is public but appears to only be called externally</p>
+            <small>Tool: gas_optimizer | Rule: GAS-036 | Origin: gas_optimizer | Line: 121</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Public function could be external</strong>
+            <p>Function at line 133 is public but appears to only be called externally</p>
+            <small>Tool: gas_optimizer | Rule: GAS-036 | Origin: gas_optimizer | Line: 133</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Public function could be external</strong>
+            <p>Function at line 137 is public but appears to only be called externally</p>
+            <small>Tool: gas_optimizer | Rule: GAS-036 | Origin: gas_optimizer | Line: 137</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Negative numbers cost more gas</strong>
+            <p>Negative number at line 1 costs extra gas</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-005 | Origin: gas_optimizer | Line: 1</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @title in contract documentation</strong>
+            <p>Contract at line 11 lacks @title NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-001 | Origin: code_quality | Line: 11</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @author in contract documentation</strong>
+            <p>Contract at line 11 lacks @author NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-002 | Origin: code_quality | Line: 11</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice or @dev in contract documentation</strong>
+            <p>Contract at line 11 lacks @notice or @dev NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-003 | Origin: code_quality | Line: 11</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function setUp</strong>
+            <p>Public/external function at line 14 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 14</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFallbackDeposit</strong>
+            <p>Public/external function at line 18 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 18</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testDeposit</strong>
+            <p>Public/external function at line 28 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 28</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testWithdraw</strong>
+            <p>Public/external function at line 38 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 38</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testPartialWithdraw</strong>
+            <p>Public/external function at line 52 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 52</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFallbackDeposit</strong>
+            <p>Public/external function at line 66 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 66</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testDeposit</strong>
+            <p>Public/external function at line 78 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 78</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testWithdraw</strong>
+            <p>Public/external function at line 90 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 90</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @title in contract documentation</strong>
+            <p>Contract at line 110 lacks @title NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-001 | Origin: code_quality | Line: 110</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @author in contract documentation</strong>
+            <p>Contract at line 110 lacks @author NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-002 | Origin: code_quality | Line: 110</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice or @dev in contract documentation</strong>
+            <p>Contract at line 110 lacks @notice or @dev NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-003 | Origin: code_quality | Line: 110</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function setUp</strong>
+            <p>Public/external function at line 114 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 114</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function invariantTotalSupplyEqualsBalance</strong>
+            <p>Public/external function at line 121 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 121</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @title in contract documentation</strong>
+            <p>Contract at line 126 lacks @title NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-001 | Origin: code_quality | Line: 126</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @author in contract documentation</strong>
+            <p>Contract at line 126 lacks @author NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-002 | Origin: code_quality | Line: 126</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice or @dev in contract documentation</strong>
+            <p>Contract at line 126 lacks @notice or @dev NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-003 | Origin: code_quality | Line: 126</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function deposit</strong>
+            <p>Public/external function at line 133 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 133</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function fallbackDeposit</strong>
+            <p>Public/external function at line 137 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 137</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function withdraw</strong>
+            <p>Public/external function at line 141 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 141</small>
+
+        </div>
+
+        <h2>✨ Generated Fixes</h2>
+
+        <div class="fix">
+            <span class="confidence medium-conf">MEDIUM CONFIDENCE</span>
+            <strong>access-control</strong> (Line 14)
+            <p>Added onlyOwner modifier to critical function</p>
+            <pre>--- original
++++ fixed
+@@ -1 +1 @@
+- function setUp() public 
++ function setUp() public onlyOwner </pre>
+        </div>
+
+        <div class="fix">
+            <span class="confidence medium-conf">MEDIUM CONFIDENCE</span>
+            <strong>access-control</strong> (Line 141)
+            <p>Added onlyOwner modifier to critical function</p>
+            <pre>--- original
++++ fixed
+@@ -1 +1 @@
+- function withdraw(uint256 amount) public 
++ function withdraw(uint256 amount) public onlyOwner </pre>
+        </div>
+
+    </div>
+</body>
+</html>

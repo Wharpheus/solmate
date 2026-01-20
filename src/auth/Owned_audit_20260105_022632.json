@@ -1,0 +1,1236 @@
+{
+  "contract_name": "Owned.sol",
+  "audit_timestamp": "2026-01-05T02:26:32.790954",
+  "source_lines": 48,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2541205883026123
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2545433044433594
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2545626163482666
+    },
+    "bytecode_re": {
+      "status": "skipped",
+      "findings_count": 0,
+      "execution_time": 0.24915337562561035
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.005610227584838867
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.6091217994689941
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.006248950958251953
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.0002620220184326172
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.00647735595703125
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0065801143646240234
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 1.6228277683258057
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.005617380142211914
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 6,
+      "execution_time": 0.0006639957427978516
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.005082368850708008
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.005632877349853516
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 4,
+      "execution_time": 0.0011172294616699219
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.004522085189819336
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 8.463859558105469e-05
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 0.00048065185546875
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 4,
+      "execution_time": 9.608268737792969e-05
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0038530826568603516
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0002574920654296875
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 8,
+      "execution_time": 0.0005087852478027344
+    }
+  },
+  "total_findings": 18,
+  "raw_total_findings": 125,
+  "findings_by_severity": {
+    "critical": 0,
+    "high": 1,
+    "medium": 3,
+    "low": 4,
+    "info": 10,
+    "gas": 4
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 124,
+      "kept_count": 18,
+      "filtered_count": 106,
+      "filter_rate": 0.8548387096774194,
+      "kept_by_severity": {
+        "medium": 3,
+        "high": 1,
+        "low": 4,
+        "info": 10
+      },
+      "filtered_by_severity": {
+        "low": 6,
+        "medium": 93,
+        "info": 7
+      },
+      "kept_by_category": {
+        "likely_true_positive": 4,
+        "uncertain": 9,
+        "likely_false_positive": 5
+      },
+      "filtered_by_category": {
+        "likely_false_positive": 65,
+        "definite_false_positive": 39,
+        "uncertain": 2
+      },
+      "kept_by_tool": {
+        "comprehensive-security-detector": 1,
+        "flowomatic": 1,
+        "natspec": 4,
+        "reentrancy-detector": 1,
+        "gas_optimizer": 4,
+        "advanced_security": 2,
+        "code_quality": 5
+      },
+      "filtered_by_tool": {
+        "erc20_heuristics": 3,
+        "natspec": 2,
+        "solidityscan": 92,
+        "gas_heuristics": 2,
+        "access_control_heuristics": 4,
+        "code_quality": 3
+      },
+      "avg_ml_score_kept": 0.7192844444444444,
+      "avg_ml_score_filtered": 0.450763962264151,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 18,
+      "critical": 0,
+      "high": 1,
+      "medium": 3,
+      "low": 4,
+      "info": 10,
+      "security_score": 56,
+      "on_attack_path": 2,
+      "max_attack_path_degree": 6
+    },
+    "patch_plan": [
+      {
+        "title": "Potential Taint Flow in transferOwnership",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Modifier with external call - reentrancy risk",
+        "suggested_fix": "Apply checks-effects-interactions or use ReentrancyGuard.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing nonReentrant Modifier on transferOwnership()",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing NatSpec @notice for modifier 'onlyOwner'",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing @param _owner for constructor 'constructor'",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing NatSpec @notice for function 'transferOwnership'",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing NatSpec @dev for function 'transferOwnership'",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing documentation for modifier onlyOwner",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "info",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Struct field ordering may be inefficient",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "info",
+        "is_chain_breaker": false
+      }
+    ]
+  },
+  "fixes_generated": 0,
+  "fixes_by_confidence": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "all_findings": [
+    {
+      "id": "flowomatic_taint_transferOwnership",
+      "tool": "flowomatic",
+      "rule_id": "taint-flow",
+      "title": "Potential Taint Flow in transferOwnership",
+      "description": "Untrusted input (msg.sender) may reach sensitive operation (transfer, send) without proper validation",
+      "severity": "high",
+      "confidence": 0.7,
+      "location": {
+        "file": null,
+        "line": 39,
+        "function": "transferOwnership",
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "cwe_id": "CWE-20",
+        "sources": [
+          "msg.sender"
+        ],
+        "sinks": [
+          "transfer",
+          "send"
+        ],
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.7,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "fix_suggestion": "Add require() or assert() to validate input before sensitive operations"
+      },
+      "ml_score": 0.8687999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "USEC-006",
+      "tool": "advanced_security",
+      "rule_id": "USEC-006",
+      "title": "Modifier with external call - reentrancy risk",
+      "description": "Modifier at line 19 contains external call",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 19,
+        "function": null,
+        "contract": "Owned"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Avoid external calls in modifiers or use reentrancy guard",
+        "category": "security",
+        "cwe": "CWE-841",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "reentrancy-missing-guard-transferOwnership",
+      "tool": "reentrancy-detector",
+      "rule_id": "reentrancy-missing-guard",
+      "title": "Missing nonReentrant Modifier on transferOwnership()",
+      "description": "Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.",
+      "severity": "medium",
+      "confidence": 0.7,
+      "location": {
+        "file": "Owned",
+        "line": 38,
+        "function": "transferOwnership",
+        "contract": "Owned"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "external_calls": 0,
+        "eth_transfers": 0,
+        "fix_suggestion": "Add `nonReentrant` modifier from OpenZeppelin's ReentrancyGuard. Import: `import '@openzeppelin/contracts/utils/ReentrancyGuard.sol';` Usage: `function transferOwnership(...) external nonReentrant { ... }`",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.90)",
+          "Multiple tools agree (11 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.95,
+        "ml_features": {
+          "tool_reputation": 0.9,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.7,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-38",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 39: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.6,
+      "location": {
+        "file": "e6a502c34e3650b1",
+        "line": 39,
+        "function": null,
+        "contract": "e6a502c34e3650b1"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function transferOwnership(address newOwner) public virtual onlyOwner {",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (8 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.6,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9072,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_notice_mod_onlyOwner_19",
+      "tool": "natspec",
+      "rule_id": "natspec/notice-modifier",
+      "title": "Missing NatSpec @notice for modifier 'onlyOwner'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 1.0,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 19,
+        "function": "onlyOwner",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 6
+          }
+        ],
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.59)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 1.0,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 6,
+          "attack_path_score": 0.8,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.5894400000000001,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_param_constructor__owner_29",
+      "tool": "natspec",
+      "rule_id": "natspec/param",
+      "title": "Missing @param _owner for constructor 'constructor'",
+      "description": "Document parameter '_owner' with an @param entry.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 29,
+        "function": "constructor",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Multiple tools agree (2 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.75)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.7548,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "natspec_func_notice_transferOwnership_39",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'transferOwnership'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 39,
+        "function": "transferOwnership",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_transferOwnership_39",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'transferOwnership'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 39,
+        "function": "transferOwnership",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-008",
+      "tool": "code_quality",
+      "rule_id": "CQ-008",
+      "title": "Missing documentation for modifier onlyOwner",
+      "description": "Modifier at line 19 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.7000000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 19,
+        "function": null,
+        "contract": "Owned"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @dev or @notice explaining the modifier purpose",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 6
+          }
+        ],
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.51)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.7000000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": true,
+          "attack_path_degree": 6,
+          "attack_path_score": 0.8,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.5088,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "MEM-003",
+      "tool": "advanced_security",
+      "rule_id": "MEM-003",
+      "title": "Struct field ordering may be inefficient",
+      "description": "Struct at line 29 should pack fields for gas efficiency",
+      "severity": "info",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 29,
+        "function": null,
+        "contract": "Owned"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Order fields: larger types first, pack smaller types",
+        "category": "memory",
+        "cwe": "CWE-400",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.76)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.762,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-040",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-040",
+      "title": "Modifier adds gas overhead",
+      "description": "Modifier at line 19 adds deployment gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 19,
+        "function": null,
+        "contract": "Owned"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas deployment per modifier",
+        "recommendation": "Consider inlining simple modifiers if used only once",
+        "cwe": "CWE-400",
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-052",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-052",
+      "title": "Use custom errors instead of string messages",
+      "description": "Require at line 20 uses string error message (expensive)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 20,
+        "function": null,
+        "contract": "Owned"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per revert",
+        "recommendation": "Define custom errors and use revert CustomError() (Solidity 0.8.4+)",
+        "cwe": "CWE-400",
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-003",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-003",
+      "title": "Use custom errors instead of require strings",
+      "description": "Require with string at line 20 wastes deployment gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 20,
+        "function": null,
+        "contract": "Owned"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per call, significant deployment savings",
+        "recommendation": "Use custom error: error MyError(); revert MyError();",
+        "cwe": "CWE-400",
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 39 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 39,
+        "function": null,
+        "contract": "Owned"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 26 has 31 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 26,
+        "function": null,
+        "contract": "Owned"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 36 has 29 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 36,
+        "function": null,
+        "contract": "Owned"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 39 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 39,
+        "function": null,
+        "contract": "Owned"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function transferOwnership",
+      "description": "Public/external function at line 39 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/Owned.sol",
+        "line": 39,
+        "function": null,
+        "contract": "Owned"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 20,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    }
+  ],
+  "all_fixes": [],
+  "auto_fixed": false
+}

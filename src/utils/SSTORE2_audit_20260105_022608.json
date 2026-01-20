@@ -1,0 +1,2503 @@
+{
+  "contract_name": "SSTORE2.sol",
+  "audit_timestamp": "2026-01-05T02:26:08.006475",
+  "source_lines": 105,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.24643802642822266
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2476050853729248
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.24762487411499023
+    },
+    "bytecode_re": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.23801040649414062
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.010291814804077148
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.5892214775085449
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.011106014251708984
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.0001087188720703125
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.012143373489379883
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.012329816818237305
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 1.5480408668518066
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.011675834655761719
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0006392002105712891
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.011188507080078125
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.011742353439331055
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 7,
+      "execution_time": 0.002231121063232422
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.009524345397949219
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.0002384185791015625
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 6,
+      "execution_time": 0.0013914108276367188
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 5,
+      "execution_time": 0.0001952648162841797
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.007693052291870117
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.0007002353668212891
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 37,
+      "execution_time": 0.001425027847290039
+    }
+  },
+  "total_findings": 43,
+  "raw_total_findings": 159,
+  "findings_by_severity": {
+    "critical": 0,
+    "high": 7,
+    "medium": 0,
+    "low": 2,
+    "info": 34,
+    "gas": 7
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 155,
+      "kept_count": 43,
+      "filtered_count": 112,
+      "filter_rate": 0.7225806451612903,
+      "kept_by_severity": {
+        "low": 2,
+        "high": 7,
+        "info": 34
+      },
+      "filtered_by_severity": {
+        "low": 3,
+        "medium": 92,
+        "high": 1,
+        "info": 16
+      },
+      "kept_by_category": {
+        "likely_true_positive": 9,
+        "uncertain": 28,
+        "likely_false_positive": 6
+      },
+      "filtered_by_category": {
+        "likely_false_positive": 71,
+        "definite_false_positive": 39,
+        "uncertain": 2
+      },
+      "kept_by_tool": {
+        "comprehensive-security-detector": 3,
+        "gas_optimizer": 7,
+        "gas_heuristics": 1,
+        "advanced_security": 5,
+        "access_control_heuristics": 4,
+        "defi_security": 1,
+        "code_quality": 22
+      },
+      "filtered_by_tool": {
+        "erc20_heuristics": 3,
+        "solidityscan": 92,
+        "advanced_security": 1,
+        "access_control_heuristics": 1,
+        "code_quality": 15
+      },
+      "avg_ml_score_kept": 0.6893395348837209,
+      "avg_ml_score_filtered": 0.4521758928571429,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 43,
+      "critical": 0,
+      "high": 7,
+      "medium": 0,
+      "low": 2,
+      "info": 34,
+      "security_score": 0,
+      "on_attack_path": 0,
+      "max_attack_path_degree": 0
+    },
+    "patch_plan": [
+      {
+        "title": "Potentially Uninitialized Storage Pointer",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Sandwich attack vulnerability - no slippage protection",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "MEV vulnerability - sandwich attack",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Memory operation in assembly",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Memory operation in assembly",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Swap without slippage protection",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Memory operation in assembly",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Variable Shadowing",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Variable Shadowing",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Loop counter increment could be unchecked",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "info",
+        "is_chain_breaker": false
+      }
+    ]
+  },
+  "fixes_generated": 0,
+  "fixes_by_confidence": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "all_findings": [
+    {
+      "id": "uninitialized-storage-3",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "uninitialized-storage",
+      "title": "Potentially Uninitialized Storage Pointer",
+      "description": "Line 4: Storage pointer may be uninitialized. Ensure it's properly initialized before use.",
+      "severity": "high",
+      "confidence": 0.6,
+      "location": {
+        "file": "42b1580536d346f2",
+        "line": 4,
+        "function": null,
+        "contract": "42b1580536d346f2"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "/// @notice Read and write to persistent storage at a fraction of the cost.",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (6 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.94)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.6,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9432,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ADV-021",
+      "tool": "advanced_security",
+      "rule_id": "ADV-021",
+      "title": "Sandwich attack vulnerability - no slippage protection",
+      "description": "Swap at line 28 lacks slippage protection (sandwich attack vector)",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 28,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Add minAmountOut parameter for slippage protection",
+        "category": "security",
+        "cwe": "CWE-20",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": true,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (13 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 13,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8700000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "USEC-061",
+      "tool": "advanced_security",
+      "rule_id": "USEC-061",
+      "title": "MEV vulnerability - sandwich attack",
+      "description": "Swap at line 28 lacks slippage protection",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 28,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Add minAmountOut parameter for slippage protection",
+        "category": "security",
+        "cwe": "CWE-20",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": true,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (13 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 13,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8700000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ASM-003",
+      "tool": "advanced_security",
+      "rule_id": "ASM-003",
+      "title": "Memory operation in assembly",
+      "description": "Memory operation at line 41 can corrupt Solidity memory",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 41,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure memory operations don't overlap with Solidity",
+        "category": "assembly",
+        "cwe": "CWE-119",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8700000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ASM-003",
+      "tool": "advanced_security",
+      "rule_id": "ASM-003",
+      "title": "Memory operation in assembly",
+      "description": "Memory operation at line 86 can corrupt Solidity memory",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 86,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure memory operations don't overlap with Solidity",
+        "category": "assembly",
+        "cwe": "CWE-119",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8700000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "DEFI-003",
+      "tool": "defi_security",
+      "rule_id": "DEFI-003",
+      "title": "Swap without slippage protection",
+      "description": "Swap at line 28 vulnerable to slippage manipulation",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 28,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Add amountOutMin parameter for slippage protection",
+        "category": "defi",
+        "cwe": "CWE-20",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (14 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 14,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8700000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ASM-003",
+      "tool": "advanced_security",
+      "rule_id": "ASM-003",
+      "title": "Memory operation in assembly",
+      "description": "Memory operation at line 92 can corrupt Solidity memory",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 92,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure memory operations don't overlap with Solidity",
+        "category": "assembly",
+        "cwe": "CWE-119",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.81,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "variable-shadowing-17",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 18: Variable 'memory' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.5,
+      "location": {
+        "file": "42b1580536d346f2",
+        "line": 18,
+        "function": null,
+        "contract": "42b1580536d346f2"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "bytes memory creationCode = abi.encodePacked(",
+        "variable": "memory",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (6 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.86)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8592000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "variable-shadowing-78",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 79: Variable 'pointer' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.5,
+      "location": {
+        "file": "42b1580536d346f2",
+        "line": 79,
+        "function": null,
+        "contract": "42b1580536d346f2"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "address pointer,",
+        "variable": "pointer",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (4 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.86)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8592000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "GAS-017",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-017",
+      "title": "Loop counter increment could be unchecked",
+      "description": "Loop counter at line 32 uses checked arithmetic unnecessarily",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 32,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~30-40 gas per iteration",
+        "recommendation": "Wrap loop counter increment in unchecked block (Solidity 0.8+)",
+        "cwe": "CWE-400",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-038",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-038",
+      "title": "Function could potentially be view",
+      "description": "Function at line 14 might only read state",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 14,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "Enables optimizations",
+        "recommendation": "Add view modifier if function only reads state",
+        "cwe": "CWE-400",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-052",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-052",
+      "title": "Use custom errors instead of string messages",
+      "description": "Require at line 44 uses string error message (expensive)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 44,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per revert",
+        "recommendation": "Define custom errors and use revert CustomError() (Solidity 0.8.4+)",
+        "cwe": "CWE-400",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-052",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-052",
+      "title": "Use custom errors instead of string messages",
+      "description": "Require at line 69 uses string error message (expensive)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 69,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per revert",
+        "recommendation": "Define custom errors and use revert CustomError() (Solidity 0.8.4+)",
+        "cwe": "CWE-400",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-003",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-003",
+      "title": "Use custom errors instead of require strings",
+      "description": "Require with string at line 44 wastes deployment gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 44,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per call, significant deployment savings",
+        "recommendation": "Use custom error: error MyError(); revert MyError();",
+        "cwe": "CWE-400",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-003",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-003",
+      "title": "Use custom errors instead of require strings",
+      "description": "Require with string at line 69 wastes deployment gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 69,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per call, significant deployment savings",
+        "recommendation": "Use custom error: error MyError(); revert MyError();",
+        "cwe": "CWE-400",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-043",
+      "tool": "code_quality",
+      "rule_id": "CQ-043",
+      "title": "Line exceeds 120 characters",
+      "description": "Line 23 is 127 characters long (recommended: \u2264120)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 23,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Break long lines for better readability",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-043",
+      "tool": "code_quality",
+      "rule_id": "CQ-043",
+      "title": "Line exceeds 120 characters",
+      "description": "Line 24 is 127 characters long (recommended: \u2264120)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 24,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Break long lines for better readability",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-043",
+      "tool": "code_quality",
+      "rule_id": "CQ-043",
+      "title": "Line exceeds 120 characters",
+      "description": "Line 25 is 127 characters long (recommended: \u2264120)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 25,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Break long lines for better readability",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-043",
+      "tool": "code_quality",
+      "rule_id": "CQ-043",
+      "title": "Line exceeds 120 characters",
+      "description": "Line 26 is 127 characters long (recommended: \u2264120)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 26,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Break long lines for better readability",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-043",
+      "tool": "code_quality",
+      "rule_id": "CQ-043",
+      "title": "Line exceeds 120 characters",
+      "description": "Line 27 is 127 characters long (recommended: \u2264120)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 27,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Break long lines for better readability",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-043",
+      "tool": "code_quality",
+      "rule_id": "CQ-043",
+      "title": "Line exceeds 120 characters",
+      "description": "Line 28 is 127 characters long (recommended: \u2264120)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 28,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Break long lines for better readability",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-043",
+      "tool": "code_quality",
+      "rule_id": "CQ-043",
+      "title": "Line exceeds 120 characters",
+      "description": "Line 29 is 127 characters long (recommended: \u2264120)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 29,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Break long lines for better readability",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-043",
+      "tool": "code_quality",
+      "rule_id": "CQ-043",
+      "title": "Line exceeds 120 characters",
+      "description": "Line 30 is 127 characters long (recommended: \u2264120)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 30,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Break long lines for better readability",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-043",
+      "tool": "code_quality",
+      "rule_id": "CQ-043",
+      "title": "Line exceeds 120 characters",
+      "description": "Line 31 is 127 characters long (recommended: \u2264120)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 31,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Break long lines for better readability",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-043",
+      "tool": "code_quality",
+      "rule_id": "CQ-043",
+      "title": "Line exceeds 120 characters",
+      "description": "Line 32 is 127 characters long (recommended: \u2264120)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 32,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Break long lines for better readability",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-043",
+      "tool": "code_quality",
+      "rule_id": "CQ-043",
+      "title": "Line exceeds 120 characters",
+      "description": "Line 33 is 129 characters long (recommended: \u2264120)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 33,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Break long lines for better readability",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-046",
+      "tool": "code_quality",
+      "rule_id": "CQ-046",
+      "title": "Commented out code detected",
+      "description": "Line 39 appears to be commented out code",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 39,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Remove commented out code or uncomment if needed",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-005",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-005",
+      "title": "Negative numbers cost more gas",
+      "description": "Negative number at line 1 costs extra gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 1,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas",
+        "recommendation": "Use subtraction or unsigned types when possible",
+        "cwe": "CWE-400",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.6539999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-023",
+      "tool": "code_quality",
+      "rule_id": "CQ-023",
+      "title": "Private/internal variable should start with underscore",
+      "description": "Private/internal variable \"returns\" at line 65 should start with _",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 65,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Prefix private/internal variables with underscore (e.g., _myVar)",
+        "category": "naming",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-023",
+      "tool": "code_quality",
+      "rule_id": "CQ-023",
+      "title": "Private/internal variable should start with underscore",
+      "description": "Private/internal variable \"returns\" at line 82 should start with _",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 82,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Prefix private/internal variables with underscore (e.g., _myVar)",
+        "category": "naming",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-024",
+      "tool": "code_quality",
+      "rule_id": "CQ-024",
+      "title": "Event name not in PascalCase",
+      "description": "Event name \"overriding\" at line 88 should be PascalCase",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 88,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use PascalCase for event names (e.g., TokenTransferred)",
+        "category": "naming",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-046",
+      "tool": "code_quality",
+      "rule_id": "CQ-046",
+      "title": "Commented out code detected",
+      "description": "Line 6 appears to be commented out code",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 6,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Remove commented out code or uncomment if needed",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-043",
+      "tool": "code_quality",
+      "rule_id": "CQ-043",
+      "title": "Line exceeds 120 characters",
+      "description": "Line 19 is 127 characters long (recommended: \u2264120)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 19,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Break long lines for better readability",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 48 has 31 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 48,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 65 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 65,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 71 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 71,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 82 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 82,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-022",
+      "tool": "code_quality",
+      "rule_id": "CQ-022",
+      "title": "Constant not in UPPER_SNAKE_CASE",
+      "description": "Constant \"internal\" at line 8 should be UPPER_SNAKE_CASE",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": 8,
+        "function": null,
+        "contract": "SSTORE2"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use UPPER_SNAKE_CASE for constants (e.g., MAX_VALUE)",
+        "category": "naming",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 51,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.3333333333333333,
+          "consensus_count": 1,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.48500000000000004,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "access_control_heuristics_CONTRACT_NAME_STYLE",
+      "tool": "access_control_heuristics",
+      "rule_id": "CONTRACT_NAME_NOT_PASCALCASE",
+      "title": "Contract name should use PascalCase",
+      "description": "Refactor contract names to PascalCase without underscores.",
+      "severity": "info",
+      "confidence": 0.7,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Only one tool detected this issue",
+          "Low severity / informational",
+          "Uncertain classification (ML score: 0.44)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.0,
+          "consensus_count": 0,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.7,
+          "kind_score": 0.3,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.44000000000000006,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "access_control_heuristics_CONTRACT_NAME_STYLE",
+      "tool": "access_control_heuristics",
+      "rule_id": "CONTRACT_NAME_NOT_PASCALCASE",
+      "title": "Contract name should use PascalCase",
+      "description": "Refactor contract names to PascalCase without underscores.",
+      "severity": "info",
+      "confidence": 0.7,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Only one tool detected this issue",
+          "Low severity / informational",
+          "Uncertain classification (ML score: 0.44)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.0,
+          "consensus_count": 0,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.7,
+          "kind_score": 0.3,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.44000000000000006,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "access_control_heuristics_CONTRACT_NAME_STYLE",
+      "tool": "access_control_heuristics",
+      "rule_id": "CONTRACT_NAME_NOT_PASCALCASE",
+      "title": "Contract name should use PascalCase",
+      "description": "Refactor contract names to PascalCase without underscores.",
+      "severity": "info",
+      "confidence": 0.7,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Only one tool detected this issue",
+          "Low severity / informational",
+          "Uncertain classification (ML score: 0.44)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.0,
+          "consensus_count": 0,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.7,
+          "kind_score": 0.3,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.44000000000000006,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "access_control_heuristics_CONTRACT_NAME_STYLE",
+      "tool": "access_control_heuristics",
+      "rule_id": "CONTRACT_NAME_NOT_PASCALCASE",
+      "title": "Contract name should use PascalCase",
+      "description": "Refactor contract names to PascalCase without underscores.",
+      "severity": "info",
+      "confidence": 0.7,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Only one tool detected this issue",
+          "Low severity / informational",
+          "Uncertain classification (ML score: 0.44)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.0,
+          "consensus_count": 0,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.7,
+          "kind_score": 0.3,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.44000000000000006,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "gas_heuristics_USE_CUSTOM_ERRORS",
+      "tool": "gas_heuristics",
+      "rule_id": "USE_CUSTOM_ERRORS",
+      "title": "Use custom errors instead of revert strings",
+      "description": "Custom errors reduce deployment and runtime costs compared to string messages.",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/SSTORE2.sol",
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "informational",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Only one tool detected this issue",
+          "Low severity / informational",
+          "Uncertain classification (ML score: 0.44)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.0,
+          "consensus_count": 0,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.43500000000000005,
+      "ml_label": "likely_false_positive"
+    }
+  ],
+  "all_fixes": [],
+  "auto_fixed": false
+}

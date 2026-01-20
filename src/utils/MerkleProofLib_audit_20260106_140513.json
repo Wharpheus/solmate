@@ -1,0 +1,253 @@
+{
+  "contract_name": "MerkleProofLib.sol",
+  "audit_timestamp": "2026-01-06T14:05:13.560696",
+  "source_lines": 52,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.26993322372436523
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2706272602081299
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.27063608169555664
+    },
+    "bytecode_re": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.26539015769958496
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.005597352981567383
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.9294908046722412
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.0062253475189208984
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.00010228157043457031
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00671696662902832
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.006841897964477539
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 1.595280647277832
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0061092376708984375
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0002646446228027344
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.005929708480834961
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.006371498107910156
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 0.001003265380859375
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00537872314453125
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00012803077697753906
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0005638599395751953
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 7.081031799316406e-05
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.004607439041137695
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0004124641418457031
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 5,
+      "execution_time": 0.0006737709045410156
+    }
+  },
+  "total_findings": 1,
+  "raw_total_findings": 104,
+  "findings_by_severity": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "info": 1,
+    "gas": 0
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 103,
+      "kept_count": 1,
+      "filtered_count": 102,
+      "filter_rate": 0.9902912621359223,
+      "kept_by_severity": {
+        "info": 1
+      },
+      "filtered_by_severity": {
+        "low": 3,
+        "medium": 92,
+        "info": 7
+      },
+      "kept_by_category": {
+        "likely_false_positive": 1
+      },
+      "filtered_by_category": {
+        "likely_false_positive": 61,
+        "definite_false_positive": 39,
+        "uncertain": 2
+      },
+      "kept_by_tool": {
+        "code_quality": 1
+      },
+      "filtered_by_tool": {
+        "erc20_heuristics": 3,
+        "solidityscan": 92,
+        "gas_optimizer": 2,
+        "access_control_heuristics": 1,
+        "code_quality": 4
+      },
+      "avg_ml_score_kept": 0.43000000000000005,
+      "avg_ml_score_filtered": 0.4477676470588236,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 1,
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "info": 1,
+      "security_score": 99,
+      "on_attack_path": 0,
+      "max_attack_path_degree": 0
+    },
+    "patch_plan": [
+      {
+        "title": "Multiple consecutive empty lines",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "info",
+        "is_chain_breaker": false
+      }
+    ]
+  },
+  "fixes_generated": 0,
+  "fixes_by_confidence": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "all_findings": [
+    {
+      "id": "CQ-047",
+      "tool": "code_quality",
+      "rule_id": "CQ-047",
+      "title": "Multiple consecutive empty lines",
+      "description": "Multiple empty lines at line 50",
+      "severity": "info",
+      "confidence": 0.5,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/MerkleProofLib.sol",
+        "line": 50,
+        "function": null,
+        "contract": "MerkleProofLib"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use single empty line for separation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Only one tool detected this issue",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.43)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.0,
+          "consensus_count": 0,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.43000000000000005,
+      "ml_label": "likely_false_positive"
+    }
+  ],
+  "all_fixes": [],
+  "auto_fixed": false
+}

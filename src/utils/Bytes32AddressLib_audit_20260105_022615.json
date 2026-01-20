@@ -1,0 +1,188 @@
+{
+  "contract_name": "Bytes32AddressLib.sol",
+  "audit_timestamp": "2026-01-05T02:26:15.830213",
+  "source_lines": 18,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.23856496810913086
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2387833595275879
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2388002872467041
+    },
+    "bytecode_re": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.23620247840881348
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0026993751525878906
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.5524437427520752
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.0032243728637695312
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 8.463859558105469e-05
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.003331422805786133
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.003392934799194336
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 1.5805127620697021
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.002638578414916992
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0001308917999267578
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0025382041931152344
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.002940654754638672
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.00042319297790527344
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.002526998519897461
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 5.435943603515625e-05
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00018358230590820312
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 4.315376281738281e-05
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0022423267364501953
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00012826919555664062
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 4,
+      "execution_time": 0.00024318695068359375
+    }
+  },
+  "total_findings": 0,
+  "raw_total_findings": 103,
+  "findings_by_severity": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "info": 0,
+    "gas": 0
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 101,
+      "kept_count": 0,
+      "filtered_count": 101,
+      "filter_rate": 1.0,
+      "kept_by_severity": {},
+      "filtered_by_severity": {
+        "low": 3,
+        "medium": 92,
+        "info": 6
+      },
+      "kept_by_category": {},
+      "filtered_by_category": {
+        "likely_false_positive": 60,
+        "definite_false_positive": 39,
+        "uncertain": 2
+      },
+      "kept_by_tool": {},
+      "filtered_by_tool": {
+        "erc20_heuristics": 3,
+        "solidityscan": 92,
+        "gas_optimizer": 1,
+        "access_control_heuristics": 1,
+        "code_quality": 4
+      },
+      "avg_ml_score_kept": 0.0,
+      "avg_ml_score_filtered": 0.4486861386138614,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 0,
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "security_score": 100,
+      "on_attack_path": 0,
+      "max_attack_path_degree": 0
+    },
+    "patch_plan": []
+  },
+  "fixes_generated": 0,
+  "fixes_by_confidence": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "all_findings": [],
+  "all_fixes": [],
+  "auto_fixed": false
+}

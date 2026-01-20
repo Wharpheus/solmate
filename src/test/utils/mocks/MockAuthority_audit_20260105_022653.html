@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Security Audit Report - MockAuthority.sol</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #333; border-bottom: 3px solid #4CAF50; padding-bottom: 10px; }
+        h2 { color: #555; margin-top: 30px; }
+        .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0; }
+        .card { background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #4CAF50; }
+        .card h3 { margin: 0 0 10px 0; color: #666; font-size: 14px; }
+        .card .number { font-size: 32px; font-weight: bold; color: #333; }
+        .severity { padding: 4px 8px; border-radius: 4px; font-weight: bold; color: white; }
+        .critical { background: #d32f2f; }
+        .high { background: #f57c00; }
+        .medium { background: #fbc02d; color: #333; }
+        .low { background: #388e3c; }
+        .info { background: #1976d2; }
+        .finding { background: #fff; border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 4px; }
+        .fix { background: #e8f5e9; border-left: 4px solid #4CAF50; padding: 15px; margin: 10px 0; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        .confidence { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+        .high-conf { background: #4CAF50; color: white; }
+        .medium-conf { background: #FFC107; color: black; }
+        .low-conf { background: #9E9E9E; color: white; }
+        .tag { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-right: 6px; }
+        .tag-chain { background: #6a1b9a; color: #fff; }
+        .tag-path { background: #283593; color: #fff; }
+        .context { margin-top: 6px; font-size: 12px; color: #555; }
+        .context-badge { display: inline-block; padding: 3px 8px; margin: 0 6px 6px 0; border-radius: 4px; background: #e3f2fd; color: #0d47a1; font-size: 11px; }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .card-note { margin-top: 8px; font-size: 13px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 Security Audit Report</h1>
+        <p><strong>Contract:</strong> MockAuthority.sol</p>
+        <p><strong>Audit Date:</strong> 2026-01-05T02:26:53.644542</p>
+        <p><strong>Lines of Code:</strong> 24</p>
+
+        <h2>📊 Summary</h2>
+        <div class="summary">
+            <div class="card">
+                <h3>Total Findings</h3>
+                <div class="number">17</div>
+            </div>
+            <div class="card">
+                <h3>Fixes Generated</h3>
+                <div class="number">0</div>
+            </div>
+            <div class="card">
+                <h3>Auto-Applied</h3>
+                <div class="number">No</div>
+            </div>
+        </div>
+
+        <h2>🧠 Brainstem & Attack Paths</h2>
+        <div class="summary">
+            <div class="card">
+                <h3>False-Positive Filter</h3>
+                <div class="number">17/115</div>
+                <p class="card-note">
+                    Kept after filtering (filtered out 97 likely false positives).
+                </p>
+            </div>
+            <div class="card">
+                <h3>Security Score</h3>
+                <div class="number">71</div>
+                <p class="card-note">
+                    0 = worst, 100 = best (attack-path aware).
+                </p>
+            </div>
+            <div class="card">
+                <h3>Attack Path Depth</h3>
+                <div class="number">0</div>
+                <p class="card-note">
+                    Findings on active attack paths; max chain length 0.
+                </p>
+            </div>
+        </div>
+
+        <h2>🧩 Context Overview</h2>
+        <div class="finding">
+
+            <span class="context-badge">contextual security (2)</span>
+
+        </div>
+
+        <h2>🎯 Findings by Severity</h2>
+        <div class="finding">
+            <span class="severity critical">CRITICAL: {findings_by_sev['critical']}</span>
+            <span class="severity high">HIGH: {findings_by_sev['high']}</span>
+            <span class="severity medium">MEDIUM: {findings_by_sev['medium']}</span>
+            <span class="severity low">LOW: {findings_by_sev['low']}</span>
+            <span class="severity info">INFO: {findings_by_sev['info']}</span>
+        </div>
+
+        <h2>🔧 Fixes by Confidence</h2>
+        <div class="finding">
+            <span class="confidence high-conf">HIGH: {fixes_by_conf['high']} (safe to auto-apply)</span>
+            <span class="confidence medium-conf">MEDIUM: {fixes_by_conf['medium']} (review recommended)</span>
+            <span class="confidence low-conf">LOW: {fixes_by_conf['low']} (manual review required)</span>
+        </div>
+
+        <h2>🩹 Chain-Breaker Fixes</h2>
+
+        <div class="fix">
+            
+            <span class="severity medium">MEDIUM</span>
+            <strong>Rounding direction not specified</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity low">LOW</span>
+            <strong>Missing @param _allowCalls for constructor 'constructor'</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity low">LOW</span>
+            <strong>Missing @return for function 'canCall'</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity low">LOW</span>
+            <strong>Missing @inheritdoc for override function 'canCall'</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for constructor 'constructor'</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'canCall'</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec for contract 'MockAuthority'</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for constructor 'constructor'</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'canCall'</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity info">INFO</span>
+            <strong>Struct field ordering may be inefficient</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <h2>📋 All Findings</h2>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Rounding direction not specified</strong>
+            <p>Division at line 4 may have exploitable rounding</p>
+            <small>Tool: advanced_security | Rule: ADV-041 | Origin: advanced_security | Line: 4</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing @param _allowCalls for constructor 'constructor'</strong>
+            <p>Document parameter '_allowCalls' with an @param entry.</p>
+            <small>Tool: natspec | Rule: natspec/param | Origin: natspec | Line: 9</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing @return for function 'canCall'</strong>
+            <p>Add @return documentation for return value(s).</p>
+            <small>Tool: natspec | Rule: natspec/return | Origin: natspec | Line: 13</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing @inheritdoc for override function 'canCall'</strong>
+            <p>Add @inheritdoc to reference the overridden documentation.</p>
+            <small>Tool: natspec | Rule: natspec/inheritdoc | Origin: natspec | Line: 13</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for constructor 'constructor'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 9</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'canCall'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 13</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec for contract 'MockAuthority'</strong>
+            <p>Add NatSpec doc block (/// or /** ... */) above contract MockAuthority.</p>
+            <small>Tool: natspec | Rule: natspec/contract-doc | Origin: natspec | Line: 6</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for constructor 'constructor'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 9</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'canCall'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 13</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Struct field ordering may be inefficient</strong>
+            <p>Struct at line 9 should pack fields for gas efficiency</p>
+            <small>Tool: advanced_security | Rule: MEM-003 | Origin: advanced_security | Line: 9</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Negative numbers cost more gas</strong>
+            <p>Negative number at line 1 costs extra gas</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-005 | Origin: gas_optimizer | Line: 1</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing explicit function visibility</strong>
+            <p>Function at line 13 should have explicit visibility</p>
+            <small>Tool: code_quality | Rule: UQ-009 | Origin: code_quality | Line: 13</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 17 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 17</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 18 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 18</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @title in contract documentation</strong>
+            <p>Contract at line 6 lacks @title NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-001 | Origin: code_quality | Line: 6</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @author in contract documentation</strong>
+            <p>Contract at line 6 lacks @author NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-002 | Origin: code_quality | Line: 6</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice or @dev in contract documentation</strong>
+            <p>Contract at line 6 lacks @notice or @dev NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-003 | Origin: code_quality | Line: 6</small>
+
+        </div>
+
+        <h2>✨ Generated Fixes</h2>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,4485 @@
+{
+  "contract_name": "Hevm.sol",
+  "audit_timestamp": "2026-01-05T02:26:40.484230",
+  "source_lines": 111,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.23722195625305176
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.23827409744262695
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.23829245567321777
+    },
+    "bytecode_re": {
+      "status": "skipped",
+      "findings_count": 0,
+      "execution_time": 0.22702622413635254
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.01187276840209961
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.6813216209411621
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.01273798942565918
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.00011730194091796875
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 16,
+      "execution_time": 0.016029834747314453
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.01624321937561035
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 1.5400190353393555
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.015611410140991211
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 6,
+      "execution_time": 0.001924753189086914
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.023323774337768555
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.023749589920043945
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 13,
+      "execution_time": 0.002201080322265625
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.021561145782470703
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0005586147308349609
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.001237630844116211
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.00040912628173828125
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.019351959228515625
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0006220340728759766
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.0016787052154541016
+    }
+  },
+  "total_findings": 82,
+  "raw_total_findings": 182,
+  "findings_by_severity": {
+    "critical": 2,
+    "high": 3,
+    "medium": 12,
+    "low": 8,
+    "info": 57,
+    "gas": 13
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 182,
+      "kept_count": 82,
+      "filtered_count": 100,
+      "filter_rate": 0.5494505494505495,
+      "kept_by_severity": {
+        "medium": 12,
+        "low": 8,
+        "high": 3,
+        "info": 57,
+        "critical": 2
+      },
+      "filtered_by_severity": {
+        "low": 3,
+        "medium": 92,
+        "info": 5
+      },
+      "kept_by_category": {
+        "likely_true_positive": 19,
+        "likely_false_positive": 8,
+        "uncertain": 55
+      },
+      "filtered_by_category": {
+        "likely_false_positive": 60,
+        "definite_false_positive": 38,
+        "uncertain": 2
+      },
+      "kept_by_tool": {
+        "comprehensive-security-detector": 16,
+        "natspec": 6,
+        "gas_optimizer": 13,
+        "advanced_security": 3,
+        "code_quality": 44
+      },
+      "filtered_by_tool": {
+        "erc20_heuristics": 3,
+        "solidityscan": 92,
+        "access_control_heuristics": 3,
+        "code_quality": 2
+      },
+      "avg_ml_score_kept": 0.7275629268292684,
+      "avg_ml_score_filtered": 0.44935300000000006,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 82,
+      "critical": 2,
+      "high": 3,
+      "medium": 12,
+      "low": 8,
+      "info": 57,
+      "security_score": 0,
+      "on_attack_path": 2,
+      "max_attack_path_degree": 2
+    },
+    "patch_plan": [
+      {
+        "title": "Price calculation vulnerable to flash loan manipulation",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "critical",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Flash loan attack - price manipulation via balance",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "critical",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potentially Uninitialized Storage Pointer",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potentially Uninitialized Storage Pointer",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potentially Uninitialized Storage Pointer",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing Function Visibility",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      }
+    ]
+  },
+  "fixes_generated": 1,
+  "fixes_by_confidence": {
+    "high": 1,
+    "medium": 0,
+    "low": 0
+  },
+  "all_findings": [
+    {
+      "id": "ADV-010",
+      "tool": "advanced_security",
+      "rule_id": "ADV-010",
+      "title": "Price calculation vulnerable to flash loan manipulation",
+      "description": "Line 55 calculates price using current balance (flash loan attack vector)",
+      "severity": "critical",
+      "confidence": 0.9,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 55,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Use TWAP oracle or similar manipulation-resistant price source",
+        "category": "security",
+        "cwe": "CWE-682",
+        "owasp": "A04:2021 - Insecure Design",
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": true,
+          "oracle_manipulation": true,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "attack_vectors": [
+          {
+            "pattern": "oracle_manipulation",
+            "description": "Oracle manipulation vulnerabilities",
+            "related_findings": 2
+          }
+        ],
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "High severity finding",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.92)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 1.0,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": true,
+          "attack_path_degree": 2,
+          "attack_path_score": 0.6,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.9239999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "USEC-010",
+      "tool": "advanced_security",
+      "rule_id": "USEC-010",
+      "title": "Flash loan attack - price manipulation via balance",
+      "description": "Price calculation at line 55 uses balance (flash loan vector)",
+      "severity": "critical",
+      "confidence": 0.9,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 55,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Use TWAP oracle instead of spot balance for pricing",
+        "category": "security",
+        "cwe": "CWE-682",
+        "owasp": "A04:2021 - Insecure Design",
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": true,
+          "oracle_manipulation": true,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "attack_vectors": [
+          {
+            "pattern": "oracle_manipulation",
+            "description": "Oracle manipulation vulnerabilities",
+            "related_findings": 2
+          }
+        ],
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "High severity finding",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.92)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 1.0,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": true,
+          "attack_path_degree": 2,
+          "attack_path_score": 0.6,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.9239999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "uninitialized-storage-13",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "uninitialized-storage",
+      "title": "Potentially Uninitialized Storage Pointer",
+      "description": "Line 14: Storage pointer may be uninitialized. Ensure it's properly initialized before use.",
+      "severity": "high",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 14,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "/// @notice Loads a storage slot from an address.",
+        "location_cluster_size": 3,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (6 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.95)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9492000000000002,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "uninitialized-storage-16",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "uninitialized-storage",
+      "title": "Potentially Uninitialized Storage Pointer",
+      "description": "Line 17: Storage pointer may be uninitialized. Ensure it's properly initialized before use.",
+      "severity": "high",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 17,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "/// @notice Stores a value to an address' storage slot.",
+        "location_cluster_size": 3,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (5 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.95)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9492000000000002,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "uninitialized-storage-66",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "uninitialized-storage",
+      "title": "Potentially Uninitialized Storage Pointer",
+      "description": "Line 67: Storage pointer may be uninitialized. Ensure it's properly initialized before use.",
+      "severity": "high",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 67,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "/// @notice Record all storage reads and writes.",
+        "location_cluster_size": 13,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (8 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.95)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9492000000000002,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "missing-visibility-24",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "missing-visibility",
+      "title": "Missing Function Visibility",
+      "description": "Line 25: Function lacks explicit visibility modifier. Always specify public/private/internal/external.",
+      "severity": "medium",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 25,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function sign(uint256, bytes32)",
+        "location_cluster_size": 3,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (5 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.94)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9372000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-61",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 62: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 62,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function expectRevert(bytes calldata) external;",
+        "location_cluster_size": 13,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (4 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-64",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 65: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 65,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function expectRevert(bytes4) external;",
+        "location_cluster_size": 13,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (3 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-67",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 68: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 68,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function record() external;",
+        "location_cluster_size": 13,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (7 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-70",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 71: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 71,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function accesses(address) external returns (bytes32[] memory reads, bytes32[] memory writes);",
+        "location_cluster_size": 13,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (9 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-80",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 81: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 81,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": ") external;",
+        "location_cluster_size": 13,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (7 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-89",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 90: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 90,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": ") external;",
+        "location_cluster_size": 13,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (5 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-96",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 97: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 97,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function expectCall(address, bytes calldata) external;",
+        "location_cluster_size": 13,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (10 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-99",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 100: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 100,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function getCode(string calldata) external returns (bytes memory);",
+        "location_cluster_size": 13,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (10 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-102",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 103: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 103,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function label(address addr, string calldata label) external;",
+        "location_cluster_size": 13,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (11 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-105",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 106: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 106,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function assume(bool) external;",
+        "location_cluster_size": 13,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (4 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-92",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 93: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 93,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function clearMockedCalls() external;",
+        "location_cluster_size": 13,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (2 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.85)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8532000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "variable-shadowing-88",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 89: Variable 'calldata' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.55,
+      "location": {
+        "file": "dfec650fcfebd8bf",
+        "line": 89,
+        "function": null,
+        "contract": "dfec650fcfebd8bf"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "bytes calldata",
+        "variable": "calldata",
+        "location_cluster_size": 13,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (5 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8652000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_return_getCode_100",
+      "tool": "natspec",
+      "rule_id": "natspec/return",
+      "title": "Missing @return for function 'getCode'",
+      "description": "Add @return documentation for return value(s).",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 100,
+        "function": "getCode",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Multiple tools agree (11 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.8147999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "MEM-006",
+      "tool": "advanced_security",
+      "rule_id": "MEM-006",
+      "title": "Memory to storage copy pattern detected",
+      "description": "Copy operation at line 71 between memory and storage",
+      "severity": "low",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 71,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Verify this is necessary, consider direct storage access",
+        "category": "memory",
+        "cwe": "CWE-400",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.80)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.798,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "natspec_contract_Hevm_4",
+      "tool": "natspec",
+      "rule_id": "natspec/contract-doc",
+      "title": "Missing NatSpec for interface 'Hevm'",
+      "description": "Add NatSpec doc block (/// or /** ... */) above interface Hevm.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 4,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Multiple tools agree (6 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.5808,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_function_85",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'function'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 85,
+        "function": "function",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_clearMockedCalls_93",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'clearMockedCalls'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 93,
+        "function": "clearMockedCalls",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_getCode_100",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'getCode'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 100,
+        "function": "getCode",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Multiple tools agree (11 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_assume_106",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'assume'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 106,
+        "function": "assume",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "GAS-038",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-038",
+      "title": "Function could potentially be view",
+      "description": "Function at line 15 might only read state",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 15,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "Enables optimizations",
+        "recommendation": "Add view modifier if function only reads state",
+        "cwe": "CWE-400",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-038",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-038",
+      "title": "Function could potentially be view",
+      "description": "Function at line 34 might only read state",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 34,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "Enables optimizations",
+        "recommendation": "Add view modifier if function only reads state",
+        "cwe": "CWE-400",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-038",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-038",
+      "title": "Function could potentially be view",
+      "description": "Function at line 37 might only read state",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 37,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "Enables optimizations",
+        "recommendation": "Add view modifier if function only reads state",
+        "cwe": "CWE-400",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-039",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-039",
+      "title": "Use calldata instead of memory for external function parameters",
+      "description": "External function at line 37 uses memory for read-only parameter",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 37,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~60-100 gas per parameter",
+        "recommendation": "Change memory to calldata for external function parameters that are not modified",
+        "cwe": "CWE-400",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-038",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-038",
+      "title": "Function could potentially be view",
+      "description": "Function at line 71 might only read state",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 71,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "Enables optimizations",
+        "recommendation": "Add view modifier if function only reads state",
+        "cwe": "CWE-400",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-039",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-039",
+      "title": "Use calldata instead of memory for external function parameters",
+      "description": "External function at line 71 uses memory for read-only parameter",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 71,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~60-100 gas per parameter",
+        "recommendation": "Change memory to calldata for external function parameters that are not modified",
+        "cwe": "CWE-400",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-038",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-038",
+      "title": "Function could potentially be view",
+      "description": "Function at line 100 might only read state",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 100,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "Enables optimizations",
+        "recommendation": "Add view modifier if function only reads state",
+        "cwe": "CWE-400",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-039",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-039",
+      "title": "Use calldata instead of memory for external function parameters",
+      "description": "External function at line 100 uses memory for read-only parameter",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 100,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~60-100 gas per parameter",
+        "recommendation": "Change memory to calldata for external function parameters that are not modified",
+        "cwe": "CWE-400",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-005",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-005",
+      "title": "Negative numbers cost more gas",
+      "description": "Negative number at line 1 costs extra gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 1,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas",
+        "recommendation": "Use subtraction or unsigned types when possible",
+        "cwe": "CWE-400",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-002",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-002",
+      "title": "Use uint256 for non-packed variables",
+      "description": "Smaller uint at line 28 costs MORE gas when not in struct",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 28,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas per operation",
+        "recommendation": "Use uint256 unless packing in struct",
+        "cwe": "CWE-400",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-015",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-015",
+      "title": "Use calldata instead of memory for external functions",
+      "description": "Memory parameter at line 37 in external function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 37,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~60 gas per parameter",
+        "recommendation": "Use calldata for read-only external function parameters",
+        "cwe": "CWE-400",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-015",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-015",
+      "title": "Use calldata instead of memory for external functions",
+      "description": "Memory parameter at line 71 in external function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 71,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~60 gas per parameter",
+        "recommendation": "Use calldata for read-only external function parameters",
+        "cwe": "CWE-400",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-015",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-015",
+      "title": "Use calldata instead of memory for external functions",
+      "description": "Memory parameter at line 100 in external function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 100,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~60 gas per parameter",
+        "recommendation": "Use calldata for read-only external function parameters",
+        "cwe": "CWE-400",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 12 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 12,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 15 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 15,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-006",
+      "tool": "code_quality",
+      "rule_id": "CQ-006",
+      "title": "Missing @return documentation for return value",
+      "description": "Function at line 15 has return value but no @return documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 15,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return describing the return value",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 34 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 34,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-006",
+      "tool": "code_quality",
+      "rule_id": "CQ-006",
+      "title": "Missing @return documentation for return value",
+      "description": "Function at line 34 has return value but no @return documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 34,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return describing the return value",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 37 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 37,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-006",
+      "tool": "code_quality",
+      "rule_id": "CQ-006",
+      "title": "Missing @return documentation for return value",
+      "description": "Function at line 37 has return value but no @return documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 37,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return describing the return value",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 40 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 40,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 59 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 59,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 62 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 62,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 65 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 65,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 71 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 71,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-006",
+      "tool": "code_quality",
+      "rule_id": "CQ-006",
+      "title": "Missing @return documentation for return value",
+      "description": "Function at line 71 has return value but no @return documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 71,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return describing the return value",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 97 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 97,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 100 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 100,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-006",
+      "tool": "code_quality",
+      "rule_id": "CQ-006",
+      "title": "Missing @return documentation for return value",
+      "description": "Function at line 100 has return value but no @return documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 100,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return describing the return value",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 103 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 103,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 106 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 106,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-023",
+      "tool": "code_quality",
+      "rule_id": "CQ-023",
+      "title": "Private/internal variable should start with underscore",
+      "description": "Private/internal variable \"key\" at line 33 should start with _",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 33,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Prefix private/internal variables with underscore (e.g., _myVar)",
+        "category": "naming",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-046",
+      "tool": "code_quality",
+      "rule_id": "CQ-046",
+      "title": "Commented out code detected",
+      "description": "Line 36 appears to be commented out code",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 36,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Remove commented out code or uncomment if needed",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-046",
+      "tool": "code_quality",
+      "rule_id": "CQ-046",
+      "title": "Commented out code detected",
+      "description": "Line 74 appears to be commented out code",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 74,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Remove commented out code or uncomment if needed",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-046",
+      "tool": "code_quality",
+      "rule_id": "CQ-046",
+      "title": "Commented out code detected",
+      "description": "Line 85 appears to be commented out code",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 85,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Remove commented out code or uncomment if needed",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-046",
+      "tool": "code_quality",
+      "rule_id": "CQ-046",
+      "title": "Commented out code detected",
+      "description": "Line 99 appears to be commented out code",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 99,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Remove commented out code or uncomment if needed",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 18 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 18,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 36 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 36,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 74 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 74,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 76 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 76,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 85 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 85,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 86 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 86,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 6 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 6,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 9 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 9,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 50 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 50,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 56 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 56,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-023",
+      "tool": "code_quality",
+      "rule_id": "CQ-023",
+      "title": "Private/internal variable should start with underscore",
+      "description": "Private/internal variable \"key\" at line 24 should start with _",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 24,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Prefix private/internal variables with underscore (e.g., _myVar)",
+        "category": "naming",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-046",
+      "tool": "code_quality",
+      "rule_id": "CQ-046",
+      "title": "Commented out code detected",
+      "description": "Line 83 appears to be commented out code",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 83,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Remove commented out code or uncomment if needed",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-047",
+      "tool": "code_quality",
+      "rule_id": "CQ-047",
+      "title": "Multiple consecutive empty lines",
+      "description": "Multiple empty lines at line 109",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 109,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use single empty line for separation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 24 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 24,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 25 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 25,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 27 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 27,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-002",
+      "tool": "code_quality",
+      "rule_id": "UQ-002",
+      "title": "Missing @dev for custom error",
+      "description": "Custom error at line 61 lacks documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 61,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @dev explaining when this error is thrown",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 83 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 83,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-001",
+      "tool": "code_quality",
+      "rule_id": "CQ-001",
+      "title": "Missing @title in contract documentation",
+      "description": "Contract at line 4 lacks @title NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 4,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @title describing the contract purpose",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.45)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4464000000000001,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-002",
+      "tool": "code_quality",
+      "rule_id": "CQ-002",
+      "title": "Missing @author in contract documentation",
+      "description": "Contract at line 4 lacks @author NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 4,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @author identifying the contract creator",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.45)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4464000000000001,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-003",
+      "tool": "code_quality",
+      "rule_id": "CQ-003",
+      "title": "Missing @notice or @dev in contract documentation",
+      "description": "Contract at line 4 lacks @notice or @dev NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/Hevm.sol",
+        "line": 4,
+        "function": null,
+        "contract": "Hevm"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice for user-facing description or @dev for technical details",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 68,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.45)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4464000000000001,
+      "ml_label": "likely_false_positive"
+    }
+  ],
+  "all_fixes": [
+    {
+      "type": "flash-loan-price",
+      "line": 55,
+      "confidence": "high",
+      "explanation": "Annotated flash-loan-sensitive price calculation with an AUDIT comment; manual review and redesign recommended.",
+      "diff": "--- original\n+++ fixed\n@@ -1 +1 @@\n-     /// @notice Sets an address' balance.\n+ // AUDIT: Price calculation marked flash-loan-sensitive; consider TWAP/oracle guards, liquidity checks, or caps.\n+     /// @notice Sets an address' balance."
+    }
+  ],
+  "auto_fixed": true
+}

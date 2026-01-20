@@ -1,0 +1,4363 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Security Audit Report - SafeCastLib.t.sol</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #333; border-bottom: 3px solid #4CAF50; padding-bottom: 10px; }
+        h2 { color: #555; margin-top: 30px; }
+        .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0; }
+        .card { background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #4CAF50; }
+        .card h3 { margin: 0 0 10px 0; color: #666; font-size: 14px; }
+        .card .number { font-size: 32px; font-weight: bold; color: #333; }
+        .severity { padding: 4px 8px; border-radius: 4px; font-weight: bold; color: white; }
+        .critical { background: #d32f2f; }
+        .high { background: #f57c00; }
+        .medium { background: #fbc02d; color: #333; }
+        .low { background: #388e3c; }
+        .info { background: #1976d2; }
+        .finding { background: #fff; border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 4px; }
+        .fix { background: #e8f5e9; border-left: 4px solid #4CAF50; padding: 15px; margin: 10px 0; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        .confidence { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+        .high-conf { background: #4CAF50; color: white; }
+        .medium-conf { background: #FFC107; color: black; }
+        .low-conf { background: #9E9E9E; color: white; }
+        .tag { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-right: 6px; }
+        .tag-chain { background: #6a1b9a; color: #fff; }
+        .tag-path { background: #283593; color: #fff; }
+        .context { margin-top: 6px; font-size: 12px; color: #555; }
+        .context-badge { display: inline-block; padding: 3px 8px; margin: 0 6px 6px 0; border-radius: 4px; background: #e3f2fd; color: #0d47a1; font-size: 11px; }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .card-note { margin-top: 8px; font-size: 13px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 Security Audit Report</h1>
+        <p><strong>Contract:</strong> SafeCastLib.t.sol</p>
+        <p><strong>Audit Date:</strong> 2026-01-05T02:25:53.749381</p>
+        <p><strong>Lines of Code:</strong> 648</p>
+
+        <h2>📊 Summary</h2>
+        <div class="summary">
+            <div class="card">
+                <h3>Total Findings</h3>
+                <div class="number">520</div>
+            </div>
+            <div class="card">
+                <h3>Fixes Generated</h3>
+                <div class="number">0</div>
+            </div>
+            <div class="card">
+                <h3>Auto-Applied</h3>
+                <div class="number">No</div>
+            </div>
+        </div>
+
+        <h2>🧠 Brainstem & Attack Paths</h2>
+        <div class="summary">
+            <div class="card">
+                <h3>False-Positive Filter</h3>
+                <div class="number">520/617</div>
+                <p class="card-note">
+                    Kept after filtering (filtered out 97 likely false positives).
+                </p>
+            </div>
+            <div class="card">
+                <h3>Security Score</h3>
+                <div class="number">0</div>
+                <p class="card-note">
+                    0 = worst, 100 = best (attack-path aware).
+                </p>
+            </div>
+            <div class="card">
+                <h3>Attack Path Depth</h3>
+                <div class="number">0</div>
+                <p class="card-note">
+                    Findings on active attack paths; max chain length 0.
+                </p>
+            </div>
+        </div>
+
+        <h2>🧩 Context Overview</h2>
+        <div class="finding">
+
+            <span class="context-badge">contextual security (2)</span>
+
+        </div>
+
+        <h2>🎯 Findings by Severity</h2>
+        <div class="finding">
+            <span class="severity critical">CRITICAL: {findings_by_sev['critical']}</span>
+            <span class="severity high">HIGH: {findings_by_sev['high']}</span>
+            <span class="severity medium">MEDIUM: {findings_by_sev['medium']}</span>
+            <span class="severity low">LOW: {findings_by_sev['low']}</span>
+            <span class="severity info">INFO: {findings_by_sev['info']}</span>
+        </div>
+
+        <h2>🔧 Fixes by Confidence</h2>
+        <div class="finding">
+            <span class="confidence high-conf">HIGH: {fixes_by_conf['high']} (safe to auto-apply)</span>
+            <span class="confidence medium-conf">MEDIUM: {fixes_by_conf['medium']} (review recommended)</span>
+            <span class="confidence low-conf">LOW: {fixes_by_conf['low']} (manual review required)</span>
+        </div>
+
+        <h2>🩹 Chain-Breaker Fixes</h2>
+
+        <div class="fix">
+            
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity medium">MEDIUM</span>
+            <strong>Rounding direction not specified</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity medium">MEDIUM</span>
+            <strong>Rounding direction not specified</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo248'</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <h2>📋 All Findings</h2>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 603: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 603</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 609: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 609</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 615: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 615</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 621: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 621</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 627: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 627</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 633: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 633</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Potential Front-Running Vulnerability</strong>
+            <p>Line 639: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.</p>
+            <small>Tool: comprehensive-security-detector | Rule: front-running-risk | Origin: comprehensive-security-detector | Line: 639</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Rounding direction not specified</strong>
+            <p>Division at line 4 may have exploitable rounding</p>
+            <small>Tool: advanced_security | Rule: ADV-041 | Origin: advanced_security | Line: 4</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Rounding direction not specified</strong>
+            <p>Division at line 6 may have exploitable rounding</p>
+            <small>Tool: advanced_security | Rule: ADV-041 | Origin: advanced_security | Line: 6</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo248'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 9</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo240'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 14</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo232'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 19</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo224'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 24</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo216'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 29</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo208'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 34</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo200'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 39</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo192'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 44</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo184'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 49</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo176'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 54</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo168'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 59</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo160'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 64</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo152'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 69</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo144'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 74</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo136'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 79</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo128'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 84</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo120'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 89</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo112'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 94</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo104'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 99</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo96'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 104</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo64'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 109</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo56'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 114</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo48'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 119</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo40'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 124</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo32'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 129</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo24'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 134</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo16'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 139</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo8'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 144</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo248'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 149</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo240'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 153</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo232'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 157</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo224'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 161</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo216'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 165</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo208'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 169</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo200'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 173</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo192'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 177</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo184'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 181</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo176'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 185</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo168'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 189</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo160'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 193</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo152'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 197</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo144'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 201</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo136'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 205</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo128'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 209</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo120'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 213</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo112'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 217</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo104'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 221</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo96'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 225</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo88'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 229</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo80'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 233</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo72'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 237</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo64'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 241</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo56'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 245</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo48'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 249</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo40'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 253</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo32'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 257</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo24'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 261</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo16'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 265</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo8'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 269</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo248'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 273</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo240'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 279</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo232'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 285</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo224'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 291</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo216'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 297</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo208'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 303</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo200'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 309</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo192'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 315</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo184'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 321</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo176'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 327</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo168'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 333</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo160'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 339</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo152'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 345</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo144'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 351</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo136'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 357</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo128'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 363</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo120'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 369</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo112'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 375</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo104'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 381</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo96'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 387</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo88'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 393</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo80'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 399</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo72'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 405</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo64'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 411</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo56'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 417</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo48'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 423</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo40'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 429</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo32'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 435</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo24'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 441</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo16'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 447</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testSafeCastTo8'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 453</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo248'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 459</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo240'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 465</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo232'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 471</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo224'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 477</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo216'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 483</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo208'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 489</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo200'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 495</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo192'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 501</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo184'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 507</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo176'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 513</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo168'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 519</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo160'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 525</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo152'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 531</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo144'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 537</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo136'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 543</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo128'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 549</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo120'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 555</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo112'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 561</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo104'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 567</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo96'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 573</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo88'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 579</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo80'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 585</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo72'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 591</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo64'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 597</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo56'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 603</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo48'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 609</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo40'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 615</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo32'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 621</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo24'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 627</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo16'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 633</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'testFailSafeCastTo8'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 639</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec for contract 'SafeCastLibTest'</strong>
+            <p>Add NatSpec doc block (/// or /** ... */) above contract SafeCastLibTest.</p>
+            <small>Tool: natspec | Rule: natspec/contract-doc | Origin: natspec | Line: 8</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo248'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 9</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo240'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 14</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo232'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 19</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo224'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 24</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo216'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 29</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo208'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 34</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo200'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 39</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo192'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 44</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo184'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 49</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo176'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 54</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo168'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 59</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo160'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 64</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo152'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 69</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo144'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 74</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo136'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 79</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo128'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 84</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo120'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 89</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo112'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 94</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo104'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 99</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo96'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 104</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo64'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 109</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo56'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 114</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo48'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 119</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo40'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 124</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo32'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 129</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo24'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 134</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo16'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 139</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo8'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 144</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo248'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 149</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo240'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 153</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo232'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 157</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo224'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 161</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo216'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 165</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo208'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 169</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo200'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 173</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo192'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 177</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo184'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 181</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo176'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 185</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo168'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 189</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo160'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 193</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo152'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 197</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo144'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 201</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo136'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 205</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo128'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 209</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo120'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 213</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo112'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 217</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo104'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 221</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo96'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 225</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo88'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 229</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo80'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 233</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo72'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 237</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo64'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 241</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo56'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 245</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo48'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 249</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo40'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 253</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo32'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 257</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo24'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 261</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo16'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 265</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo8'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 269</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo248'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 273</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo240'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 279</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo232'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 285</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo224'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 291</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo216'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 297</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo208'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 303</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo200'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 309</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo192'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 315</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo184'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 321</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo176'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 327</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo168'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 333</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo160'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 339</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo152'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 345</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo144'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 351</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo136'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 357</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo128'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 363</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo120'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 369</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo112'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 375</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo104'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 381</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo96'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 387</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo88'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 393</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo80'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 399</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo72'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 405</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo64'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 411</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo56'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 417</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo48'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 423</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo40'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 429</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo32'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 435</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo24'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 441</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo16'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 447</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testSafeCastTo8'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 453</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo248'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 459</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo240'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 465</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo232'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 471</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo224'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 477</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo216'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 483</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo208'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 489</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo200'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 495</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo192'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 501</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo184'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 507</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo176'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 513</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo168'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 519</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo160'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 525</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo152'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 531</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo144'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 537</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo136'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 543</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo128'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 549</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo120'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 555</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo112'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 561</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo104'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 567</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo96'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 573</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo88'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 579</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo80'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 585</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo72'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 591</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo64'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 597</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo56'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 603</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo48'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 609</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo40'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 615</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo32'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 621</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo24'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 627</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo16'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 633</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'testFailSafeCastTo8'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 639</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 210 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 210</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 242 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 242</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 258 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 258</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 266 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 266</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 270 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 270</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 364 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 364</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 412 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 412</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 436 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 436</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 448 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 448</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 454 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 454</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 550 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 550</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 598 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 598</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 622 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 622</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 634 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 634</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use uint256 for non-packed variables</strong>
+            <p>Smaller uint at line 640 costs MORE gas when not in struct</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-002 | Origin: gas_optimizer | Line: 640</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 273 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 273</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 363 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 363</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 369 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 369</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 393 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 393</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 399 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 399</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 405 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 405</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 411 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 411</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 417 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 417</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 435 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 435</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 441 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 441</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 447 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 447</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 453 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 453</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 459 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 459</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 549 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 549</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 555 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 555</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 597 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 597</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 603 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 603</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 609 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 609</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 615 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 615</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 621 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 621</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 627 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 627</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 633 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 633</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 639 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 639</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 274</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 274</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 280</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 280</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 286</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 286</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 292</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 292</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 298</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 298</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 304</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 304</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 310</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 310</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 316</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 316</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 322</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 322</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 328</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 328</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 334</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 334</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 340</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 340</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 346</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 346</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 352</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 352</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 358</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 358</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 364</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 364</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 370</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 370</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 376</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 376</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 382</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 382</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 388</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 388</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 394</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 394</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 400</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 400</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 406</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 406</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 412</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 412</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 418</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 418</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 424</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 424</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 430</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 430</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 436</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 436</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 442</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 442</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 448</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 448</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 454</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 454</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 460</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 460</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 466</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 466</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 472</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 472</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 478</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 478</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 484</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 484</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 490</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 490</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 496</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 496</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 502</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 502</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 508</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 508</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 514</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 514</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 520</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 520</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 526</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 526</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 532</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 532</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 538</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 538</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 544</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 544</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 550</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 550</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 556</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 556</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 562</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 562</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 568</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 568</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 574</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 574</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 580</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 580</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 586</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 586</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 592</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 592</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 598</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 598</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 604</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 604</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 610</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 610</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 616</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 616</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 622</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 622</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 628</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 628</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 634</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 634</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use descriptive variable names</strong>
+            <p>Single-letter or unclear variable at line 640</p>
+            <small>Tool: code_quality | Rule: UQ-005 | Origin: code_quality | Line: 640</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Public function could be external</strong>
+            <p>Function at line 393 is public but appears to only be called externally</p>
+            <small>Tool: gas_optimizer | Rule: GAS-036 | Origin: gas_optimizer | Line: 393</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Public function could be external</strong>
+            <p>Function at line 399 is public but appears to only be called externally</p>
+            <small>Tool: gas_optimizer | Rule: GAS-036 | Origin: gas_optimizer | Line: 399</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Public function could be external</strong>
+            <p>Function at line 405 is public but appears to only be called externally</p>
+            <small>Tool: gas_optimizer | Rule: GAS-036 | Origin: gas_optimizer | Line: 405</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Negative numbers cost more gas</strong>
+            <p>Negative number at line 1 costs extra gas</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-005 | Origin: gas_optimizer | Line: 1</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 279 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 279</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 285 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 285</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 291 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 291</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 297 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 297</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 303 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 303</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 309 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 309</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 315 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 315</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 321 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 321</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 327 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 327</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 333 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 333</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 339 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 339</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 345 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 345</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 351 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 351</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 357 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 357</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 375 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 375</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 381 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 381</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 387 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 387</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 423 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 423</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 429 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 429</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 465 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 465</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 471 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 471</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 477 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 477</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 483 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 483</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 489 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 489</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 495 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 495</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 501 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 501</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 507 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 507</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 513 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 513</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 519 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 519</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 525 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 525</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 531 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 531</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 537 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 537</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 543 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 543</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 561 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 561</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 567 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 567</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 573 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 573</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 579 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 579</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 585 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 585</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @param documentation for function parameters</strong>
+            <p>Function at line 591 has parameters but no @param documentation</p>
+            <small>Tool: code_quality | Rule: CQ-005 | Origin: code_quality | Line: 591</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Magic number should be a named constant</strong>
+            <p>Magic number at line 145 should be defined as a named constant</p>
+            <small>Tool: code_quality | Rule: CQ-042 | Origin: code_quality | Line: 145</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @title in contract documentation</strong>
+            <p>Contract at line 8 lacks @title NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-001 | Origin: code_quality | Line: 8</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @author in contract documentation</strong>
+            <p>Contract at line 8 lacks @author NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-002 | Origin: code_quality | Line: 8</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice or @dev in contract documentation</strong>
+            <p>Contract at line 8 lacks @notice or @dev NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-003 | Origin: code_quality | Line: 8</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo248</strong>
+            <p>Public/external function at line 9 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 9</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo240</strong>
+            <p>Public/external function at line 14 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 14</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo232</strong>
+            <p>Public/external function at line 19 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 19</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo224</strong>
+            <p>Public/external function at line 24 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 24</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo216</strong>
+            <p>Public/external function at line 29 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 29</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo208</strong>
+            <p>Public/external function at line 34 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 34</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo200</strong>
+            <p>Public/external function at line 39 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 39</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo192</strong>
+            <p>Public/external function at line 44 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 44</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo184</strong>
+            <p>Public/external function at line 49 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 49</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo176</strong>
+            <p>Public/external function at line 54 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 54</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo168</strong>
+            <p>Public/external function at line 59 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 59</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo160</strong>
+            <p>Public/external function at line 64 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 64</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo152</strong>
+            <p>Public/external function at line 69 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 69</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo144</strong>
+            <p>Public/external function at line 74 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 74</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo136</strong>
+            <p>Public/external function at line 79 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 79</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo128</strong>
+            <p>Public/external function at line 84 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 84</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo120</strong>
+            <p>Public/external function at line 89 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 89</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo112</strong>
+            <p>Public/external function at line 94 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 94</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo104</strong>
+            <p>Public/external function at line 99 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 99</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo96</strong>
+            <p>Public/external function at line 104 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 104</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo64</strong>
+            <p>Public/external function at line 109 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 109</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo56</strong>
+            <p>Public/external function at line 114 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 114</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo48</strong>
+            <p>Public/external function at line 119 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 119</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo40</strong>
+            <p>Public/external function at line 124 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 124</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo32</strong>
+            <p>Public/external function at line 129 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 129</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo24</strong>
+            <p>Public/external function at line 134 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 134</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo16</strong>
+            <p>Public/external function at line 139 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 139</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo8</strong>
+            <p>Public/external function at line 144 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 144</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo248</strong>
+            <p>Public/external function at line 149 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 149</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo240</strong>
+            <p>Public/external function at line 153 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 153</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo232</strong>
+            <p>Public/external function at line 157 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 157</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo224</strong>
+            <p>Public/external function at line 161 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 161</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo216</strong>
+            <p>Public/external function at line 165 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 165</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo208</strong>
+            <p>Public/external function at line 169 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 169</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo200</strong>
+            <p>Public/external function at line 173 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 173</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo192</strong>
+            <p>Public/external function at line 177 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 177</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo184</strong>
+            <p>Public/external function at line 181 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 181</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo176</strong>
+            <p>Public/external function at line 185 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 185</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo168</strong>
+            <p>Public/external function at line 189 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 189</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo160</strong>
+            <p>Public/external function at line 193 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 193</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo152</strong>
+            <p>Public/external function at line 197 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 197</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo144</strong>
+            <p>Public/external function at line 201 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 201</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo136</strong>
+            <p>Public/external function at line 205 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 205</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo128</strong>
+            <p>Public/external function at line 209 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 209</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo120</strong>
+            <p>Public/external function at line 213 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 213</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo112</strong>
+            <p>Public/external function at line 217 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 217</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo104</strong>
+            <p>Public/external function at line 221 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 221</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo96</strong>
+            <p>Public/external function at line 225 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 225</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo88</strong>
+            <p>Public/external function at line 229 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 229</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo80</strong>
+            <p>Public/external function at line 233 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 233</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo72</strong>
+            <p>Public/external function at line 237 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 237</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo64</strong>
+            <p>Public/external function at line 241 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 241</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo56</strong>
+            <p>Public/external function at line 245 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 245</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo48</strong>
+            <p>Public/external function at line 249 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 249</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo40</strong>
+            <p>Public/external function at line 253 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 253</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo32</strong>
+            <p>Public/external function at line 257 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 257</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo24</strong>
+            <p>Public/external function at line 261 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 261</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo16</strong>
+            <p>Public/external function at line 265 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 265</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo8</strong>
+            <p>Public/external function at line 269 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 269</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo248</strong>
+            <p>Public/external function at line 273 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 273</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo128</strong>
+            <p>Public/external function at line 363 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 363</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo120</strong>
+            <p>Public/external function at line 369 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 369</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo88</strong>
+            <p>Public/external function at line 393 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 393</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo80</strong>
+            <p>Public/external function at line 399 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 399</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo72</strong>
+            <p>Public/external function at line 405 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 405</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo64</strong>
+            <p>Public/external function at line 411 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 411</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo56</strong>
+            <p>Public/external function at line 417 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 417</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo32</strong>
+            <p>Public/external function at line 435 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 435</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo24</strong>
+            <p>Public/external function at line 441 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 441</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo16</strong>
+            <p>Public/external function at line 447 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 447</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo8</strong>
+            <p>Public/external function at line 453 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 453</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo248</strong>
+            <p>Public/external function at line 459 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 459</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo128</strong>
+            <p>Public/external function at line 549 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 549</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo120</strong>
+            <p>Public/external function at line 555 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 555</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo64</strong>
+            <p>Public/external function at line 597 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 597</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo56</strong>
+            <p>Public/external function at line 603 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 603</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo48</strong>
+            <p>Public/external function at line 609 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 609</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo40</strong>
+            <p>Public/external function at line 615 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 615</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo32</strong>
+            <p>Public/external function at line 621 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 621</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo24</strong>
+            <p>Public/external function at line 627 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 627</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo16</strong>
+            <p>Public/external function at line 633 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 633</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo8</strong>
+            <p>Public/external function at line 639 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 639</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo240</strong>
+            <p>Public/external function at line 279 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 279</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo232</strong>
+            <p>Public/external function at line 285 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 285</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo224</strong>
+            <p>Public/external function at line 291 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 291</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo216</strong>
+            <p>Public/external function at line 297 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 297</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo208</strong>
+            <p>Public/external function at line 303 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 303</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo200</strong>
+            <p>Public/external function at line 309 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 309</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo192</strong>
+            <p>Public/external function at line 315 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 315</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo184</strong>
+            <p>Public/external function at line 321 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 321</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo176</strong>
+            <p>Public/external function at line 327 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 327</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo168</strong>
+            <p>Public/external function at line 333 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 333</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo160</strong>
+            <p>Public/external function at line 339 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 339</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo152</strong>
+            <p>Public/external function at line 345 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 345</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo144</strong>
+            <p>Public/external function at line 351 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 351</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo136</strong>
+            <p>Public/external function at line 357 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 357</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo112</strong>
+            <p>Public/external function at line 375 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 375</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo104</strong>
+            <p>Public/external function at line 381 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 381</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo96</strong>
+            <p>Public/external function at line 387 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 387</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo48</strong>
+            <p>Public/external function at line 423 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 423</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testSafeCastTo40</strong>
+            <p>Public/external function at line 429 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 429</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo240</strong>
+            <p>Public/external function at line 465 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 465</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo232</strong>
+            <p>Public/external function at line 471 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 471</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo224</strong>
+            <p>Public/external function at line 477 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 477</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo216</strong>
+            <p>Public/external function at line 483 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 483</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo208</strong>
+            <p>Public/external function at line 489 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 489</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo200</strong>
+            <p>Public/external function at line 495 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 495</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo192</strong>
+            <p>Public/external function at line 501 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 501</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo184</strong>
+            <p>Public/external function at line 507 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 507</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo176</strong>
+            <p>Public/external function at line 513 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 513</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo168</strong>
+            <p>Public/external function at line 519 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 519</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo160</strong>
+            <p>Public/external function at line 525 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 525</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo152</strong>
+            <p>Public/external function at line 531 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 531</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo144</strong>
+            <p>Public/external function at line 537 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 537</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo136</strong>
+            <p>Public/external function at line 543 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 543</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo112</strong>
+            <p>Public/external function at line 561 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 561</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo104</strong>
+            <p>Public/external function at line 567 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 567</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo96</strong>
+            <p>Public/external function at line 573 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 573</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo88</strong>
+            <p>Public/external function at line 579 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 579</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo80</strong>
+            <p>Public/external function at line 585 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 585</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing @notice/@dev for public function testFailSafeCastTo72</strong>
+            <p>Public/external function at line 591 lacks NatSpec documentation</p>
+            <small>Tool: code_quality | Rule: CQ-004 | Origin: code_quality | Line: 591</small>
+
+        </div>
+
+        <h2>✨ Generated Fixes</h2>
+
+    </div>
+</body>
+</html>

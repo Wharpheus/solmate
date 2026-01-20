@@ -1,0 +1,1031 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Security Audit Report - SafeTransferLib.sol</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #333; border-bottom: 3px solid #4CAF50; padding-bottom: 10px; }
+        h2 { color: #555; margin-top: 30px; }
+        .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0; }
+        .card { background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #4CAF50; }
+        .card h3 { margin: 0 0 10px 0; color: #666; font-size: 14px; }
+        .card .number { font-size: 32px; font-weight: bold; color: #333; }
+        .severity { padding: 4px 8px; border-radius: 4px; font-weight: bold; color: white; }
+        .critical { background: #d32f2f; }
+        .high { background: #f57c00; }
+        .medium { background: #fbc02d; color: #333; }
+        .low { background: #388e3c; }
+        .info { background: #1976d2; }
+        .finding { background: #fff; border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 4px; }
+        .fix { background: #e8f5e9; border-left: 4px solid #4CAF50; padding: 15px; margin: 10px 0; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        .confidence { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+        .high-conf { background: #4CAF50; color: white; }
+        .medium-conf { background: #FFC107; color: black; }
+        .low-conf { background: #9E9E9E; color: white; }
+        .tag { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-right: 6px; }
+        .tag-chain { background: #6a1b9a; color: #fff; }
+        .tag-path { background: #283593; color: #fff; }
+        .context { margin-top: 6px; font-size: 12px; color: #555; }
+        .context-badge { display: inline-block; padding: 3px 8px; margin: 0 6px 6px 0; border-radius: 4px; background: #e3f2fd; color: #0d47a1; font-size: 11px; }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .card-note { margin-top: 8px; font-size: 13px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 Security Audit Report</h1>
+        <p><strong>Contract:</strong> SafeTransferLib.sol</p>
+        <p><strong>Audit Date:</strong> 2026-01-06T14:05:21.733339</p>
+        <p><strong>Lines of Code:</strong> 128</p>
+
+        <h2>📊 Summary</h2>
+        <div class="summary">
+            <div class="card">
+                <h3>Total Findings</h3>
+                <div class="number">96</div>
+            </div>
+            <div class="card">
+                <h3>Fixes Generated</h3>
+                <div class="number">0</div>
+            </div>
+            <div class="card">
+                <h3>Auto-Applied</h3>
+                <div class="number">No</div>
+            </div>
+        </div>
+
+        <h2>🧠 Brainstem & Attack Paths</h2>
+        <div class="summary">
+            <div class="card">
+                <h3>False-Positive Filter</h3>
+                <div class="number">96/199</div>
+                <p class="card-note">
+                    Kept after filtering (filtered out 103 likely false positives).
+                </p>
+            </div>
+            <div class="card">
+                <h3>Security Score</h3>
+                <div class="number">0</div>
+                <p class="card-note">
+                    0 = worst, 100 = best (attack-path aware).
+                </p>
+            </div>
+            <div class="card">
+                <h3>Attack Path Depth</h3>
+                <div class="number">0</div>
+                <p class="card-note">
+                    Findings on active attack paths; max chain length 0.
+                </p>
+            </div>
+        </div>
+
+        <h2>🧩 Context Overview</h2>
+        <div class="finding">
+
+            <span class="context-badge">contextual security (32)</span>
+
+        </div>
+
+        <h2>🎯 Findings by Severity</h2>
+        <div class="finding">
+            <span class="severity critical">CRITICAL: {findings_by_sev['critical']}</span>
+            <span class="severity high">HIGH: {findings_by_sev['high']}</span>
+            <span class="severity medium">MEDIUM: {findings_by_sev['medium']}</span>
+            <span class="severity low">LOW: {findings_by_sev['low']}</span>
+            <span class="severity info">INFO: {findings_by_sev['info']}</span>
+        </div>
+
+        <h2>🔧 Fixes by Confidence</h2>
+        <div class="finding">
+            <span class="confidence high-conf">HIGH: {fixes_by_conf['high']} (safe to auto-apply)</span>
+            <span class="confidence medium-conf">MEDIUM: {fixes_by_conf['medium']} (review recommended)</span>
+            <span class="confidence low-conf">LOW: {fixes_by_conf['low']} (manual review required)</span>
+        </div>
+
+        <h2>🩹 Chain-Breaker Fixes</h2>
+
+        <div class="fix">
+            
+            <span class="severity critical">CRITICAL</span>
+            <strong>Unchecked external call in assembly</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity critical">CRITICAL</span>
+            <strong>Unchecked external call in assembly</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity critical">CRITICAL</span>
+            <strong>Unchecked external call in assembly</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity critical">CRITICAL</span>
+            <strong>Unchecked external call in assembly</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Low-level call without reentrancy protection</strong>
+            <p>Apply checks-effects-interactions or use ReentrancyGuard.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <div class="fix">
+            
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Review issue and apply best-practice fix.</p>
+            
+        </div>
+
+        <h2>📋 All Findings</h2>
+
+        <div class="finding">
+            <span class="severity critical">CRITICAL</span>
+            <strong>Unchecked external call in assembly</strong>
+            <p>Assembly call at line 20 may not check return value</p>
+            <small>Tool: advanced_security | Rule: ASM-002 | Origin: advanced_security | Line: 20</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity critical">CRITICAL</span>
+            <strong>Unchecked external call in assembly</strong>
+            <p>Assembly call at line 51 may not check return value</p>
+            <small>Tool: advanced_security | Rule: ASM-002 | Origin: advanced_security | Line: 51</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity critical">CRITICAL</span>
+            <strong>Unchecked external call in assembly</strong>
+            <p>Assembly call at line 82 may not check return value</p>
+            <small>Tool: advanced_security | Rule: ASM-002 | Origin: advanced_security | Line: 82</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity critical">CRITICAL</span>
+            <strong>Unchecked external call in assembly</strong>
+            <p>Assembly call at line 113 may not check return value</p>
+            <small>Tool: advanced_security | Rule: ASM-002 | Origin: advanced_security | Line: 113</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Low-level call without reentrancy protection</strong>
+            <p>External call at line 20 may be reentered</p>
+            <small>Tool: advanced_security | Rule: LOW-006 | Origin: advanced_security | Line: 20</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 41 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 41</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 44 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 44</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 45 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 45</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 46 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 46</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 47 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 47</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 55 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 55</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 73 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 73</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 76 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 76</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 77 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 77</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 78 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 78</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 86 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 86</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 104 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 104</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 107 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 107</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 108 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 108</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 109 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 109</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity high">HIGH</span>
+            <strong>Memory operation in assembly</strong>
+            <p>Memory operation at line 117 can corrupt Solidity memory</p>
+            <small>Tool: advanced_security | Rule: ASM-003 | Origin: advanced_security | Line: 117</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Rounding direction not specified</strong>
+            <p>Division at line 4 may have exploitable rounding</p>
+            <small>Tool: advanced_security | Rule: ADV-041 | Origin: advanced_security | Line: 4</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Gas manipulation in assembly</strong>
+            <p>Gas operation at line 20 can enable gas griefing</p>
+            <small>Tool: advanced_security | Rule: ASM-005 | Origin: advanced_security | Line: 20</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Gas manipulation in assembly</strong>
+            <p>Gas operation at line 51 can enable gas griefing</p>
+            <small>Tool: advanced_security | Rule: ASM-005 | Origin: advanced_security | Line: 51</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Return data handling in assembly</strong>
+            <p>Return data operation at line 55 needs careful bounds checking</p>
+            <small>Tool: advanced_security | Rule: ASM-007 | Origin: advanced_security | Line: 55</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Return data handling in assembly</strong>
+            <p>Return data operation at line 56 needs careful bounds checking</p>
+            <small>Tool: advanced_security | Rule: ASM-007 | Origin: advanced_security | Line: 56</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Gas manipulation in assembly</strong>
+            <p>Gas operation at line 82 can enable gas griefing</p>
+            <small>Tool: advanced_security | Rule: ASM-005 | Origin: advanced_security | Line: 82</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Return data handling in assembly</strong>
+            <p>Return data operation at line 86 needs careful bounds checking</p>
+            <small>Tool: advanced_security | Rule: ASM-007 | Origin: advanced_security | Line: 86</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Return data handling in assembly</strong>
+            <p>Return data operation at line 87 needs careful bounds checking</p>
+            <small>Tool: advanced_security | Rule: ASM-007 | Origin: advanced_security | Line: 87</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Gas manipulation in assembly</strong>
+            <p>Gas operation at line 113 can enable gas griefing</p>
+            <small>Tool: advanced_security | Rule: ASM-005 | Origin: advanced_security | Line: 113</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Return data handling in assembly</strong>
+            <p>Return data operation at line 117 needs careful bounds checking</p>
+            <small>Tool: advanced_security | Rule: ASM-007 | Origin: advanced_security | Line: 117</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity medium">MEDIUM</span>
+            <strong>Return data handling in assembly</strong>
+            <p>Return data operation at line 118 needs careful bounds checking</p>
+            <small>Tool: advanced_security | Rule: ASM-007 | Origin: advanced_security | Line: 118</small>
+
+            <p class="context"><strong>Context:</strong> contextual security</p>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Potential Variable Shadowing</strong>
+            <p>Line 65: Variable 'to' may shadow parent contract variable.</p>
+            <small>Tool: comprehensive-security-detector | Rule: variable-shadowing | Origin: comprehensive-security-detector | Line: 65</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Potential Variable Shadowing</strong>
+            <p>Line 68: Variable 'success' may shadow parent contract variable.</p>
+            <small>Tool: comprehensive-security-detector | Rule: variable-shadowing | Origin: comprehensive-security-detector | Line: 68</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Potential Variable Shadowing</strong>
+            <p>Line 96: Variable 'to' may shadow parent contract variable.</p>
+            <small>Tool: comprehensive-security-detector | Rule: variable-shadowing | Origin: comprehensive-security-detector | Line: 96</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Potential Variable Shadowing</strong>
+            <p>Line 99: Variable 'success' may shadow parent contract variable.</p>
+            <small>Tool: comprehensive-security-detector | Rule: variable-shadowing | Origin: comprehensive-security-detector | Line: 99</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Potential Variable Shadowing</strong>
+            <p>Line 36: Variable 'success' may shadow parent contract variable.</p>
+            <small>Tool: comprehensive-security-detector | Rule: variable-shadowing | Origin: comprehensive-security-detector | Line: 36</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'function'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 43</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'function'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 75</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @notice for function 'function'</strong>
+            <p>Add a NatSpec @notice describing the purpose and effects.</p>
+            <small>Tool: natspec | Rule: natspec/notice | Origin: natspec | Line: 106</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'function'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 43</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'function'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 75</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity low">LOW</span>
+            <strong>Missing NatSpec @dev for function 'function'</strong>
+            <p>Add a @dev section describing technical details/notes.</p>
+            <small>Tool: natspec | Rule: natspec/dev-func | Origin: natspec | Line: 106</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>State variable could potentially be immutable</strong>
+            <p>State variable at line 15 might be immutable if only set in constructor</p>
+            <small>Tool: gas_optimizer | Rule: GAS-001 | Origin: gas_optimizer | Line: 15</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>State variable could potentially be immutable</strong>
+            <p>State variable at line 68 might be immutable if only set in constructor</p>
+            <small>Tool: gas_optimizer | Rule: GAS-001 | Origin: gas_optimizer | Line: 68</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>State variable could potentially be immutable</strong>
+            <p>State variable at line 99 might be immutable if only set in constructor</p>
+            <small>Tool: gas_optimizer | Rule: GAS-001 | Origin: gas_optimizer | Line: 99</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use bit shift for power of 2 operations</strong>
+            <p>Operation at line 80 multiplies/divides by 2, bit shift is cheaper</p>
+            <small>Tool: gas_optimizer | Rule: GAS-020 | Origin: gas_optimizer | Line: 80</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use bit shift for power of 2 operations</strong>
+            <p>Operation at line 111 multiplies/divides by 2, bit shift is cheaper</p>
+            <small>Tool: gas_optimizer | Rule: GAS-020 | Origin: gas_optimizer | Line: 111</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use custom errors instead of string messages</strong>
+            <p>Require at line 23 uses string error message (expensive)</p>
+            <small>Tool: gas_optimizer | Rule: GAS-052 | Origin: gas_optimizer | Line: 23</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use custom errors instead of string messages</strong>
+            <p>Require at line 60 uses string error message (expensive)</p>
+            <small>Tool: gas_optimizer | Rule: GAS-052 | Origin: gas_optimizer | Line: 60</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use custom errors instead of string messages</strong>
+            <p>Require at line 91 uses string error message (expensive)</p>
+            <small>Tool: gas_optimizer | Rule: GAS-052 | Origin: gas_optimizer | Line: 91</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use custom errors instead of string messages</strong>
+            <p>Require at line 122 uses string error message (expensive)</p>
+            <small>Tool: gas_optimizer | Rule: GAS-052 | Origin: gas_optimizer | Line: 122</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use custom errors instead of require strings</strong>
+            <p>Require with string at line 23 wastes deployment gas</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-003 | Origin: gas_optimizer | Line: 23</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use custom errors instead of require strings</strong>
+            <p>Require with string at line 60 wastes deployment gas</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-003 | Origin: gas_optimizer | Line: 60</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use custom errors instead of require strings</strong>
+            <p>Require with string at line 91 wastes deployment gas</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-003 | Origin: gas_optimizer | Line: 91</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use custom errors instead of require strings</strong>
+            <p>Require with string at line 122 wastes deployment gas</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-003 | Origin: gas_optimizer | Line: 122</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Commented out code detected</strong>
+            <p>Line 43 appears to be commented out code</p>
+            <small>Tool: code_quality | Rule: CQ-046 | Origin: code_quality | Line: 43</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Line exceeds 120 characters</strong>
+            <p>Line 45 is 140 characters long (recommended: ≤120)</p>
+            <small>Tool: code_quality | Rule: CQ-043 | Origin: code_quality | Line: 45</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Line exceeds 120 characters</strong>
+            <p>Line 46 is 137 characters long (recommended: ≤120)</p>
+            <small>Tool: code_quality | Rule: CQ-043 | Origin: code_quality | Line: 46</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Line exceeds 120 characters</strong>
+            <p>Line 47 is 137 characters long (recommended: ≤120)</p>
+            <small>Tool: code_quality | Rule: CQ-043 | Origin: code_quality | Line: 47</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Commented out code detected</strong>
+            <p>Line 75 appears to be commented out code</p>
+            <small>Tool: code_quality | Rule: CQ-046 | Origin: code_quality | Line: 75</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Line exceeds 120 characters</strong>
+            <p>Line 77 is 136 characters long (recommended: ≤120)</p>
+            <small>Tool: code_quality | Rule: CQ-043 | Origin: code_quality | Line: 77</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Line exceeds 120 characters</strong>
+            <p>Line 78 is 137 characters long (recommended: ≤120)</p>
+            <small>Tool: code_quality | Rule: CQ-043 | Origin: code_quality | Line: 78</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Commented out code detected</strong>
+            <p>Line 106 appears to be commented out code</p>
+            <small>Tool: code_quality | Rule: CQ-046 | Origin: code_quality | Line: 106</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Line exceeds 120 characters</strong>
+            <p>Line 108 is 136 characters long (recommended: ≤120)</p>
+            <small>Tool: code_quality | Rule: CQ-043 | Origin: code_quality | Line: 108</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Line exceeds 120 characters</strong>
+            <p>Line 109 is 137 characters long (recommended: ≤120)</p>
+            <small>Tool: code_quality | Rule: CQ-043 | Origin: code_quality | Line: 109</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing explicit function visibility</strong>
+            <p>Function at line 43 should have explicit visibility</p>
+            <small>Tool: code_quality | Rule: UQ-009 | Origin: code_quality | Line: 43</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Hardcoded address should be constant</strong>
+            <p>Address literal at line 44 should be named constant</p>
+            <small>Tool: code_quality | Rule: UQ-004 | Origin: code_quality | Line: 44</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Hardcoded address should be constant</strong>
+            <p>Address literal at line 45 should be named constant</p>
+            <small>Tool: code_quality | Rule: UQ-004 | Origin: code_quality | Line: 45</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Hardcoded address should be constant</strong>
+            <p>Address literal at line 46 should be named constant</p>
+            <small>Tool: code_quality | Rule: UQ-004 | Origin: code_quality | Line: 46</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 50 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 50</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 54 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 54</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 55 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 55</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 56 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 56</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing explicit function visibility</strong>
+            <p>Function at line 63 should have explicit visibility</p>
+            <small>Tool: code_quality | Rule: UQ-009 | Origin: code_quality | Line: 63</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing explicit function visibility</strong>
+            <p>Function at line 75 should have explicit visibility</p>
+            <small>Tool: code_quality | Rule: UQ-009 | Origin: code_quality | Line: 75</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Hardcoded address should be constant</strong>
+            <p>Address literal at line 76 should be named constant</p>
+            <small>Tool: code_quality | Rule: UQ-004 | Origin: code_quality | Line: 76</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Hardcoded address should be constant</strong>
+            <p>Address literal at line 77 should be named constant</p>
+            <small>Tool: code_quality | Rule: UQ-004 | Origin: code_quality | Line: 77</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 81 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 81</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 85 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 85</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 86 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 86</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 87 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 87</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing explicit function visibility</strong>
+            <p>Function at line 94 should have explicit visibility</p>
+            <small>Tool: code_quality | Rule: UQ-009 | Origin: code_quality | Line: 94</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Missing explicit function visibility</strong>
+            <p>Function at line 106 should have explicit visibility</p>
+            <small>Tool: code_quality | Rule: UQ-009 | Origin: code_quality | Line: 106</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Hardcoded address should be constant</strong>
+            <p>Address literal at line 107 should be named constant</p>
+            <small>Tool: code_quality | Rule: UQ-004 | Origin: code_quality | Line: 107</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Hardcoded address should be constant</strong>
+            <p>Address literal at line 108 should be named constant</p>
+            <small>Tool: code_quality | Rule: UQ-004 | Origin: code_quality | Line: 108</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 112 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 112</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 116 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 116</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 117 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 117</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 118 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 118</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>State variable could potentially be immutable</strong>
+            <p>State variable at line 36 might be immutable if only set in constructor</p>
+            <small>Tool: gas_optimizer | Rule: GAS-001 | Origin: gas_optimizer | Line: 36</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Negative numbers cost more gas</strong>
+            <p>Negative number at line 1 costs extra gas</p>
+            <small>Tool: gas_optimizer | Rule: UGAS-005 | Origin: gas_optimizer | Line: 1</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Multiple consecutive empty lines</strong>
+            <p>Multiple empty lines at line 126</p>
+            <small>Tool: code_quality | Rule: CQ-047 | Origin: code_quality | Line: 126</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Return statement without @return documentation</strong>
+            <p>Return at line 6 in undocumented function</p>
+            <small>Tool: code_quality | Rule: UQ-014 | Origin: code_quality | Line: 6</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Magic number should be a named constant</strong>
+            <p>Magic number at line 51 should be defined as a named constant</p>
+            <small>Tool: code_quality | Rule: CQ-042 | Origin: code_quality | Line: 51</small>
+
+        </div>
+
+        <div class="finding">
+            <span class="severity info">INFO</span>
+            <strong>Use custom errors instead of revert strings</strong>
+            <p>Custom errors reduce deployment and runtime costs compared to string messages.</p>
+            <small>Tool: gas_heuristics | Rule: USE_CUSTOM_ERRORS | Origin: gas_heuristics</small>
+
+        </div>
+
+        <h2>✨ Generated Fixes</h2>
+
+    </div>
+</body>
+</html>

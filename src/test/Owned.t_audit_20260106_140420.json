@@ -1,0 +1,2266 @@
+{
+  "contract_name": "Owned.t.sol",
+  "audit_timestamp": "2026-01-06T14:04:20.493425",
+  "source_lines": 44,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.23427367210388184
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2348310947418213
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.23485684394836426
+    },
+    "bytecode_re": {
+      "status": "skipped",
+      "findings_count": 0,
+      "execution_time": 0.22987699508666992
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0052623748779296875
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 1.0478763580322266
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0059719085693359375
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.00011682510375976562
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 6,
+      "execution_time": 0.006797313690185547
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.006960630416870117
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 1.6349129676818848
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.006312847137451172
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 13,
+      "execution_time": 0.00035953521728515625
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 0.006398916244506836
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.0071790218353271484
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.0009970664978027344
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.006203413009643555
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00010395050048828125
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 0.0004248619079589844
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 7.867813110351562e-05
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.005591154098510742
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.000400543212890625
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 12,
+      "execution_time": 0.0006659030914306641
+    }
+  },
+  "total_findings": 39,
+  "raw_total_findings": 137,
+  "findings_by_severity": {
+    "critical": 0,
+    "high": 0,
+    "medium": 12,
+    "low": 13,
+    "info": 14,
+    "gas": 3
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 135,
+      "kept_count": 39,
+      "filtered_count": 96,
+      "filter_rate": 0.7111111111111111,
+      "kept_by_severity": {
+        "medium": 12,
+        "low": 13,
+        "info": 14
+      },
+      "filtered_by_severity": {
+        "low": 3,
+        "medium": 91,
+        "info": 2
+      },
+      "kept_by_category": {
+        "likely_true_positive": 10,
+        "likely_false_positive": 22,
+        "uncertain": 7
+      },
+      "filtered_by_category": {
+        "likely_false_positive": 56,
+        "definite_false_positive": 38,
+        "uncertain": 2
+      },
+      "kept_by_tool": {
+        "comprehensive-security-detector": 6,
+        "natspec": 13,
+        "reentrancy-detector": 2,
+        "solidityscan": 2,
+        "gas_optimizer": 3,
+        "advanced_security": 2,
+        "code_quality": 11
+      },
+      "filtered_by_tool": {
+        "erc20_heuristics": 3,
+        "solidityscan": 90,
+        "access_control_heuristics": 2,
+        "code_quality": 1
+      },
+      "avg_ml_score_kept": 0.6657866666666667,
+      "avg_ml_score_filtered": 0.44911770833333337,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 39,
+      "critical": 0,
+      "high": 0,
+      "medium": 12,
+      "low": 13,
+      "info": 14,
+      "security_score": 0,
+      "on_attack_path": 2,
+      "max_attack_path_degree": 2
+    },
+    "patch_plan": [
+      {
+        "title": "Missing nonReentrant Modifier on testTransferOwnership()",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing nonReentrant Modifier on testTransferOwnership()",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Front-Running Vulnerability",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Rounding direction not specified",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Rounding direction not specified",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      }
+    ]
+  },
+  "fixes_generated": 0,
+  "fixes_by_confidence": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "all_findings": [
+    {
+      "id": "reentrancy-missing-guard-testTransferOwnership",
+      "tool": "reentrancy-detector",
+      "rule_id": "reentrancy-missing-guard",
+      "title": "Missing nonReentrant Modifier on testTransferOwnership()",
+      "description": "Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.",
+      "severity": "medium",
+      "confidence": 0.8999999999999999,
+      "location": {
+        "file": "Owned.t",
+        "line": 13,
+        "function": "testTransferOwnership",
+        "contract": "Owned.t"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "external_calls": 0,
+        "eth_transfers": 0,
+        "fix_suggestion": "Add `nonReentrant` modifier from OpenZeppelin's ReentrancyGuard. Import: `import '@openzeppelin/contracts/utils/ReentrancyGuard.sol';` Usage: `function testTransferOwnership(...) external nonReentrant { ... }`",
+        "attack_vectors": [
+          {
+            "pattern": "reentrancy_fund_drain",
+            "description": "Reentrancy vulnerability combined with fund transfer",
+            "related_findings": 2
+          }
+        ],
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.90)",
+          "Multiple tools agree (15 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.95,
+        "ml_features": {
+          "tool_reputation": 0.9,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 15,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.8999999999999999,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 2,
+          "attack_path_score": 0.6,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "reentrancy-missing-guard-testTransferOwnership",
+      "tool": "reentrancy-detector",
+      "rule_id": "reentrancy-missing-guard",
+      "title": "Missing nonReentrant Modifier on testTransferOwnership()",
+      "description": "Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.",
+      "severity": "medium",
+      "confidence": 0.8999999999999999,
+      "location": {
+        "file": "Owned.t",
+        "line": 25,
+        "function": "testTransferOwnership",
+        "contract": "Owned.t"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "external_calls": 0,
+        "eth_transfers": 0,
+        "fix_suggestion": "Add `nonReentrant` modifier from OpenZeppelin's ReentrancyGuard. Import: `import '@openzeppelin/contracts/utils/ReentrancyGuard.sol';` Usage: `function testTransferOwnership(...) external nonReentrant { ... }`",
+        "attack_vectors": [
+          {
+            "pattern": "reentrancy_fund_drain",
+            "description": "Reentrancy vulnerability combined with fund transfer",
+            "related_findings": 2
+          }
+        ],
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.90)",
+          "Multiple tools agree (12 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.95,
+        "ml_features": {
+          "tool_reputation": 0.9,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.8999999999999999,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 2,
+          "attack_path_score": 0.6,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-9",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 10: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1bf32a88a045f754",
+        "line": 10,
+        "function": null,
+        "contract": "1bf32a88a045f754"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function setUp() public {",
+        "location_cluster_size": 6,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (13 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 13,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-13",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 14: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1bf32a88a045f754",
+        "line": 14,
+        "function": null,
+        "contract": "1bf32a88a045f754"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function testTransferOwnership() public {",
+        "location_cluster_size": 6,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (11 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-17",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 18: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1bf32a88a045f754",
+        "line": 18,
+        "function": null,
+        "contract": "1bf32a88a045f754"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function testCallFunctionAsNonOwner() public {",
+        "location_cluster_size": 6,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (11 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-21",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 22: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1bf32a88a045f754",
+        "line": 22,
+        "function": null,
+        "contract": "1bf32a88a045f754"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function testCallFunctionAsOwner() public {",
+        "location_cluster_size": 6,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (12 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-25",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 26: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1bf32a88a045f754",
+        "line": 26,
+        "function": null,
+        "contract": "1bf32a88a045f754"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function testTransferOwnership(address newOwner) public {",
+        "location_cluster_size": 6,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (9 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-31",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 32: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "1bf32a88a045f754",
+        "line": 32,
+        "function": null,
+        "contract": "1bf32a88a045f754"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function testCallFunctionAsNonOwner(address owner) public {",
+        "location_cluster_size": 6,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (4 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ADV-041",
+      "tool": "advanced_security",
+      "rule_id": "ADV-041",
+      "title": "Rounding direction not specified",
+      "description": "Division at line 4 may have exploitable rounding",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 4,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Explicitly specify rounding direction (favor protocol or user)",
+        "category": "security",
+        "cwe": "CWE-682",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8340000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ADV-041",
+      "tool": "advanced_security",
+      "rule_id": "ADV-041",
+      "title": "Rounding direction not specified",
+      "description": "Division at line 5 may have exploitable rounding",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 5,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Explicitly specify rounding direction (favor protocol or user)",
+        "category": "security",
+        "cwe": "CWE-682",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8340000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "solidityscan_0",
+      "tool": "solidityscan",
+      "rule_id": null,
+      "title": "Imported Finding",
+      "description": "{'id': 'solidityscan-1', 'title': 'ANCE CHANGE RACE CONDITION IN APPROVE()', 'description': \"IMBALANCE ADD REMOVE LIQUIDITY MATH ERRORS\\nBLOCK.NUMBER INCONSISTENCIES ON VARIOUS L2S\\nLIMITATIONS OF SOLIDITY'S TRY-CATCH IN EXTERNAL CALLS\\nERC20 NON STANDARD BEHAVIOR\\nINSECURE OWNERSHIP TRANSFER\\nMISSING IGOVERNANCE INTERFACE DEFINITION IN PROVIDED CODE\\nMISSING EVENTS\\nOUTDATED COMPILER VERSION\\nUNDECLARED CUSTOM ERRORS CAUSE COMPILATION FAILURE\\nUNINITIALIZED OWNERSHIP\\nBLOCK VALUES AS A PROXY FOR TIME\", 'severity': 'Low', 'confidence': 1.0, 'line': 0, 'source_tool': 'SolidityScan', 'cwe_id': None, 'fix_suggestion': None}",
+      "severity": "medium",
+      "confidence": 0.5,
+      "location": {
+        "file": null,
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Uncertain classification (ML score: 0.73)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7320000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "solidityscan_0",
+      "tool": "solidityscan",
+      "rule_id": null,
+      "title": "Imported Finding",
+      "description": "{'id': 'solidityscan-1', 'title': 'ANCE CHANGE RACE CONDITION IN APPROVE()', 'description': \"IMBALANCE ADD REMOVE LIQUIDITY MATH ERRORS\\nBLOCK.NUMBER INCONSISTENCIES ON VARIOUS L2S\\nLIMITATIONS OF SOLIDITY'S TRY-CATCH IN EXTERNAL CALLS\\nERC20 NON STANDARD BEHAVIOR\\nINSECURE OWNERSHIP TRANSFER\\nMISSING IGOVERNANCE INTERFACE DEFINITION IN PROVIDED CODE\\nMISSING EVENTS\\nOUTDATED COMPILER VERSION\\nUNDECLARED CUSTOM ERRORS CAUSE COMPILATION FAILURE\\nUNINITIALIZED OWNERSHIP\\nBLOCK VALUES AS A PROXY FOR TIME\", 'severity': 'Low', 'confidence': 1.0, 'line': 0, 'source_tool': 'SolidityScan', 'cwe_id': None, 'fix_suggestion': None}",
+      "severity": "medium",
+      "confidence": 0.5,
+      "location": {
+        "file": null,
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Uncertain classification (ML score: 0.73)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7320000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "natspec_func_notice_setUp_10",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'setUp'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 10,
+        "function": "setUp",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Multiple tools agree (10 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_testTransferOwnership_14",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testTransferOwnership'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 14,
+        "function": "testTransferOwnership",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_testCallFunctionAsNonOwner_18",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testCallFunctionAsNonOwner'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 18,
+        "function": "testCallFunctionAsNonOwner",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_testCallFunctionAsOwner_22",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testCallFunctionAsOwner'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 22,
+        "function": "testCallFunctionAsOwner",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_testTransferOwnership_26",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testTransferOwnership'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 26,
+        "function": "testTransferOwnership",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_testCallFunctionAsNonOwner_32",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'testCallFunctionAsNonOwner'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 32,
+        "function": "testCallFunctionAsNonOwner",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Multiple tools agree (3 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_contract_OwnedTest_7",
+      "tool": "natspec",
+      "rule_id": "natspec/contract-doc",
+      "title": "Missing NatSpec for contract 'OwnedTest'",
+      "description": "Add NatSpec doc block (/// or /** ... */) above contract OwnedTest.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 7,
+        "function": null,
+        "contract": "OwnedTest"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.5808,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_setUp_10",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'setUp'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 10,
+        "function": "setUp",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Multiple tools agree (10 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_testTransferOwnership_14",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'testTransferOwnership'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 14,
+        "function": "testTransferOwnership",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_testCallFunctionAsNonOwner_18",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'testCallFunctionAsNonOwner'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 18,
+        "function": "testCallFunctionAsNonOwner",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_testCallFunctionAsOwner_22",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'testCallFunctionAsOwner'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 22,
+        "function": "testCallFunctionAsOwner",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_testTransferOwnership_26",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'testTransferOwnership'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 26,
+        "function": "testTransferOwnership",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_testCallFunctionAsNonOwner_32",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'testCallFunctionAsNonOwner'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 32,
+        "function": "testCallFunctionAsNonOwner",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Multiple tools agree (3 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 26 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 26,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 32 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 32,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 10 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 10,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (14 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 14,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 22 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 22,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (14 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 14,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-005",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-005",
+      "title": "Negative numbers cost more gas",
+      "description": "Negative number at line 1 costs extra gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 1,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas",
+        "recommendation": "Use subtraction or unsigned types when possible",
+        "cwe": "CWE-400",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.6539999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-001",
+      "tool": "code_quality",
+      "rule_id": "CQ-001",
+      "title": "Missing @title in contract documentation",
+      "description": "Contract at line 7 lacks @title NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 7,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @title describing the contract purpose",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-002",
+      "tool": "code_quality",
+      "rule_id": "CQ-002",
+      "title": "Missing @author in contract documentation",
+      "description": "Contract at line 7 lacks @author NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 7,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @author identifying the contract creator",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-003",
+      "tool": "code_quality",
+      "rule_id": "CQ-003",
+      "title": "Missing @notice or @dev in contract documentation",
+      "description": "Contract at line 7 lacks @notice or @dev NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 7,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice for user-facing description or @dev for technical details",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function setUp",
+      "description": "Public/external function at line 10 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 10,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function testTransferOwnership",
+      "description": "Public/external function at line 14 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 14,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function testCallFunctionAsNonOwner",
+      "description": "Public/external function at line 18 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 18,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function testCallFunctionAsOwner",
+      "description": "Public/external function at line 22 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 22,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function testTransferOwnership",
+      "description": "Public/external function at line 26 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 26,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function testCallFunctionAsNonOwner",
+      "description": "Public/external function at line 32 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/test/Owned.t.sol",
+        "line": 32,
+        "function": null,
+        "contract": "Owned.t"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 30,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    }
+  ],
+  "all_fixes": [],
+  "auto_fixed": false
+}

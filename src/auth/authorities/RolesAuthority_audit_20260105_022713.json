@@ -1,0 +1,5179 @@
+{
+  "contract_name": "RolesAuthority.sol",
+  "audit_timestamp": "2026-01-05T02:27:13.366850",
+  "source_lines": 112,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2533254623413086
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.25438976287841797
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2544076442718506
+    },
+    "bytecode_re": {
+      "status": "skipped",
+      "findings_count": 0,
+      "execution_time": 0.24520015716552734
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00977182388305664
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.5791120529174805
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.01033329963684082
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.00011563301086425781
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 6,
+      "execution_time": 0.011325359344482422
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.011554479598999023
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 1.5738580226898193
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.010775566101074219
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 22,
+      "execution_time": 0.0008842945098876953
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.010473489761352539
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.010861396789550781
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 24,
+      "execution_time": 0.002208232879638672
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.008661985397338867
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00021457672119140625
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.0012524127960205078
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 4,
+      "execution_time": 9.059906005859375e-05
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00709843635559082
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0005853176116943359
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 42,
+      "execution_time": 0.0013248920440673828
+    }
+  },
+  "total_findings": 95,
+  "raw_total_findings": 200,
+  "findings_by_severity": {
+    "critical": 0,
+    "high": 0,
+    "medium": 2,
+    "low": 28,
+    "info": 65,
+    "gas": 23
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 196,
+      "kept_count": 95,
+      "filtered_count": 101,
+      "filter_rate": 0.5153061224489796,
+      "kept_by_severity": {
+        "low": 28,
+        "info": 65,
+        "medium": 2
+      },
+      "filtered_by_severity": {
+        "low": 3,
+        "medium": 95,
+        "info": 3
+      },
+      "kept_by_category": {
+        "likely_true_positive": 13,
+        "likely_false_positive": 22,
+        "uncertain": 60
+      },
+      "filtered_by_category": {
+        "likely_false_positive": 61,
+        "definite_false_positive": 38,
+        "uncertain": 2
+      },
+      "kept_by_tool": {
+        "comprehensive-security-detector": 6,
+        "natspec": 22,
+        "gas_optimizer": 23,
+        "advanced_security": 3,
+        "code_quality": 41
+      },
+      "filtered_by_tool": {
+        "erc20_heuristics": 3,
+        "solidityscan": 92,
+        "gas_optimizer": 1,
+        "access_control_heuristics": 4,
+        "code_quality": 1
+      },
+      "avg_ml_score_kept": 0.6826395789473685,
+      "avg_ml_score_filtered": 0.4525772277227723,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 95,
+      "critical": 0,
+      "high": 0,
+      "medium": 2,
+      "low": 28,
+      "info": 65,
+      "security_score": 0,
+      "on_attack_path": 0,
+      "max_attack_path_degree": 0
+    },
+    "patch_plan": [
+      {
+        "title": "Rounding direction not specified",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Rounding direction not specified",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Variable Shadowing",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Variable Shadowing",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Variable Shadowing",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Variable Shadowing",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Variable Shadowing",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Variable Shadowing",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing @param _owner for constructor 'constructor'",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing @param _authority for constructor 'constructor'",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      }
+    ]
+  },
+  "fixes_generated": 3,
+  "fixes_by_confidence": {
+    "high": 0,
+    "medium": 3,
+    "low": 0
+  },
+  "all_findings": [
+    {
+      "id": "ADV-041",
+      "tool": "advanced_security",
+      "rule_id": "ADV-041",
+      "title": "Rounding direction not specified",
+      "description": "Division at line 27 may have exploitable rounding",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 27,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Explicitly specify rounding direction (favor protocol or user)",
+        "category": "security",
+        "cwe": "CWE-682",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8340000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ADV-041",
+      "tool": "advanced_security",
+      "rule_id": "ADV-041",
+      "title": "Rounding direction not specified",
+      "description": "Division at line 4 may have exploitable rounding",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 4,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Explicitly specify rounding direction (favor protocol or user)",
+        "category": "security",
+        "cwe": "CWE-682",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.77)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.774,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "variable-shadowing-77",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 78: Variable 'target' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.55,
+      "location": {
+        "file": "96c2208063f52fe7",
+        "line": 78,
+        "function": null,
+        "contract": "96c2208063f52fe7"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "address target,",
+        "variable": "target",
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (8 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8652000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "variable-shadowing-79",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 80: Variable 'enabled' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.55,
+      "location": {
+        "file": "96c2208063f52fe7",
+        "line": 80,
+        "function": null,
+        "contract": "96c2208063f52fe7"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "bool enabled",
+        "variable": "enabled",
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (10 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8652000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "variable-shadowing-95",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 96: Variable 'user' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.55,
+      "location": {
+        "file": "96c2208063f52fe7",
+        "line": 96,
+        "function": null,
+        "contract": "96c2208063f52fe7"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "address user,",
+        "variable": "user",
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (6 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8652000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "variable-shadowing-97",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 98: Variable 'enabled' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.55,
+      "location": {
+        "file": "96c2208063f52fe7",
+        "line": 98,
+        "function": null,
+        "contract": "96c2208063f52fe7"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "bool enabled",
+        "variable": "enabled",
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (7 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8652000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "variable-shadowing-53",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 54: Variable 'target' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.5,
+      "location": {
+        "file": "96c2208063f52fe7",
+        "line": 54,
+        "function": null,
+        "contract": "96c2208063f52fe7"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "address target,",
+        "variable": "target",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (14 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.86)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 14,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8592000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "variable-shadowing-66",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 67: Variable 'target' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.5,
+      "location": {
+        "file": "96c2208063f52fe7",
+        "line": 67,
+        "function": null,
+        "contract": "96c2208063f52fe7"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "address target,",
+        "variable": "target",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (6 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.86)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8592000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_param_constructor__owner_24",
+      "tool": "natspec",
+      "rule_id": "natspec/param",
+      "title": "Missing @param _owner for constructor 'constructor'",
+      "description": "Document parameter '_owner' with an @param entry.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 24,
+        "function": "constructor",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (4 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.8147999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_param_constructor__authority_24",
+      "tool": "natspec",
+      "rule_id": "natspec/param",
+      "title": "Missing @param _authority for constructor 'constructor'",
+      "description": "Document parameter '_authority' with an @param entry.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 24,
+        "function": "constructor",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (4 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.8147999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_return_canCall_52",
+      "tool": "natspec",
+      "rule_id": "natspec/return",
+      "title": "Missing @return for function 'canCall'",
+      "description": "Add @return documentation for return value(s).",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 52,
+        "function": "canCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (6 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.8147999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_return_doesUserHaveRole_36",
+      "tool": "natspec",
+      "rule_id": "natspec/return",
+      "title": "Missing @return for function 'doesUserHaveRole'",
+      "description": "Add @return documentation for return value(s).",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 36,
+        "function": "doesUserHaveRole",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (15 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 15,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.8087999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_return_doesRoleHaveCapability_40",
+      "tool": "natspec",
+      "rule_id": "natspec/return",
+      "title": "Missing @return for function 'doesRoleHaveCapability'",
+      "description": "Add @return documentation for return value(s).",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 40,
+        "function": "doesRoleHaveCapability",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (17 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 17,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.8087999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_inheritdoc_canCall_52",
+      "tool": "natspec",
+      "rule_id": "natspec/inheritdoc",
+      "title": "Missing @inheritdoc for override function 'canCall'",
+      "description": "Add @inheritdoc to reference the overridden documentation.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 52,
+        "function": "canCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (6 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.80)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.8028000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_func_notice_constructor_24",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for constructor 'constructor'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 24,
+        "function": "constructor",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (4 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_doesUserHaveRole_36",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'doesUserHaveRole'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 36,
+        "function": "doesUserHaveRole",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (15 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 15,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_doesRoleHaveCapability_40",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'doesRoleHaveCapability'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 40,
+        "function": "doesRoleHaveCapability",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (17 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 17,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_canCall_52",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'canCall'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 52,
+        "function": "canCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (6 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_setPublicCapability_66",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'setPublicCapability'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 66,
+        "function": "setPublicCapability",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_setRoleCapability_76",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'setRoleCapability'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 76,
+        "function": "setRoleCapability",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_setUserRole_95",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'setUserRole'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 95,
+        "function": "setUserRole",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_public_var_isCapabilityPublic_32",
+      "tool": "natspec",
+      "rule_id": "natspec/public-var-doc",
+      "title": "Missing NatSpec for public variable 'isCapabilityPublic'",
+      "description": "Add a NatSpec line (/// @notice ...) above the public state variable.",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 32,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (16 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 16,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.576,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_public_var_getRolesWithCapability_34",
+      "tool": "natspec",
+      "rule_id": "natspec/public-var-doc",
+      "title": "Missing NatSpec for public variable 'getRolesWithCapability'",
+      "description": "Add a NatSpec line (/// @notice ...) above the public state variable.",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 34,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (15 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 15,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.576,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_constructor_24",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for constructor 'constructor'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 24,
+        "function": "constructor",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (4 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_doesUserHaveRole_36",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'doesUserHaveRole'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 36,
+        "function": "doesUserHaveRole",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (15 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 15,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_doesRoleHaveCapability_40",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'doesRoleHaveCapability'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 40,
+        "function": "doesRoleHaveCapability",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (17 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 17,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_canCall_52",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'canCall'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 52,
+        "function": "canCall",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (6 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_setPublicCapability_66",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'setPublicCapability'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 66,
+        "function": "setPublicCapability",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_setRoleCapability_76",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'setRoleCapability'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 76,
+        "function": "setRoleCapability",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_setUserRole_95",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'setUserRole'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 95,
+        "function": "setUserRole",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "MEM-003",
+      "tool": "advanced_security",
+      "rule_id": "MEM-003",
+      "title": "Struct field ordering may be inefficient",
+      "description": "Struct at line 24 should pack fields for gas efficiency",
+      "severity": "info",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 24,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Order fields: larger types first, pack smaller types",
+        "category": "memory",
+        "cwe": "CWE-400",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.76)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.762,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-024",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-024",
+      "title": "Empty block wastes deployment gas",
+      "description": "Empty block at line 24",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 24,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "Deployment gas saved",
+        "recommendation": "Remove empty block or add comment explaining why it exists",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-002",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-002",
+      "title": "Use uint256 for non-packed variables",
+      "description": "Smaller uint at line 14 costs MORE gas when not in struct",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 14,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas per operation",
+        "recommendation": "Use uint256 unless packing in struct",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-002",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-002",
+      "title": "Use uint256 for non-packed variables",
+      "description": "Smaller uint at line 18 costs MORE gas when not in struct",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 18,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas per operation",
+        "recommendation": "Use uint256 unless packing in struct",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-001",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-001",
+      "title": "Public mapping creates expensive getter",
+      "description": "Public mapping at line 30 auto-generates getter consuming gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 30,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~500 gas deployment",
+        "recommendation": "Make mapping private and create custom getter if needed",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 30 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 30,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-001",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-001",
+      "title": "Public mapping creates expensive getter",
+      "description": "Public mapping at line 32 auto-generates getter consuming gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 32,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~500 gas deployment",
+        "recommendation": "Make mapping private and create custom getter if needed",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 32 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 32,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-001",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-001",
+      "title": "Public mapping creates expensive getter",
+      "description": "Public mapping at line 34 auto-generates getter consuming gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 34,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~500 gas deployment",
+        "recommendation": "Make mapping private and create custom getter if needed",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 34 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 34,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-002",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-002",
+      "title": "Use uint256 for non-packed variables",
+      "description": "Smaller uint at line 36 costs MORE gas when not in struct",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 36,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas per operation",
+        "recommendation": "Use uint256 unless packing in struct",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (14 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 14,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-010",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-010",
+      "title": "No need to initialize to default value",
+      "description": "Variable at line 37 initialized to default (wastes gas)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 37,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~3 gas",
+        "recommendation": "Remove = 0, variables default to zero",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (14 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 14,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 37 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 37,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (14 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 14,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-002",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-002",
+      "title": "Use uint256 for non-packed variables",
+      "description": "Smaller uint at line 41 costs MORE gas when not in struct",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 41,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas per operation",
+        "recommendation": "Use uint256 unless packing in struct",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (16 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 16,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-010",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-010",
+      "title": "No need to initialize to default value",
+      "description": "Variable at line 45 initialized to default (wastes gas)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 45,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~3 gas",
+        "recommendation": "Remove = 0, variables default to zero",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 45 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 45,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 59 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 59,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-002",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-002",
+      "title": "Use uint256 for non-packed variables",
+      "description": "Smaller uint at line 77 costs MORE gas when not in struct",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 77,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas per operation",
+        "recommendation": "Use uint256 unless packing in struct",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 83 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 83,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 85 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 85,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-002",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-002",
+      "title": "Use uint256 for non-packed variables",
+      "description": "Smaller uint at line 97 costs MORE gas when not in struct",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 97,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas per operation",
+        "recommendation": "Use uint256 unless packing in struct",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 101 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 101,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 36 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 36,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (17 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 17,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-006",
+      "tool": "code_quality",
+      "rule_id": "CQ-006",
+      "title": "Missing @return documentation for return value",
+      "description": "Function at line 36 has return value but no @return documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 36,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return describing the return value",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (17 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 17,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 21 has 31 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 21,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-011",
+      "tool": "code_quality",
+      "rule_id": "UQ-011",
+      "title": "Array access without bounds check",
+      "description": "Array access at line 37 may be out of bounds",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 37,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add require(index < array.length)",
+        "category": "safety",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (17 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 17,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 37 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 37,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (17 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 17,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 40 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 40,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (13 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 13,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 43 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 43,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 44 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 44,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 45 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 45,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-011",
+      "tool": "code_quality",
+      "rule_id": "UQ-011",
+      "title": "Array access without bounds check",
+      "description": "Array access at line 45 may be out of bounds",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 45,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add require(index < array.length)",
+        "category": "safety",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 49 has 27 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 49,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 52 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 52,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 55 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 55,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 56 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 56,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 57 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 57,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 63 has 19 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 63,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 66 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 66,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 68 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 68,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 71 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 71,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 73 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 73,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 76 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 76,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 79 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 79,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 83 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 83,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 85 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 85,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-011",
+      "tool": "code_quality",
+      "rule_id": "UQ-011",
+      "title": "Array access without bounds check",
+      "description": "Array access at line 85 may be out of bounds",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 85,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add require(index < array.length)",
+        "category": "safety",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 92 has 23 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 92,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 95 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 95,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-011",
+      "tool": "code_quality",
+      "rule_id": "UQ-011",
+      "title": "Array access without bounds check",
+      "description": "Array access at line 103 may be out of bounds",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 103,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add require(index < array.length)",
+        "category": "safety",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 36 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 36,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (14 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 14,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 103 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 103,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.6539999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 16 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 16,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 18 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 18,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 58 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 58,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-011",
+      "tool": "code_quality",
+      "rule_id": "UQ-011",
+      "title": "Array access without bounds check",
+      "description": "Array access at line 58 may be out of bounds",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 58,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add require(index < array.length)",
+        "category": "safety",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 59 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 59,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-011",
+      "tool": "code_quality",
+      "rule_id": "UQ-011",
+      "title": "Array access without bounds check",
+      "description": "Array access at line 59 may be out of bounds",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 59,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add require(index < array.length)",
+        "category": "safety",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 88 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 88,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function doesUserHaveRole",
+      "description": "Public/external function at line 36 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 36,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (17 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 17,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-001",
+      "tool": "code_quality",
+      "rule_id": "CQ-001",
+      "title": "Missing @title in contract documentation",
+      "description": "Contract at line 9 lacks @title NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 9,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @title describing the contract purpose",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.45)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4464000000000001,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-007",
+      "tool": "code_quality",
+      "rule_id": "CQ-007",
+      "title": "Missing documentation for event UserRoleUpdated",
+      "description": "Event at line 14 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 14,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @dev or @notice explaining when this event is emitted",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.45)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4464000000000001,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-007",
+      "tool": "code_quality",
+      "rule_id": "CQ-007",
+      "title": "Missing documentation for event PublicCapabilityUpdated",
+      "description": "Event at line 16 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 16,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @dev or @notice explaining when this event is emitted",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.45)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4464000000000001,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-007",
+      "tool": "code_quality",
+      "rule_id": "CQ-007",
+      "title": "Missing documentation for event RoleCapabilityUpdated",
+      "description": "Event at line 18 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 18,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @dev or @notice explaining when this event is emitted",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.45)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4464000000000001,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-047",
+      "tool": "code_quality",
+      "rule_id": "CQ-047",
+      "title": "Multiple consecutive empty lines",
+      "description": "Multiple empty lines at line 110",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/auth/authorities/RolesAuthority.sol",
+        "line": 110,
+        "function": null,
+        "contract": "RolesAuthority"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use single empty line for separation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 91,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Only one tool detected this issue",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.44)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.0,
+          "consensus_count": 0,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.43500000000000005,
+      "ml_label": "likely_false_positive"
+    }
+  ],
+  "all_fixes": [
+    {
+      "type": "access-control",
+      "line": 66,
+      "confidence": "medium",
+      "explanation": "Added onlyOwner modifier to critical function",
+      "diff": "--- original\n+++ fixed\n@@ -1 +1 @@\n- function setPublicCapability(\n-         address target,\n-         bytes4 functionSig,\n-         bool enabled\n-     ) public virtual requiresAuth \n+ function setPublicCapability(\n+         address target,\n+         bytes4 functionSig,\n+         bool enabled\n+     ) public onlyOwner virtual requiresAuth "
+    },
+    {
+      "type": "access-control",
+      "line": 76,
+      "confidence": "medium",
+      "explanation": "Added onlyOwner modifier to critical function",
+      "diff": "--- original\n+++ fixed\n@@ -1 +1 @@\n- function setRoleCapability(\n-         uint8 role,\n-         address target,\n-         bytes4 functionSig,\n-         bool enabled\n-     ) public virtual requiresAuth \n+ function setRoleCapability(\n+         uint8 role,\n+         address target,\n+         bytes4 functionSig,\n+         bool enabled\n+     ) public onlyOwner virtual requiresAuth "
+    },
+    {
+      "type": "access-control",
+      "line": 95,
+      "confidence": "medium",
+      "explanation": "Added onlyOwner modifier to critical function",
+      "diff": "--- original\n+++ fixed\n@@ -1 +1 @@\n- function setUserRole(\n-         address user,\n-         uint8 role,\n-         bool enabled\n-     ) public virtual requiresAuth \n+ function setUserRole(\n+         address user,\n+         uint8 role,\n+         bool enabled\n+     ) public onlyOwner virtual requiresAuth "
+    }
+  ],
+  "auto_fixed": false
+}

@@ -1,0 +1,253 @@
+{
+  "contract_name": "MerkleProofLib.sol",
+  "audit_timestamp": "2026-01-05T02:26:11.810380",
+  "source_lines": 52,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.24666190147399902
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.24719953536987305
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.24721479415893555
+    },
+    "bytecode_re": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.24251627922058105
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.004993915557861328
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.5538234710693359
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.005604743957519531
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.00010371208190917969
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0060002803802490234
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.006112098693847656
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 1.592712163925171
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0053212642669677734
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0002741813659667969
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.005117177963256836
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.00551915168762207
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 0.0009932518005371094
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.004537820816040039
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00010633468627929688
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0005321502685546875
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 6.175041198730469e-05
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.003831148147583008
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00033855438232421875
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 5,
+      "execution_time": 0.0005373954772949219
+    }
+  },
+  "total_findings": 1,
+  "raw_total_findings": 104,
+  "findings_by_severity": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "info": 1,
+    "gas": 0
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 103,
+      "kept_count": 1,
+      "filtered_count": 102,
+      "filter_rate": 0.9902912621359223,
+      "kept_by_severity": {
+        "info": 1
+      },
+      "filtered_by_severity": {
+        "low": 3,
+        "medium": 92,
+        "info": 7
+      },
+      "kept_by_category": {
+        "likely_false_positive": 1
+      },
+      "filtered_by_category": {
+        "likely_false_positive": 61,
+        "definite_false_positive": 39,
+        "uncertain": 2
+      },
+      "kept_by_tool": {
+        "code_quality": 1
+      },
+      "filtered_by_tool": {
+        "erc20_heuristics": 3,
+        "solidityscan": 92,
+        "gas_optimizer": 2,
+        "access_control_heuristics": 1,
+        "code_quality": 4
+      },
+      "avg_ml_score_kept": 0.43000000000000005,
+      "avg_ml_score_filtered": 0.4477676470588236,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 1,
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "info": 1,
+      "security_score": 99,
+      "on_attack_path": 0,
+      "max_attack_path_degree": 0
+    },
+    "patch_plan": [
+      {
+        "title": "Multiple consecutive empty lines",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "info",
+        "is_chain_breaker": false
+      }
+    ]
+  },
+  "fixes_generated": 0,
+  "fixes_by_confidence": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "all_findings": [
+    {
+      "id": "CQ-047",
+      "tool": "code_quality",
+      "rule_id": "CQ-047",
+      "title": "Multiple consecutive empty lines",
+      "description": "Multiple empty lines at line 50",
+      "severity": "info",
+      "confidence": 0.5,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/utils/MerkleProofLib.sol",
+        "line": 50,
+        "function": null,
+        "contract": "MerkleProofLib"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use single empty line for separation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Only one tool detected this issue",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.43)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.0,
+          "consensus_count": 0,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.43000000000000005,
+      "ml_label": "likely_false_positive"
+    }
+  ],
+  "all_fixes": [],
+  "auto_fixed": false
+}

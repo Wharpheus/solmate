@@ -1,0 +1,5281 @@
+{
+  "contract_name": "ERC6909_FIXED.sol",
+  "audit_timestamp": "2026-01-06T14:05:30.163210",
+  "source_lines": 131,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2364954948425293
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.23766422271728516
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.23768091201782227
+    },
+    "bytecode_re": {
+      "status": "skipped",
+      "findings_count": 0,
+      "execution_time": 0.22769904136657715
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.010684013366699219
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 1.0789706707000732
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.011338949203491211
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00011301040649414062
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 5,
+      "execution_time": 0.012580156326293945
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.012899637222290039
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 6,
+      "execution_time": 1.6331915855407715
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 6,
+      "execution_time": 0.012426614761352539
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 17,
+      "execution_time": 0.001016855239868164
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.01205587387084961
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.012451887130737305
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 19,
+      "execution_time": 0.0024106502532958984
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.010051488876342773
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.00021982192993164062
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 6,
+      "execution_time": 0.0014548301696777344
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 8.7738037109375e-05
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.008283376693725586
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 5,
+      "execution_time": 0.000728607177734375
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 33,
+      "execution_time": 0.0014417171478271484
+    }
+  },
+  "total_findings": 95,
+  "raw_total_findings": 199,
+  "findings_by_severity": {
+    "critical": 0,
+    "high": 6,
+    "medium": 22,
+    "low": 21,
+    "info": 46,
+    "gas": 19
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 192,
+      "kept_count": 95,
+      "filtered_count": 97,
+      "filter_rate": 0.5052083333333334,
+      "kept_by_severity": {
+        "medium": 22,
+        "low": 21,
+        "high": 6,
+        "info": 46
+      },
+      "filtered_by_severity": {
+        "medium": 89,
+        "info": 8
+      },
+      "kept_by_category": {
+        "likely_true_positive": 32,
+        "likely_false_positive": 15,
+        "uncertain": 48
+      },
+      "filtered_by_category": {
+        "likely_false_positive": 55,
+        "definite_false_positive": 41,
+        "uncertain": 1
+      },
+      "kept_by_tool": {
+        "comprehensive-security-detector": 5,
+        "access-control-detector": 3,
+        "flowomatic": 6,
+        "natspec": 17,
+        "reentrancy-detector": 3,
+        "solidityscan": 4,
+        "gas_optimizer": 19,
+        "gas_heuristics": 1,
+        "advanced_security": 6,
+        "defi_security": 5,
+        "code_quality": 26
+      },
+      "filtered_by_tool": {
+        "solidityscan": 88,
+        "access_control_heuristics": 2,
+        "code_quality": 7
+      },
+      "avg_ml_score_kept": 0.748957894736842,
+      "avg_ml_score_filtered": 0.44060824742268045,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 95,
+      "critical": 0,
+      "high": 6,
+      "medium": 22,
+      "low": 21,
+      "info": 46,
+      "security_score": 0,
+      "on_attack_path": 10,
+      "max_attack_path_degree": 9
+    },
+    "patch_plan": [
+      {
+        "title": "Missing Access Control on Transfer Function",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "HIGH",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing Access Control on Transfer Function",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "HIGH",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing Access Control on Approve Function",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "HIGH",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Read-only reentrancy risk",
+        "suggested_fix": "Apply checks-effects-interactions or use ReentrancyGuard.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Fee-on-transfer token not handled",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Liquidity provision without minimum check",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Burn mechanism should be validated",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Burn mechanism should be validated",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Imported Finding",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Imported Finding",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      }
+    ]
+  },
+  "fixes_generated": 1,
+  "fixes_by_confidence": {
+    "high": 0,
+    "medium": 1,
+    "low": 0
+  },
+  "all_findings": [
+    {
+      "id": "missing-access-control-transfer",
+      "tool": "access-control-detector",
+      "rule_id": "missing-access-control",
+      "title": "Missing Access Control on Transfer Function",
+      "description": "Function `transfer()` is transfer without access control modifiers. Any caller can invoke this function. NFTBTC C001/H001/H002: Add onlyOwner, onlyAdmin, or role-based access control.",
+      "severity": "HIGH",
+      "confidence": 1.0,
+      "location": {
+        "file": "ERC6909_FIXED",
+        "line": 34,
+        "function": "transfer",
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "function_type": "Transfer",
+        "is_external_or_public": true,
+        "has_modifier": false,
+        "fix_suggestion": "Add modifier to function declaration: `function transfer(...) external onlyOwner {...}`",
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 9
+          }
+        ],
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "Multiple tools agree (20 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.8,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 20,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.85,
+          "rule_confidence": 1.0,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 9,
+          "attack_path_score": 0.95,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "missing-access-control-transferFrom",
+      "tool": "access-control-detector",
+      "rule_id": "missing-access-control",
+      "title": "Missing Access Control on Transfer Function",
+      "description": "Function `transferFrom()` is transfer without access control modifiers. Any caller can invoke this function. NFTBTC C001/H001/H002: Add onlyOwner, onlyAdmin, or role-based access control.",
+      "severity": "HIGH",
+      "confidence": 1.0,
+      "location": {
+        "file": "ERC6909_FIXED",
+        "line": 49,
+        "function": "transferFrom",
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "function_type": "Transfer",
+        "is_external_or_public": true,
+        "has_modifier": false,
+        "fix_suggestion": "Add modifier to function declaration: `function transferFrom(...) external onlyOwner {...}`",
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 9
+          }
+        ],
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "Multiple tools agree (19 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.8,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 19,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.85,
+          "rule_confidence": 1.0,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 9,
+          "attack_path_score": 0.95,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "missing-access-control-approve",
+      "tool": "access-control-detector",
+      "rule_id": "missing-access-control",
+      "title": "Missing Access Control on Approve Function",
+      "description": "Function `approve()` is approve without access control modifiers. Any caller can invoke this function. NFTBTC C001/H001/H002: Add onlyOwner, onlyAdmin, or role-based access control.",
+      "severity": "HIGH",
+      "confidence": 1.0,
+      "location": {
+        "file": "ERC6909_FIXED",
+        "line": 70,
+        "function": "approve",
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "function_type": "Approve",
+        "is_external_or_public": true,
+        "has_modifier": false,
+        "fix_suggestion": "Add modifier to function declaration: `function approve(...) external onlyOwner {...}`",
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 9
+          }
+        ],
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "Multiple tools agree (15 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.8,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 15,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.85,
+          "rule_confidence": 1.0,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 9,
+          "attack_path_score": 0.95,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "USEC-002",
+      "tool": "advanced_security",
+      "rule_id": "USEC-002",
+      "title": "Read-only reentrancy risk",
+      "description": "View function at line 96 reads state that may be inconsistent during reentrancy",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 96,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Consider reentrancy guard for view functions reading critical state",
+        "category": "security",
+        "cwe": "CWE-841",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "DEFI-005",
+      "tool": "defi_security",
+      "rule_id": "DEFI-005",
+      "title": "Fee-on-transfer token not handled",
+      "description": "Transfer at line 49 assumes full amount received",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 49,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Check actual balance change for fee-on-transfer tokens",
+        "category": "defi",
+        "cwe": "CWE-682",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8700000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "DEFI-002",
+      "tool": "defi_security",
+      "rule_id": "DEFI-002",
+      "title": "Liquidity provision without minimum check",
+      "description": "Liquidity addition at line 106 lacks minimum amount validation",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 106,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Add minimum liquidity requirement to prevent dust attacks",
+        "category": "defi",
+        "cwe": "CWE-20",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8700000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "DEFI-051",
+      "tool": "defi_security",
+      "rule_id": "DEFI-051",
+      "title": "Burn mechanism should be validated",
+      "description": "Burn at line 103 needs proper access control",
+      "severity": "medium",
+      "confidence": 0.9,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 103,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure burn cannot be bypassed or abused",
+        "category": "defi",
+        "cwe": "CWE-284",
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 9
+          }
+        ],
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.85,
+          "rule_confidence": 0.9,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": true,
+          "attack_path_degree": 9,
+          "attack_path_score": 0.95,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "DEFI-051",
+      "tool": "defi_security",
+      "rule_id": "DEFI-051",
+      "title": "Burn mechanism should be validated",
+      "description": "Burn at line 117 needs proper access control",
+      "severity": "medium",
+      "confidence": 0.9,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 117,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure burn cannot be bypassed or abused",
+        "category": "defi",
+        "cwe": "CWE-284",
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 9
+          }
+        ],
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.85,
+          "rule_confidence": 0.9,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": true,
+          "attack_path_degree": 9,
+          "attack_path_score": 0.95,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "solidityscan_7",
+      "tool": "solidityscan",
+      "rule_id": null,
+      "title": "Imported Finding",
+      "description": "{'id': 'solidityscan-8', 'title': 'INCORRECT ACCESS CONTROL', 'description': '1\\nAutomated\\nPending Fix\\nC002', 'severity': 'Critical', 'confidence': 1.0, 'line': 0, 'source_tool': 'SolidityScan', 'cwe_id': None, 'fix_suggestion': None}",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": null,
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 9
+          }
+        ],
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.85,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.5,
+          "on_attack_path": true,
+          "attack_path_degree": 9,
+          "attack_path_score": 0.95,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "solidityscan_7",
+      "tool": "solidityscan",
+      "rule_id": null,
+      "title": "Imported Finding",
+      "description": "{'id': 'solidityscan-8', 'title': 'INCORRECT ACCESS CONTROL', 'description': '1\\nAutomated\\nPending Fix\\nC002', 'severity': 'Critical', 'confidence': 1.0, 'line': 0, 'source_tool': 'SolidityScan', 'cwe_id': None, 'fix_suggestion': None}",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": null,
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 9
+          }
+        ],
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.85,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.5,
+          "on_attack_path": true,
+          "attack_path_degree": 9,
+          "attack_path_score": 0.95,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "reentrancy-missing-guard-transfer",
+      "tool": "reentrancy-detector",
+      "rule_id": "reentrancy-missing-guard",
+      "title": "Missing nonReentrant Modifier on transfer()",
+      "description": "Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.",
+      "severity": "medium",
+      "confidence": 0.95,
+      "location": {
+        "file": "ERC6909_FIXED",
+        "line": 33,
+        "function": "transfer",
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "external_calls": 0,
+        "eth_transfers": 0,
+        "fix_suggestion": "Add `nonReentrant` modifier from OpenZeppelin's ReentrancyGuard. Import: `import '@openzeppelin/contracts/utils/ReentrancyGuard.sol';` Usage: `function transfer(...) external nonReentrant { ... }`",
+        "attack_vectors": [
+          {
+            "pattern": "reentrancy_fund_drain",
+            "description": "Reentrancy vulnerability combined with fund transfer",
+            "related_findings": 3
+          }
+        ],
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.90)",
+          "Multiple tools agree (14 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.95,
+        "ml_features": {
+          "tool_reputation": 0.9,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 14,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.95,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 3,
+          "attack_path_score": 0.65,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "reentrancy-missing-guard-transferFrom",
+      "tool": "reentrancy-detector",
+      "rule_id": "reentrancy-missing-guard",
+      "title": "Missing nonReentrant Modifier on transferFrom()",
+      "description": "Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.",
+      "severity": "medium",
+      "confidence": 0.95,
+      "location": {
+        "file": "ERC6909_FIXED",
+        "line": 48,
+        "function": "transferFrom",
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "external_calls": 0,
+        "eth_transfers": 0,
+        "fix_suggestion": "Add `nonReentrant` modifier from OpenZeppelin's ReentrancyGuard. Import: `import '@openzeppelin/contracts/utils/ReentrancyGuard.sol';` Usage: `function transferFrom(...) external nonReentrant { ... }`",
+        "attack_vectors": [
+          {
+            "pattern": "reentrancy_fund_drain",
+            "description": "Reentrancy vulnerability combined with fund transfer",
+            "related_findings": 3
+          }
+        ],
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.90)",
+          "Multiple tools agree (12 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.95,
+        "ml_features": {
+          "tool_reputation": 0.9,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.95,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 3,
+          "attack_path_score": 0.65,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "reentrancy-missing-guard-approve",
+      "tool": "reentrancy-detector",
+      "rule_id": "reentrancy-missing-guard",
+      "title": "Missing nonReentrant Modifier on approve()",
+      "description": "Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.",
+      "severity": "medium",
+      "confidence": 0.95,
+      "location": {
+        "file": "ERC6909_FIXED",
+        "line": 69,
+        "function": "approve",
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "external_calls": 0,
+        "eth_transfers": 0,
+        "fix_suggestion": "Add `nonReentrant` modifier from OpenZeppelin's ReentrancyGuard. Import: `import '@openzeppelin/contracts/utils/ReentrancyGuard.sol';` Usage: `function approve(...) external nonReentrant { ... }`",
+        "attack_vectors": [
+          {
+            "pattern": "reentrancy_fund_drain",
+            "description": "Reentrancy vulnerability combined with fund transfer",
+            "related_findings": 3
+          }
+        ],
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.90)",
+          "Multiple tools agree (12 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.95,
+        "ml_features": {
+          "tool_reputation": 0.9,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.95,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 3,
+          "attack_path_score": 0.65,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ADV-002",
+      "tool": "advanced_security",
+      "rule_id": "ADV-002",
+      "title": "Potential read-only reentrancy",
+      "description": "View function at line 96 may read inconsistent state during reentrancy",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 96,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Consider reentrancy guard even for view functions if state consistency is critical",
+        "category": "security",
+        "cwe": "CWE-841",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-82",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 83: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.6,
+      "location": {
+        "file": "75ebd127b12ad160",
+        "line": 83,
+        "function": null,
+        "contract": "75ebd127b12ad160"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function setOperator(address operator, bool approved) public virtual returns (bool) {",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (11 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.6,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9072,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-95",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 96: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.6,
+      "location": {
+        "file": "75ebd127b12ad160",
+        "line": 96,
+        "function": null,
+        "contract": "75ebd127b12ad160"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function supportsInterface(bytes4 interfaceId) public view virtual returns (bool) {",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (11 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.6,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9072,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ADV-041",
+      "tool": "advanced_security",
+      "rule_id": "ADV-041",
+      "title": "Rounding direction not specified",
+      "description": "Division at line 103 may have exploitable rounding",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 103,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Explicitly specify rounding direction (favor protocol or user)",
+        "category": "security",
+        "cwe": "CWE-682",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8340000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "USEC-015",
+      "tool": "advanced_security",
+      "rule_id": "USEC-015",
+      "title": "Flash loan attack - unchecked deposit/withdraw",
+      "description": "Deposit/withdraw at line 103 lacks validation",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 103,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Add deposit/withdraw limits and validate ratios",
+        "category": "security",
+        "cwe": "CWE-20",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": true,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8340000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "flowomatic_taint_transfer",
+      "tool": "flowomatic",
+      "rule_id": "taint-flow",
+      "title": "Potential Taint Flow in transfer",
+      "description": "Untrusted input (msg.sender) may reach sensitive operation (send, transfer) without proper validation",
+      "severity": "medium",
+      "confidence": 0.7,
+      "location": {
+        "file": null,
+        "line": 34,
+        "function": "transfer",
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "cwe_id": "CWE-20",
+        "sources": [
+          "msg.sender"
+        ],
+        "sinks": [
+          "send",
+          "transfer"
+        ],
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.7,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "fix_suggestion": "Add require() or assert() to validate input before sensitive operations"
+      },
+      "ml_score": 0.8327999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "flowomatic_taint_transferFrom",
+      "tool": "flowomatic",
+      "rule_id": "taint-flow",
+      "title": "Potential Taint Flow in transferFrom",
+      "description": "Untrusted input (msg.sender) may reach sensitive operation (send, transfer) without proper validation",
+      "severity": "medium",
+      "confidence": 0.7,
+      "location": {
+        "file": null,
+        "line": 49,
+        "function": "transferFrom",
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "cwe_id": "CWE-20",
+        "sources": [
+          "msg.sender"
+        ],
+        "sinks": [
+          "send",
+          "transfer"
+        ],
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.7,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "fix_suggestion": "Add require() or assert() to validate input before sensitive operations"
+      },
+      "ml_score": 0.8327999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "flowomatic_taint_approve",
+      "tool": "flowomatic",
+      "rule_id": "taint-flow",
+      "title": "Potential Taint Flow in approve",
+      "description": "Untrusted input (msg.sender) may reach sensitive operation (send) without proper validation",
+      "severity": "medium",
+      "confidence": 0.7,
+      "location": {
+        "file": null,
+        "line": 70,
+        "function": "approve",
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "cwe_id": "CWE-20",
+        "sources": [
+          "msg.sender"
+        ],
+        "sinks": [
+          "send"
+        ],
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.7,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "fix_suggestion": "Add require() or assert() to validate input before sensitive operations"
+      },
+      "ml_score": 0.8327999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "flowomatic_taint_setOperator",
+      "tool": "flowomatic",
+      "rule_id": "taint-flow",
+      "title": "Potential Taint Flow in setOperator",
+      "description": "Untrusted input (msg.sender) may reach sensitive operation (send) without proper validation",
+      "severity": "medium",
+      "confidence": 0.7,
+      "location": {
+        "file": null,
+        "line": 83,
+        "function": "setOperator",
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "cwe_id": "CWE-20",
+        "sources": [
+          "msg.sender"
+        ],
+        "sinks": [
+          "send"
+        ],
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.7,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "fix_suggestion": "Add require() or assert() to validate input before sensitive operations"
+      },
+      "ml_score": 0.8327999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "flowomatic_taint__mint",
+      "tool": "flowomatic",
+      "rule_id": "taint-flow",
+      "title": "Potential Taint Flow in _mint",
+      "description": "Untrusted input (msg.sender) may reach sensitive operation (send) without proper validation",
+      "severity": "medium",
+      "confidence": 0.7,
+      "location": {
+        "file": null,
+        "line": 106,
+        "function": "_mint",
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "cwe_id": "CWE-20",
+        "sources": [
+          "msg.sender"
+        ],
+        "sinks": [
+          "send"
+        ],
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.7,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "fix_suggestion": "Add require() or assert() to validate input before sensitive operations"
+      },
+      "ml_score": 0.8327999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "flowomatic_taint__burn",
+      "tool": "flowomatic",
+      "rule_id": "taint-flow",
+      "title": "Potential Taint Flow in _burn",
+      "description": "Untrusted input (msg.sender) may reach sensitive operation (send) without proper validation",
+      "severity": "medium",
+      "confidence": 0.7,
+      "location": {
+        "file": null,
+        "line": 117,
+        "function": "_burn",
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "cwe_id": "CWE-20",
+        "sources": [
+          "msg.sender"
+        ],
+        "sinks": [
+          "send"
+        ],
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.7,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "fix_suggestion": "Add require() or assert() to validate input before sensitive operations"
+      },
+      "ml_score": 0.8327999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "solidityscan_0",
+      "tool": "solidityscan",
+      "rule_id": null,
+      "title": "Imported Finding",
+      "description": "{'id': 'solidityscan-1', 'title': 'ANCE CHANGE RACE CONDITION IN APPROVE()', 'description': \"IMBALANCE ADD REMOVE LIQUIDITY MATH ERRORS\\nBLOCK.NUMBER INCONSISTENCIES ON VARIOUS L2S\\nLIMITATIONS OF SOLIDITY'S TRY-CATCH IN EXTERNAL CALLS\\nERC20 NON STANDARD BEHAVIOR\\nINSECURE OWNERSHIP TRANSFER\\nMISSING IGOVERNANCE INTERFACE DEFINITION IN PROVIDED CODE\\nMISSING EVENTS\\nOUTDATED COMPILER VERSION\\nUNDECLARED CUSTOM ERRORS CAUSE COMPILATION FAILURE\\nUNINITIALIZED OWNERSHIP\\nBLOCK VALUES AS A PROXY FOR TIME\", 'severity': 'Low', 'confidence': 1.0, 'line': 0, 'source_tool': 'SolidityScan', 'cwe_id': None, 'fix_suggestion': None}",
+      "severity": "medium",
+      "confidence": 0.5,
+      "location": {
+        "file": null,
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Uncertain classification (ML score: 0.79)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.792,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "solidityscan_0",
+      "tool": "solidityscan",
+      "rule_id": null,
+      "title": "Imported Finding",
+      "description": "{'id': 'solidityscan-1', 'title': 'ANCE CHANGE RACE CONDITION IN APPROVE()', 'description': \"IMBALANCE ADD REMOVE LIQUIDITY MATH ERRORS\\nBLOCK.NUMBER INCONSISTENCIES ON VARIOUS L2S\\nLIMITATIONS OF SOLIDITY'S TRY-CATCH IN EXTERNAL CALLS\\nERC20 NON STANDARD BEHAVIOR\\nINSECURE OWNERSHIP TRANSFER\\nMISSING IGOVERNANCE INTERFACE DEFINITION IN PROVIDED CODE\\nMISSING EVENTS\\nOUTDATED COMPILER VERSION\\nUNDECLARED CUSTOM ERRORS CAUSE COMPILATION FAILURE\\nUNINITIALIZED OWNERSHIP\\nBLOCK VALUES AS A PROXY FOR TIME\", 'severity': 'Low', 'confidence': 1.0, 'line': 0, 'source_tool': 'SolidityScan', 'cwe_id': None, 'fix_suggestion': None}",
+      "severity": "medium",
+      "confidence": 0.5,
+      "location": {
+        "file": null,
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Uncertain classification (ML score: 0.79)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.792,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "ADV-041",
+      "tool": "advanced_security",
+      "rule_id": "ADV-041",
+      "title": "Rounding direction not specified",
+      "description": "Division at line 4 may have exploitable rounding",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 4,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Explicitly specify rounding direction (favor protocol or user)",
+        "category": "security",
+        "cwe": "CWE-682",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.77)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.774,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "ADV-041",
+      "tool": "advanced_security",
+      "rule_id": "ADV-041",
+      "title": "Rounding direction not specified",
+      "description": "Division at line 5 may have exploitable rounding",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 5,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Explicitly specify rounding direction (favor protocol or user)",
+        "category": "security",
+        "cwe": "CWE-682",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.77)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.774,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "variable-shadowing-50",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 51: Variable 'receiver' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.5,
+      "location": {
+        "file": "75ebd127b12ad160",
+        "line": 51,
+        "function": null,
+        "contract": "75ebd127b12ad160"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "address receiver,",
+        "variable": "receiver",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (12 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.86)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8592000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "variable-shadowing-106",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 107: Variable 'receiver' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.5,
+      "location": {
+        "file": "75ebd127b12ad160",
+        "line": 107,
+        "function": null,
+        "contract": "75ebd127b12ad160"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "address receiver,",
+        "variable": "receiver",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (9 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.86)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8592000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "variable-shadowing-117",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 118: Variable 'sender' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.5,
+      "location": {
+        "file": "75ebd127b12ad160",
+        "line": 118,
+        "function": null,
+        "contract": "75ebd127b12ad160"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "address sender,",
+        "variable": "sender",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (6 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.86)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8592000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_return_transfer_34",
+      "tool": "natspec",
+      "rule_id": "natspec/return",
+      "title": "Missing @return for function 'transfer'",
+      "description": "Add @return documentation for return value(s).",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 34,
+        "function": "transfer",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.8147999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_return_supportsInterface_96",
+      "tool": "natspec",
+      "rule_id": "natspec/return",
+      "title": "Missing @return for function 'supportsInterface'",
+      "description": "Add @return documentation for return value(s).",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 96,
+        "function": "supportsInterface",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.8147999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_return_transferFrom_49",
+      "tool": "natspec",
+      "rule_id": "natspec/return",
+      "title": "Missing @return for function 'transferFrom'",
+      "description": "Add @return documentation for return value(s).",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 49,
+        "function": "transferFrom",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.8087999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_return_approve_70",
+      "tool": "natspec",
+      "rule_id": "natspec/return",
+      "title": "Missing @return for function 'approve'",
+      "description": "Add @return documentation for return value(s).",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 70,
+        "function": "approve",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.8087999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_return_setOperator_83",
+      "tool": "natspec",
+      "rule_id": "natspec/return",
+      "title": "Missing @return for function 'setOperator'",
+      "description": "Add @return documentation for return value(s).",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 83,
+        "function": "setOperator",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.8087999999999999,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ERC-004",
+      "tool": "defi_security",
+      "rule_id": "ERC-004",
+      "title": "ERC-20: zero amount transfer allowed",
+      "description": "Transfer at line 34 allows zero amount",
+      "severity": "low",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 34,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Consider requiring amount > 0",
+        "category": "erc20",
+        "cwe": "CWE-20",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.80)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.798,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "natspec_func_notice_transfer_34",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'transfer'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 34,
+        "function": "transfer",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_transferFrom_49",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'transferFrom'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 49,
+        "function": "transferFrom",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_approve_70",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'approve'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 70,
+        "function": "approve",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_setOperator_83",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'setOperator'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 83,
+        "function": "setOperator",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_supportsInterface_96",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'supportsInterface'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 96,
+        "function": "supportsInterface",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_public_var_balanceOf_26",
+      "tool": "natspec",
+      "rule_id": "natspec/public-var-doc",
+      "title": "Missing NatSpec for public variable 'balanceOf'",
+      "description": "Add a NatSpec line (/// @notice ...) above the public state variable.",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 26,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.576,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_public_var_allowance_28",
+      "tool": "natspec",
+      "rule_id": "natspec/public-var-doc",
+      "title": "Missing NatSpec for public variable 'allowance'",
+      "description": "Add a NatSpec line (/// @notice ...) above the public state variable.",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 28,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.576,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_transfer_34",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'transfer'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 34,
+        "function": "transfer",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_transferFrom_49",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'transferFrom'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 49,
+        "function": "transferFrom",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_approve_70",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'approve'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 70,
+        "function": "approve",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_setOperator_83",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'setOperator'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 83,
+        "function": "setOperator",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_supportsInterface_96",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'supportsInterface'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 96,
+        "function": "supportsInterface",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Multiple tools agree (9 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "GAS-052",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-052",
+      "title": "Use custom errors instead of string messages",
+      "description": "Require at line 39 uses string error message (expensive)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 39,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per revert",
+        "recommendation": "Define custom errors and use revert CustomError() (Solidity 0.8.4+)",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-052",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-052",
+      "title": "Use custom errors instead of string messages",
+      "description": "Require at line 55 uses string error message (expensive)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 55,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per revert",
+        "recommendation": "Define custom errors and use revert CustomError() (Solidity 0.8.4+)",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-052",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-052",
+      "title": "Use custom errors instead of string messages",
+      "description": "Require at line 75 uses string error message (expensive)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 75,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per revert",
+        "recommendation": "Define custom errors and use revert CustomError() (Solidity 0.8.4+)",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-052",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-052",
+      "title": "Use custom errors instead of string messages",
+      "description": "Require at line 84 uses string error message (expensive)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 84,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per revert",
+        "recommendation": "Define custom errors and use revert CustomError() (Solidity 0.8.4+)",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-052",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-052",
+      "title": "Use custom errors instead of string messages",
+      "description": "Require at line 111 uses string error message (expensive)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 111,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per revert",
+        "recommendation": "Define custom errors and use revert CustomError() (Solidity 0.8.4+)",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-052",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-052",
+      "title": "Use custom errors instead of string messages",
+      "description": "Require at line 122 uses string error message (expensive)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 122,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per revert",
+        "recommendation": "Define custom errors and use revert CustomError() (Solidity 0.8.4+)",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-001",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-001",
+      "title": "Public mapping creates expensive getter",
+      "description": "Public mapping at line 24 auto-generates getter consuming gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 24,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~500 gas deployment",
+        "recommendation": "Make mapping private and create custom getter if needed",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-001",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-001",
+      "title": "Public mapping creates expensive getter",
+      "description": "Public mapping at line 26 auto-generates getter consuming gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 26,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~500 gas deployment",
+        "recommendation": "Make mapping private and create custom getter if needed",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-001",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-001",
+      "title": "Public mapping creates expensive getter",
+      "description": "Public mapping at line 28 auto-generates getter consuming gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 28,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~500 gas deployment",
+        "recommendation": "Make mapping private and create custom getter if needed",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-003",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-003",
+      "title": "Use custom errors instead of require strings",
+      "description": "Require with string at line 39 wastes deployment gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 39,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per call, significant deployment savings",
+        "recommendation": "Use custom error: error MyError(); revert MyError();",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-003",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-003",
+      "title": "Use custom errors instead of require strings",
+      "description": "Require with string at line 55 wastes deployment gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 55,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per call, significant deployment savings",
+        "recommendation": "Use custom error: error MyError(); revert MyError();",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-003",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-003",
+      "title": "Use custom errors instead of require strings",
+      "description": "Require with string at line 75 wastes deployment gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 75,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per call, significant deployment savings",
+        "recommendation": "Use custom error: error MyError(); revert MyError();",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-003",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-003",
+      "title": "Use custom errors instead of require strings",
+      "description": "Require with string at line 84 wastes deployment gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 84,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per call, significant deployment savings",
+        "recommendation": "Use custom error: error MyError(); revert MyError();",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-003",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-003",
+      "title": "Use custom errors instead of require strings",
+      "description": "Require with string at line 111 wastes deployment gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 111,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per call, significant deployment savings",
+        "recommendation": "Use custom error: error MyError(); revert MyError();",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-003",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-003",
+      "title": "Use custom errors instead of require strings",
+      "description": "Require with string at line 122 wastes deployment gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 122,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per call, significant deployment savings",
+        "recommendation": "Use custom error: error MyError(); revert MyError();",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 83 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 83,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-006",
+      "tool": "code_quality",
+      "rule_id": "CQ-006",
+      "title": "Missing @return documentation for return value",
+      "description": "Function at line 83 has return value but no @return documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 83,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return describing the return value",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 96 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 96,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-006",
+      "tool": "code_quality",
+      "rule_id": "CQ-006",
+      "title": "Missing @return documentation for return value",
+      "description": "Function at line 96 has return value but no @return documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 96,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return describing the return value",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-023",
+      "tool": "code_quality",
+      "rule_id": "CQ-023",
+      "title": "Private/internal variable should start with underscore",
+      "description": "Private/internal variable \"virtual\" at line 110 should start with _",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 110,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Prefix private/internal variables with underscore (e.g., _myVar)",
+        "category": "naming",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-023",
+      "tool": "code_quality",
+      "rule_id": "CQ-023",
+      "title": "Private/internal variable should start with underscore",
+      "description": "Private/internal variable \"virtual\" at line 121 should start with _",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 121,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Prefix private/internal variables with underscore (e.g., _myVar)",
+        "category": "naming",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 21 has 29 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 21,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 31 has 30 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 31,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 34 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 34,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 38 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 38,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 46 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 46,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 49 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 49,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 54 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 54,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 67 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 67,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 70 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 70,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 74 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 74,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 80 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 80,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 93 has 30 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 93,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 97 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 97,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 106 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 106,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 117 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 117,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 83 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 83,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (9 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 9,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 96 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 96,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-064",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-064",
+      "title": "OpenZeppelin imports could be optimized",
+      "description": "Import at line 4 might import more than needed",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 4,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "Deployment gas saved",
+        "recommendation": "Import only specific contracts needed, not entire libraries",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.6539999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-064",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-064",
+      "title": "OpenZeppelin imports could be optimized",
+      "description": "Import at line 5 might import more than needed",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 5,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "Deployment gas saved",
+        "recommendation": "Import only specific contracts needed, not entire libraries",
+        "cwe": "CWE-400",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.6539999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-011",
+      "tool": "code_quality",
+      "rule_id": "UQ-011",
+      "title": "Array access without bounds check",
+      "description": "Array access at line 42 may be out of bounds",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 42,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add require(index < array.length)",
+        "category": "safety",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-011",
+      "tool": "code_quality",
+      "rule_id": "UQ-011",
+      "title": "Array access without bounds check",
+      "description": "Array access at line 58 may be out of bounds",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 58,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add require(index < array.length)",
+        "category": "safety",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 89 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 89,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function setOperator",
+      "description": "Public/external function at line 83 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 83,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function supportsInterface",
+      "description": "Public/external function at line 96 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": 96,
+        "function": null,
+        "contract": "ERC6909_FIXED"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 80,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "gas_heuristics_USE_CUSTOM_ERRORS",
+      "tool": "gas_heuristics",
+      "rule_id": "USE_CUSTOM_ERRORS",
+      "title": "Use custom errors instead of revert strings",
+      "description": "Custom errors reduce deployment and runtime costs compared to string messages.",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/tokens/ERC6909_FIXED.sol",
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "informational",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Only one tool detected this issue",
+          "Low severity / informational",
+          "Uncertain classification (ML score: 0.44)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.0,
+          "consensus_count": 0,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.43500000000000005,
+      "ml_label": "likely_false_positive"
+    }
+  ],
+  "all_fixes": [
+    {
+      "type": "access-control",
+      "line": 83,
+      "confidence": "medium",
+      "explanation": "Added onlyOwner modifier to critical function",
+      "diff": "--- original\n+++ fixed\n@@ -1 +1 @@\n- function setOperator(address operator, bool approved) public virtual returns (bool) \n+ function setOperator(address operator, bool approved) public onlyOwner virtual returns (bool) "
+    }
+  ],
+  "auto_fixed": false
+}

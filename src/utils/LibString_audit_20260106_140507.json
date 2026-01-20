@@ -1,0 +1,777 @@
+{
+  "contract_name": "LibString.sol",
+  "audit_timestamp": "2026-01-06T14:05:07.826306",
+  "source_lines": 81,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2537968158721924
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2546424865722656
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.25466179847717285
+    },
+    "bytecode_re": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 0.24695825576782227
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00816798210144043
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.6050524711608887
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.008828878402709961
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.00011515617370605469
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.009870767593383789
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0101776123046875
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 1.6714739799499512
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.009491682052612305
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00047850608825683594
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.009173154830932617
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.00969839096069336
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.002111673355102539
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.007581949234008789
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0002903938293457031
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 6,
+      "execution_time": 0.001028299331665039
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 9.322166442871094e-05
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.006150007247924805
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0005431175231933594
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 8,
+      "execution_time": 0.0008618831634521484
+    }
+  },
+  "total_findings": 9,
+  "raw_total_findings": 114,
+  "findings_by_severity": {
+    "critical": 0,
+    "high": 5,
+    "medium": 0,
+    "low": 0,
+    "info": 4,
+    "gas": 0
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 111,
+      "kept_count": 9,
+      "filtered_count": 102,
+      "filter_rate": 0.918918918918919,
+      "kept_by_severity": {
+        "high": 5,
+        "info": 4
+      },
+      "filtered_by_severity": {
+        "low": 3,
+        "medium": 92,
+        "info": 6,
+        "high": 1
+      },
+      "kept_by_category": {
+        "uncertain": 6,
+        "likely_true_positive": 2,
+        "likely_false_positive": 1
+      },
+      "filtered_by_category": {
+        "likely_false_positive": 61,
+        "definite_false_positive": 39,
+        "uncertain": 2
+      },
+      "kept_by_tool": {
+        "advanced_security": 5,
+        "code_quality": 4
+      },
+      "filtered_by_tool": {
+        "erc20_heuristics": 3,
+        "solidityscan": 92,
+        "gas_optimizer": 1,
+        "advanced_security": 1,
+        "access_control_heuristics": 1,
+        "code_quality": 4
+      },
+      "avg_ml_score_kept": 0.6567777777777777,
+      "avg_ml_score_filtered": 0.45002254901960786,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 9,
+      "critical": 0,
+      "high": 5,
+      "medium": 0,
+      "low": 0,
+      "info": 4,
+      "security_score": 46,
+      "on_attack_path": 0,
+      "max_attack_path_degree": 0
+    },
+    "patch_plan": [
+      {
+        "title": "Memory operation in assembly",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Memory operation in assembly",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Memory operation in assembly",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Memory operation in assembly",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Memory operation in assembly",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Use descriptive variable names",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "info",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Commented out code detected",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "info",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Use descriptive variable names",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "info",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Multiple consecutive empty lines",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "info",
+        "is_chain_breaker": false
+      }
+    ]
+  },
+  "fixes_generated": 0,
+  "fixes_by_confidence": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "all_findings": [
+    {
+      "id": "ASM-003",
+      "tool": "advanced_security",
+      "rule_id": "ASM-003",
+      "title": "Memory operation in assembly",
+      "description": "Memory operation at line 35 can corrupt Solidity memory",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/LibString.sol",
+        "line": 35,
+        "function": null,
+        "contract": "LibString"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure memory operations don't overlap with Solidity",
+        "category": "assembly",
+        "cwe": "CWE-119",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 12,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.81,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ASM-003",
+      "tool": "advanced_security",
+      "rule_id": "ASM-003",
+      "title": "Memory operation in assembly",
+      "description": "Memory operation at line 38 can corrupt Solidity memory",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/LibString.sol",
+        "line": 38,
+        "function": null,
+        "contract": "LibString"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure memory operations don't overlap with Solidity",
+        "category": "assembly",
+        "cwe": "CWE-119",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 12,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.81)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.81,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ASM-003",
+      "tool": "advanced_security",
+      "rule_id": "ASM-003",
+      "title": "Memory operation in assembly",
+      "description": "Memory operation at line 20 can corrupt Solidity memory",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/LibString.sol",
+        "line": 20,
+        "function": null,
+        "contract": "LibString"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure memory operations don't overlap with Solidity",
+        "category": "assembly",
+        "cwe": "CWE-119",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 12,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.62)"
+        ],
+        "ml_confidence": 0.5,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 0.3333333333333333,
+          "consensus_count": 1,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.625,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "ASM-003",
+      "tool": "advanced_security",
+      "rule_id": "ASM-003",
+      "title": "Memory operation in assembly",
+      "description": "Memory operation at line 22 can corrupt Solidity memory",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/LibString.sol",
+        "line": 22,
+        "function": null,
+        "contract": "LibString"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure memory operations don't overlap with Solidity",
+        "category": "assembly",
+        "cwe": "CWE-119",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 12,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.62)"
+        ],
+        "ml_confidence": 0.5,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 0.3333333333333333,
+          "consensus_count": 1,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.625,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "ASM-003",
+      "tool": "advanced_security",
+      "rule_id": "ASM-003",
+      "title": "Memory operation in assembly",
+      "description": "Memory operation at line 24 can corrupt Solidity memory",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/LibString.sol",
+        "line": 24,
+        "function": null,
+        "contract": "LibString"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure memory operations don't overlap with Solidity",
+        "category": "assembly",
+        "cwe": "CWE-119",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 12,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.62)"
+        ],
+        "ml_confidence": 0.5,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 0.3333333333333333,
+          "consensus_count": 1,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.625,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-005",
+      "tool": "code_quality",
+      "rule_id": "UQ-005",
+      "title": "Use descriptive variable names",
+      "description": "Single-letter or unclear variable at line 23",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/LibString.sol",
+        "line": 23,
+        "function": null,
+        "contract": "LibString"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use meaningful, descriptive names",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 12,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-046",
+      "tool": "code_quality",
+      "rule_id": "CQ-046",
+      "title": "Commented out code detected",
+      "description": "Line 34 appears to be commented out code",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/LibString.sol",
+        "line": 34,
+        "function": null,
+        "contract": "LibString"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Remove commented out code or uncomment if needed",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 12,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-005",
+      "tool": "code_quality",
+      "rule_id": "UQ-005",
+      "title": "Use descriptive variable names",
+      "description": "Single-letter or unclear variable at line 34",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/LibString.sol",
+        "line": 34,
+        "function": null,
+        "contract": "LibString"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use meaningful, descriptive names",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 12,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-047",
+      "tool": "code_quality",
+      "rule_id": "CQ-047",
+      "title": "Multiple consecutive empty lines",
+      "description": "Multiple empty lines at line 79",
+      "severity": "info",
+      "confidence": 0.5,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/LibString.sol",
+        "line": 79,
+        "function": null,
+        "contract": "LibString"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use single empty line for separation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Only one tool detected this issue",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.43)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.0,
+          "consensus_count": 0,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.43000000000000005,
+      "ml_label": "likely_false_positive"
+    }
+  ],
+  "all_fixes": [],
+  "auto_fixed": false
+}

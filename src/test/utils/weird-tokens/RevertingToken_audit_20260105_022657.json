@@ -1,0 +1,3582 @@
+{
+  "contract_name": "RevertingToken.sol",
+  "audit_timestamp": "2026-01-05T02:26:57.514521",
+  "source_lines": 65,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.24964308738708496
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.25015735626220703
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.25017499923706055
+    },
+    "bytecode_re": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.2450242042541504
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.005445718765258789
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.5678482055664062
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0059735774993896484
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.00012826919555664062
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.006468534469604492
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.006631374359130859
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 1.560579538345337
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0059244632720947266
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 13,
+      "execution_time": 0.0005016326904296875
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.005649089813232422
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.006123781204223633
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 12,
+      "execution_time": 0.0010602474212646484
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.005076408386230469
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.00011348724365234375
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.0005800724029541016
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 5.125999450683594e-05
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0043261051177978516
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 5,
+      "execution_time": 0.0003802776336669922
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 22,
+      "execution_time": 0.0006659030914306641
+    }
+  },
+  "total_findings": 64,
+  "raw_total_findings": 159,
+  "findings_by_severity": {
+    "critical": 0,
+    "high": 6,
+    "medium": 11,
+    "low": 14,
+    "info": 33,
+    "gas": 12
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 159,
+      "kept_count": 64,
+      "filtered_count": 95,
+      "filter_rate": 0.5974842767295597,
+      "kept_by_severity": {
+        "medium": 11,
+        "low": 14,
+        "high": 6,
+        "info": 33
+      },
+      "filtered_by_severity": {
+        "low": 3,
+        "medium": 88,
+        "info": 4
+      },
+      "kept_by_category": {
+        "likely_true_positive": 16,
+        "likely_false_positive": 19,
+        "uncertain": 29
+      },
+      "filtered_by_category": {
+        "likely_false_positive": 54,
+        "definite_false_positive": 40,
+        "uncertain": 1
+      },
+      "kept_by_tool": {
+        "comprehensive-security-detector": 3,
+        "access-control-detector": 3,
+        "natspec": 13,
+        "reentrancy-detector": 3,
+        "solidityscan": 4,
+        "gas_optimizer": 12,
+        "gas_heuristics": 1,
+        "advanced_security": 1,
+        "defi_security": 5,
+        "code_quality": 19
+      },
+      "filtered_by_tool": {
+        "erc20_heuristics": 3,
+        "solidityscan": 88,
+        "access_control_heuristics": 1,
+        "code_quality": 3
+      },
+      "avg_ml_score_kept": 0.715658125,
+      "avg_ml_score_filtered": 0.4432315789473685,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 64,
+      "critical": 0,
+      "high": 6,
+      "medium": 11,
+      "low": 14,
+      "info": 33,
+      "security_score": 0,
+      "on_attack_path": 8,
+      "max_attack_path_degree": 7
+    },
+    "patch_plan": [
+      {
+        "title": "Missing Access Control on Transfer Function",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "HIGH",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing Access Control on Transfer Function",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "HIGH",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing Access Control on Approve Function",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "HIGH",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Fee-on-transfer token not handled",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "ERC-20: missing Approval event",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "ERC-20: transfer must return bool",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Imported Finding",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Imported Finding",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing nonReentrant Modifier on approve()",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Missing nonReentrant Modifier on transfer()",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      }
+    ]
+  },
+  "fixes_generated": 0,
+  "fixes_by_confidence": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "all_findings": [
+    {
+      "id": "missing-access-control-transfer",
+      "tool": "access-control-detector",
+      "rule_id": "missing-access-control",
+      "title": "Missing Access Control on Transfer Function",
+      "description": "Function `transfer()` is transfer without access control modifiers. Any caller can invoke this function. NFTBTC C001/H001/H002: Add onlyOwner, onlyAdmin, or role-based access control.",
+      "severity": "HIGH",
+      "confidence": 1.0,
+      "location": {
+        "file": "RevertingToken",
+        "line": 50,
+        "function": "transfer",
+        "contract": "RevertingToken"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "function_type": "Transfer",
+        "is_external_or_public": true,
+        "has_modifier": false,
+        "fix_suggestion": "Add modifier to function declaration: `function transfer(...) external onlyOwner {...}`",
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 7
+          }
+        ],
+        "location_cluster_size": 6,
+        "ml_reasoning": [
+          "Multiple tools agree (28 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.8,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 28,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.85,
+          "rule_confidence": 1.0,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 7,
+          "attack_path_score": 0.85,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "missing-access-control-transferFrom",
+      "tool": "access-control-detector",
+      "rule_id": "missing-access-control",
+      "title": "Missing Access Control on Transfer Function",
+      "description": "Function `transferFrom()` is transfer without access control modifiers. Any caller can invoke this function. NFTBTC C001/H001/H002: Add onlyOwner, onlyAdmin, or role-based access control.",
+      "severity": "HIGH",
+      "confidence": 1.0,
+      "location": {
+        "file": "RevertingToken",
+        "line": 54,
+        "function": "transferFrom",
+        "contract": "RevertingToken"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "function_type": "Transfer",
+        "is_external_or_public": true,
+        "has_modifier": false,
+        "fix_suggestion": "Add modifier to function declaration: `function transferFrom(...) external onlyOwner {...}`",
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 7
+          }
+        ],
+        "location_cluster_size": 6,
+        "ml_reasoning": [
+          "Multiple tools agree (20 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.8,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 20,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.85,
+          "rule_confidence": 1.0,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 7,
+          "attack_path_score": 0.85,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "missing-access-control-approve",
+      "tool": "access-control-detector",
+      "rule_id": "missing-access-control",
+      "title": "Missing Access Control on Approve Function",
+      "description": "Function `approve()` is approve without access control modifiers. Any caller can invoke this function. NFTBTC C001/H001/H002: Add onlyOwner, onlyAdmin, or role-based access control.",
+      "severity": "HIGH",
+      "confidence": 1.0,
+      "location": {
+        "file": "RevertingToken",
+        "line": 46,
+        "function": "approve",
+        "contract": "RevertingToken"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "function_type": "Approve",
+        "is_external_or_public": true,
+        "has_modifier": false,
+        "fix_suggestion": "Add modifier to function declaration: `function approve(...) external onlyOwner {...}`",
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 7
+          }
+        ],
+        "location_cluster_size": 6,
+        "ml_reasoning": [
+          "Multiple tools agree (22 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.8,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 22,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.85,
+          "rule_confidence": 1.0,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 7,
+          "attack_path_score": 0.85,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "DEFI-005",
+      "tool": "defi_security",
+      "rule_id": "DEFI-005",
+      "title": "Fee-on-transfer token not handled",
+      "description": "Transfer at line 54 assumes full amount received",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 54,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Check actual balance change for fee-on-transfer tokens",
+        "category": "defi",
+        "cwe": "CWE-682",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (13 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 13,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8700000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ERC-006",
+      "tool": "defi_security",
+      "rule_id": "ERC-006",
+      "title": "ERC-20: missing Approval event",
+      "description": "Approve at line 46 does not emit Approval event",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 46,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Emit Approval event on allowance changes",
+        "category": "erc20",
+        "cwe": "CWE-778",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (17 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 17,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8700000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ERC-001",
+      "tool": "defi_security",
+      "rule_id": "ERC-001",
+      "title": "ERC-20: transfer must return bool",
+      "description": "Transfer function at line 50 missing bool return value",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 50,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Add returns (bool) to transfer function",
+        "category": "erc20",
+        "cwe": "CWE-20",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (21 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 21,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8700000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "solidityscan_7",
+      "tool": "solidityscan",
+      "rule_id": null,
+      "title": "Imported Finding",
+      "description": "{'id': 'solidityscan-8', 'title': 'INCORRECT ACCESS CONTROL', 'description': '1\\nAutomated\\nPending Fix\\nC002', 'severity': 'Critical', 'confidence': 1.0, 'line': 0, 'source_tool': 'SolidityScan', 'cwe_id': None, 'fix_suggestion': None}",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": null,
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 7
+          }
+        ],
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.85,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.5,
+          "on_attack_path": true,
+          "attack_path_degree": 7,
+          "attack_path_score": 0.85,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "solidityscan_7",
+      "tool": "solidityscan",
+      "rule_id": null,
+      "title": "Imported Finding",
+      "description": "{'id': 'solidityscan-8', 'title': 'INCORRECT ACCESS CONTROL', 'description': '1\\nAutomated\\nPending Fix\\nC002', 'severity': 'Critical', 'confidence': 1.0, 'line': 0, 'source_tool': 'SolidityScan', 'cwe_id': None, 'fix_suggestion': None}",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": null,
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "attack_vectors": [
+          {
+            "pattern": "access_control_bypass",
+            "description": "Access control issues that could lead to privilege escalation",
+            "related_findings": 7
+          }
+        ],
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.85,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.5,
+          "on_attack_path": true,
+          "attack_path_degree": 7,
+          "attack_path_score": 0.85,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "reentrancy-missing-guard-approve",
+      "tool": "reentrancy-detector",
+      "rule_id": "reentrancy-missing-guard",
+      "title": "Missing nonReentrant Modifier on approve()",
+      "description": "Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.",
+      "severity": "medium",
+      "confidence": 0.95,
+      "location": {
+        "file": "RevertingToken",
+        "line": 45,
+        "function": "approve",
+        "contract": "RevertingToken"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "external_calls": 0,
+        "eth_transfers": 0,
+        "fix_suggestion": "Add `nonReentrant` modifier from OpenZeppelin's ReentrancyGuard. Import: `import '@openzeppelin/contracts/utils/ReentrancyGuard.sol';` Usage: `function approve(...) external nonReentrant { ... }`",
+        "attack_vectors": [
+          {
+            "pattern": "reentrancy_fund_drain",
+            "description": "Reentrancy vulnerability combined with fund transfer",
+            "related_findings": 3
+          }
+        ],
+        "location_cluster_size": 6,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.90)",
+          "Multiple tools agree (22 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.95,
+        "ml_features": {
+          "tool_reputation": 0.9,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 22,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.95,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 3,
+          "attack_path_score": 0.65,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "reentrancy-missing-guard-transfer",
+      "tool": "reentrancy-detector",
+      "rule_id": "reentrancy-missing-guard",
+      "title": "Missing nonReentrant Modifier on transfer()",
+      "description": "Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.",
+      "severity": "medium",
+      "confidence": 0.95,
+      "location": {
+        "file": "RevertingToken",
+        "line": 49,
+        "function": "transfer",
+        "contract": "RevertingToken"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "external_calls": 0,
+        "eth_transfers": 0,
+        "fix_suggestion": "Add `nonReentrant` modifier from OpenZeppelin's ReentrancyGuard. Import: `import '@openzeppelin/contracts/utils/ReentrancyGuard.sol';` Usage: `function transfer(...) external nonReentrant { ... }`",
+        "attack_vectors": [
+          {
+            "pattern": "reentrancy_fund_drain",
+            "description": "Reentrancy vulnerability combined with fund transfer",
+            "related_findings": 3
+          }
+        ],
+        "location_cluster_size": 6,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.90)",
+          "Multiple tools agree (25 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.95,
+        "ml_features": {
+          "tool_reputation": 0.9,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 25,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.95,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 3,
+          "attack_path_score": 0.65,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "reentrancy-missing-guard-transferFrom",
+      "tool": "reentrancy-detector",
+      "rule_id": "reentrancy-missing-guard",
+      "title": "Missing nonReentrant Modifier on transferFrom()",
+      "description": "Function makes external calls or transfers ETH but lacks nonReentrant modifier. External calls: 0, ETH transfers: 0. This function should have reentrancy protection.",
+      "severity": "medium",
+      "confidence": 0.95,
+      "location": {
+        "file": "RevertingToken",
+        "line": 53,
+        "function": "transferFrom",
+        "contract": "RevertingToken"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "external_calls": 0,
+        "eth_transfers": 0,
+        "fix_suggestion": "Add `nonReentrant` modifier from OpenZeppelin's ReentrancyGuard. Import: `import '@openzeppelin/contracts/utils/ReentrancyGuard.sol';` Usage: `function transferFrom(...) external nonReentrant { ... }`",
+        "attack_vectors": [
+          {
+            "pattern": "reentrancy_fund_drain",
+            "description": "Reentrancy vulnerability combined with fund transfer",
+            "related_findings": 3
+          }
+        ],
+        "location_cluster_size": 6,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.90)",
+          "Multiple tools agree (16 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.95,
+        "ml_features": {
+          "tool_reputation": 0.9,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 16,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.95,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": true,
+          "attack_path_degree": 3,
+          "attack_path_score": 0.65,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-45",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 46: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "f9c34f72d557a3c0",
+        "line": 46,
+        "function": null,
+        "contract": "f9c34f72d557a3c0"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function approve(address, uint256) public virtual {",
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (19 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 19,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "front-running-risk-49",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "front-running-risk",
+      "title": "Potential Front-Running Vulnerability",
+      "description": "Line 50: Function may be vulnerable to front-running. Consider adding deadline and slippage protection.",
+      "severity": "medium",
+      "confidence": 0.65,
+      "location": {
+        "file": "f9c34f72d557a3c0",
+        "line": 50,
+        "function": null,
+        "contract": "f9c34f72d557a3c0"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "function transfer(address, uint256) public virtual {",
+        "location_cluster_size": 2,
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (24 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.91)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 24,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.65,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.9132000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ERC-002",
+      "tool": "defi_security",
+      "rule_id": "ERC-002",
+      "title": "ERC-20: approve race condition",
+      "description": "Standard approve at line 46 vulnerable to race condition",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 46,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Implement increaseAllowance/decreaseAllowance or check current allowance",
+        "category": "erc20",
+        "cwe": "CWE-362",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (17 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 17,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8340000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ERC-003",
+      "tool": "defi_security",
+      "rule_id": "ERC-003",
+      "title": "ERC-20: transfer to zero address not blocked",
+      "description": "Transfer at line 50 should check for zero address",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 50,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Add require(to != address(0))",
+        "category": "erc20",
+        "cwe": "CWE-20",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (21 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 21,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8340000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "solidityscan_0",
+      "tool": "solidityscan",
+      "rule_id": null,
+      "title": "Imported Finding",
+      "description": "{'id': 'solidityscan-1', 'title': 'ANCE CHANGE RACE CONDITION IN APPROVE()', 'description': \"IMBALANCE ADD REMOVE LIQUIDITY MATH ERRORS\\nBLOCK.NUMBER INCONSISTENCIES ON VARIOUS L2S\\nLIMITATIONS OF SOLIDITY'S TRY-CATCH IN EXTERNAL CALLS\\nERC20 NON STANDARD BEHAVIOR\\nINSECURE OWNERSHIP TRANSFER\\nMISSING IGOVERNANCE INTERFACE DEFINITION IN PROVIDED CODE\\nMISSING EVENTS\\nOUTDATED COMPILER VERSION\\nUNDECLARED CUSTOM ERRORS CAUSE COMPILATION FAILURE\\nUNINITIALIZED OWNERSHIP\\nBLOCK VALUES AS A PROXY FOR TIME\", 'severity': 'Low', 'confidence': 1.0, 'line': 0, 'source_tool': 'SolidityScan', 'cwe_id': None, 'fix_suggestion': None}",
+      "severity": "medium",
+      "confidence": 0.5,
+      "location": {
+        "file": null,
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Uncertain classification (ML score: 0.79)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.792,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "solidityscan_0",
+      "tool": "solidityscan",
+      "rule_id": null,
+      "title": "Imported Finding",
+      "description": "{'id': 'solidityscan-1', 'title': 'ANCE CHANGE RACE CONDITION IN APPROVE()', 'description': \"IMBALANCE ADD REMOVE LIQUIDITY MATH ERRORS\\nBLOCK.NUMBER INCONSISTENCIES ON VARIOUS L2S\\nLIMITATIONS OF SOLIDITY'S TRY-CATCH IN EXTERNAL CALLS\\nERC20 NON STANDARD BEHAVIOR\\nINSECURE OWNERSHIP TRANSFER\\nMISSING IGOVERNANCE INTERFACE DEFINITION IN PROVIDED CODE\\nMISSING EVENTS\\nOUTDATED COMPILER VERSION\\nUNDECLARED CUSTOM ERRORS CAUSE COMPILATION FAILURE\\nUNINITIALIZED OWNERSHIP\\nBLOCK VALUES AS A PROXY FOR TIME\", 'severity': 'Low', 'confidence': 1.0, 'line': 0, 'source_tool': 'SolidityScan', 'cwe_id': None, 'fix_suggestion': None}",
+      "severity": "medium",
+      "confidence": 0.5,
+      "location": {
+        "file": null,
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Uncertain classification (ML score: 0.79)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.792,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "variable-shadowing-18",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 19: Variable 'public' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.5,
+      "location": {
+        "file": "f9c34f72d557a3c0",
+        "line": 19,
+        "function": null,
+        "contract": "f9c34f72d557a3c0"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "string public constant symbol = \"RT\";",
+        "variable": "public",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (13 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.86)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 13,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8592000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "natspec_func_notice_constructor_37",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for constructor 'constructor'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 37,
+        "function": "constructor",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Multiple tools agree (4 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_approve_46",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'approve'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 46,
+        "function": "approve",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Multiple tools agree (17 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 17,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_transfer_50",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'transfer'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 50,
+        "function": "transfer",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Multiple tools agree (20 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 20,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_func_notice_transferFrom_54",
+      "tool": "natspec",
+      "rule_id": "natspec/notice",
+      "title": "Missing NatSpec @notice for function 'transferFrom'",
+      "description": "Add a NatSpec @notice describing the purpose and effects.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 54,
+        "function": "transferFrom",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Multiple tools agree (12 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.58464,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_contract_RevertingToken_4",
+      "tool": "natspec",
+      "rule_id": "natspec/contract-doc",
+      "title": "Missing NatSpec for contract 'RevertingToken'",
+      "description": "Add NatSpec doc block (/// or /** ... */) above contract RevertingToken.",
+      "severity": "low",
+      "confidence": 0.9500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 4,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Multiple tools agree (6 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.5808,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_public_var_symbol_19",
+      "tool": "natspec",
+      "rule_id": "natspec/public-var-doc",
+      "title": "Missing NatSpec for public variable 'symbol'",
+      "description": "Add a NatSpec line (/// @notice ...) above the public state variable.",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 19,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Multiple tools agree (12 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.576,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_public_var_decimals_21",
+      "tool": "natspec",
+      "rule_id": "natspec/public-var-doc",
+      "title": "Missing NatSpec for public variable 'decimals'",
+      "description": "Add a NatSpec line (/// @notice ...) above the public state variable.",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 21,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Multiple tools agree (11 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.576,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_public_var_balanceOf_29",
+      "tool": "natspec",
+      "rule_id": "natspec/public-var-doc",
+      "title": "Missing NatSpec for public variable 'balanceOf'",
+      "description": "Add a NatSpec line (/// @notice ...) above the public state variable.",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 29,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Multiple tools agree (6 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.576,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_public_var_allowance_31",
+      "tool": "natspec",
+      "rule_id": "natspec/public-var-doc",
+      "title": "Missing NatSpec for public variable 'allowance'",
+      "description": "Add a NatSpec line (/// @notice ...) above the public state variable.",
+      "severity": "low",
+      "confidence": 0.9,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 31,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Multiple tools agree (5 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.9,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.576,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_constructor_37",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for constructor 'constructor'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 37,
+        "function": "constructor",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Multiple tools agree (4 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_approve_46",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'approve'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 46,
+        "function": "approve",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Multiple tools agree (17 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 17,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_transfer_50",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'transfer'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 50,
+        "function": "transfer",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Multiple tools agree (20 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 20,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "natspec_dev_transferFrom_54",
+      "tool": "natspec",
+      "rule_id": "natspec/dev-func",
+      "title": "Missing NatSpec @dev for function 'transferFrom'",
+      "description": "Add a @dev section describing technical details/notes.",
+      "severity": "low",
+      "confidence": 0.8500000000000001,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 54,
+        "function": "transferFrom",
+        "contract": null
+      },
+      "kind": "style",
+      "evidence": {
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Multiple tools agree (12 tools)",
+          "Matches known false positive pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "Uncertain classification (ML score: 0.58)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.6,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.8500000000000001,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "checker": "natspec"
+      },
+      "ml_score": 0.57504,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "MEM-003",
+      "tool": "advanced_security",
+      "rule_id": "MEM-003",
+      "title": "Struct field ordering may be inefficient",
+      "description": "Struct at line 37 should pack fields for gas efficiency",
+      "severity": "info",
+      "confidence": 0.75,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 37,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Order fields: larger types first, pack smaller types",
+        "category": "memory",
+        "cwe": "CWE-400",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.76)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.762,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-005",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-005",
+      "title": "Negative numbers cost more gas",
+      "description": "Negative number at line 1 costs extra gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 1,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas",
+        "recommendation": "Use subtraction or unsigned types when possible",
+        "cwe": "CWE-400",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-007",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-007",
+      "title": "Use bytes32 instead of string for constants",
+      "description": "String constant at line 17 costs more than bytes32",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 17,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2000 gas per access",
+        "recommendation": "Use bytes32 for fixed-length strings",
+        "cwe": "CWE-400",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-007",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-007",
+      "title": "Use bytes32 instead of string for constants",
+      "description": "String constant at line 19 costs more than bytes32",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 19,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2000 gas per access",
+        "recommendation": "Use bytes32 for fixed-length strings",
+        "cwe": "CWE-400",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-002",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-002",
+      "title": "Use uint256 for non-packed variables",
+      "description": "Smaller uint at line 21 costs MORE gas when not in struct",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 21,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas per operation",
+        "recommendation": "Use uint256 unless packing in struct",
+        "cwe": "CWE-400",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-001",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-001",
+      "title": "Public mapping creates expensive getter",
+      "description": "Public mapping at line 29 auto-generates getter consuming gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 29,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~500 gas deployment",
+        "recommendation": "Make mapping private and create custom getter if needed",
+        "cwe": "CWE-400",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 29 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 29,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-001",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-001",
+      "title": "Public mapping creates expensive getter",
+      "description": "Public mapping at line 31 auto-generates getter consuming gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 31,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~500 gas deployment",
+        "recommendation": "Make mapping private and create custom getter if needed",
+        "cwe": "CWE-400",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 31 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 31,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 38 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 38,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-011",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-011",
+      "title": "Variable set in constructor should be immutable",
+      "description": "Variable at line 39 could be immutable",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 39,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read",
+        "recommendation": "Declare as immutable if only set in constructor",
+        "cwe": "CWE-400",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 46 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 46,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (16 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 16,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-005",
+      "tool": "code_quality",
+      "rule_id": "CQ-005",
+      "title": "Missing @param documentation for function parameters",
+      "description": "Function at line 50 has parameters but no @param documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 50,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @param for each function parameter",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (21 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 21,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-022",
+      "tool": "code_quality",
+      "rule_id": "CQ-022",
+      "title": "Constant not in UPPER_SNAKE_CASE",
+      "description": "Constant \"public\" at line 17 should be UPPER_SNAKE_CASE",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 17,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use UPPER_SNAKE_CASE for constants (e.g., MAX_VALUE)",
+        "category": "naming",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-022",
+      "tool": "code_quality",
+      "rule_id": "CQ-022",
+      "title": "Constant not in UPPER_SNAKE_CASE",
+      "description": "Constant \"public\" at line 19 should be UPPER_SNAKE_CASE",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 19,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use UPPER_SNAKE_CASE for constants (e.g., MAX_VALUE)",
+        "category": "naming",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-022",
+      "tool": "code_quality",
+      "rule_id": "CQ-022",
+      "title": "Constant not in UPPER_SNAKE_CASE",
+      "description": "Constant \"public\" at line 21 should be UPPER_SNAKE_CASE",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 21,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use UPPER_SNAKE_CASE for constants (e.g., MAX_VALUE)",
+        "category": "naming",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 14 has 29 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 14,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (4 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 4,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-010",
+      "tool": "code_quality",
+      "rule_id": "UQ-010",
+      "title": "Redundant public for constants",
+      "description": "Constant at line 17 is implicitly public",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 17,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Remove public keyword for constants",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-010",
+      "tool": "code_quality",
+      "rule_id": "UQ-010",
+      "title": "Redundant public for constants",
+      "description": "Constant at line 19 is implicitly public",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 19,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Remove public keyword for constants",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-010",
+      "tool": "code_quality",
+      "rule_id": "UQ-010",
+      "title": "Redundant public for constants",
+      "description": "Constant at line 21 is implicitly public",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 21,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Remove public keyword for constants",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 24 has 30 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 24,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 34 has 31 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 34,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (11 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 11,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 43 has 30 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 43,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (10 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 10,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-009",
+      "tool": "code_quality",
+      "rule_id": "UQ-009",
+      "title": "Missing explicit function visibility",
+      "description": "Function at line 54 should have explicit visibility",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 54,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add public/private/internal/external",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (13 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 13,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 46 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 46,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (19 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 19,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-036",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-036",
+      "title": "Public function could be external",
+      "description": "Function at line 50 is public but appears to only be called externally",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 50,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~200 gas per call",
+        "recommendation": "Change visibility to external to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (24 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 24,
+          "fp_pattern_score": 0.5,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.654,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-013",
+      "tool": "code_quality",
+      "rule_id": "UQ-013",
+      "title": "Inconsistent indentation",
+      "description": "Line 6 has 34 spaces (not multiple of 4)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 6,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Use consistent 4-space indentation",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function approve",
+      "description": "Public/external function at line 46 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 46,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (16 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 16,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-004",
+      "tool": "code_quality",
+      "rule_id": "CQ-004",
+      "title": "Missing @notice/@dev for public function transfer",
+      "description": "Public/external function at line 50 lacks NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 50,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice explaining what the function does",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (21 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.49)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 21,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4944,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-001",
+      "tool": "code_quality",
+      "rule_id": "CQ-001",
+      "title": "Missing @title in contract documentation",
+      "description": "Contract at line 4 lacks @title NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 4,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @title describing the contract purpose",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.45)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4464000000000001,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-002",
+      "tool": "code_quality",
+      "rule_id": "CQ-002",
+      "title": "Missing @author in contract documentation",
+      "description": "Contract at line 4 lacks @author NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 4,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @author identifying the contract creator",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.45)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4464000000000001,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "CQ-003",
+      "tool": "code_quality",
+      "rule_id": "CQ-003",
+      "title": "Missing @notice or @dev in contract documentation",
+      "description": "Contract at line 4 lacks @notice or @dev NatSpec documentation",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": 4,
+        "function": null,
+        "contract": "RevertingToken"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @notice for user-facing description or @dev for technical details",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 53,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Matches known false positive pattern",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.45)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 0.3,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.4464000000000001,
+      "ml_label": "likely_false_positive"
+    },
+    {
+      "id": "gas_heuristics_CONSIDER_IMMUTABLE",
+      "tool": "gas_heuristics",
+      "rule_id": "CONSIDER_IMMUTABLE",
+      "title": "Consider `immutable` for totalSupply set in constructor",
+      "description": "State variables assigned once in the constructor can be marked `immutable` to reduce gas.",
+      "severity": "info",
+      "confidence": 0.45,
+      "location": {
+        "file": "/home/wharpheus/tools/Repos/vault-nftbtc/Contract_Superbuilds/lib/solmate/src/test/utils/weird-tokens/RevertingToken.sol",
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "informational",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Only one tool detected this issue",
+          "Low severity / informational",
+          "Uncertain classification (ML score: 0.43)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.0,
+          "consensus_count": 0,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.45,
+          "kind_score": 0.5,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.42500000000000004,
+      "ml_label": "likely_false_positive"
+    }
+  ],
+  "all_fixes": [],
+  "auto_fixed": false
+}

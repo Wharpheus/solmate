@@ -1,0 +1,1388 @@
+{
+  "contract_name": "CREATE3.sol",
+  "audit_timestamp": "2026-01-06T14:05:01.875220",
+  "source_lines": 91,
+  "analysis_results": {
+    "fund-draining-detector": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.24983716011047363
+    },
+    "oracle-manipulation-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.25090599060058594
+    },
+    "auto_fixer": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.25092649459838867
+    },
+    "bytecode_re": {
+      "status": "skipped",
+      "findings_count": 0,
+      "execution_time": 0.24255752563476562
+    },
+    "timestamp-dependency-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.008894205093383789
+    },
+    "solhint": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 1.2258858680725098
+    },
+    "elite_gpt4all": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.009574651718139648
+    },
+    "erc20_heuristics": {
+      "status": "completed",
+      "findings_count": 3,
+      "execution_time": 0.0001323223114013672
+    },
+    "comprehensive-security-detector": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 0.010367393493652344
+    },
+    "access-control-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.010519742965698242
+    },
+    "semgrep": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 1.6398375034332275
+    },
+    "flowomatic": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.009802103042602539
+    },
+    "natspec": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0005657672882080078
+    },
+    "reentrancy-detector": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.009361028671264648
+    },
+    "solidityscan_ingest": {
+      "status": "completed",
+      "findings_count": 46,
+      "execution_time": 0.009914875030517578
+    },
+    "gas_optimizer": {
+      "status": "completed",
+      "findings_count": 6,
+      "execution_time": 0.002112150192260742
+    },
+    "attack_vector_engine": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.007814407348632812
+    },
+    "gas_heuristics": {
+      "status": "completed",
+      "findings_count": 1,
+      "execution_time": 0.00025343894958496094
+    },
+    "advanced_security": {
+      "status": "completed",
+      "findings_count": 7,
+      "execution_time": 0.0007665157318115234
+    },
+    "access_control_heuristics": {
+      "status": "completed",
+      "findings_count": 2,
+      "execution_time": 9.059906005859375e-05
+    },
+    "ml_scoring": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.0066945552825927734
+    },
+    "defi_security": {
+      "status": "completed",
+      "findings_count": 0,
+      "execution_time": 0.00058746337890625
+    },
+    "code_quality": {
+      "status": "completed",
+      "findings_count": 13,
+      "execution_time": 0.0011165142059326172
+    }
+  },
+  "total_findings": 20,
+  "raw_total_findings": 128,
+  "findings_by_severity": {
+    "critical": 2,
+    "high": 5,
+    "medium": 1,
+    "low": 1,
+    "info": 11,
+    "gas": 6
+  },
+  "post_processing": {
+    "filter_statistics": {
+      "total_findings": 127,
+      "kept_count": 20,
+      "filtered_count": 107,
+      "filter_rate": 0.84251968503937,
+      "kept_by_severity": {
+        "high": 5,
+        "low": 1,
+        "info": 11,
+        "medium": 1,
+        "critical": 2
+      },
+      "filtered_by_severity": {
+        "low": 4,
+        "medium": 92,
+        "info": 11
+      },
+      "kept_by_category": {
+        "likely_true_positive": 8,
+        "uncertain": 11,
+        "likely_false_positive": 1
+      },
+      "filtered_by_category": {
+        "likely_false_positive": 65,
+        "uncertain": 3,
+        "definite_false_positive": 39
+      },
+      "kept_by_tool": {
+        "fund-draining-detector": 1,
+        "comprehensive-security-detector": 1,
+        "gas_optimizer": 6,
+        "gas_heuristics": 1,
+        "advanced_security": 7,
+        "code_quality": 4
+      },
+      "filtered_by_tool": {
+        "erc20_heuristics": 3,
+        "comprehensive-security-detector": 1,
+        "solidityscan": 92,
+        "access_control_heuristics": 2,
+        "code_quality": 9
+      },
+      "avg_ml_score_kept": 0.77176,
+      "avg_ml_score_filtered": 0.4509654205607477,
+      "strategy": "strict",
+      "thresholds": {
+        "min_ml_score": 0.7,
+        "min_confidence": 0.6,
+        "min_consensus_count": 2
+      }
+    },
+    "correlation_summary": {
+      "total": 20,
+      "critical": 2,
+      "high": 5,
+      "medium": 1,
+      "low": 1,
+      "info": 11,
+      "security_score": 2,
+      "on_attack_path": 0,
+      "max_attack_path_degree": 0
+    },
+    "patch_plan": [
+      {
+        "title": "Cross-function reentrancy vulnerability",
+        "suggested_fix": "Apply checks-effects-interactions or use ReentrancyGuard.",
+        "severity": "critical",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Storage gap missing in upgradeable contract",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "critical",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Unchecked Fund Transfer: Low-level ETH call",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential cross-function reentrancy",
+        "suggested_fix": "Apply checks-effects-interactions or use ReentrancyGuard.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Low-level call without reentrancy protection",
+        "suggested_fix": "Apply checks-effects-interactions or use ReentrancyGuard.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Memory operation in assembly",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Call without explicit gas limit",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "high",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Rounding direction not specified",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "medium",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "Potential Variable Shadowing",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "low",
+        "is_chain_breaker": false
+      },
+      {
+        "title": "State variable could potentially be immutable",
+        "suggested_fix": "Review issue and apply best-practice fix.",
+        "severity": "info",
+        "is_chain_breaker": false
+      }
+    ]
+  },
+  "fixes_generated": 0,
+  "fixes_by_confidence": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "all_findings": [
+    {
+      "id": "USEC-001",
+      "tool": "advanced_security",
+      "rule_id": "USEC-001",
+      "title": "Cross-function reentrancy vulnerability",
+      "description": "External call at line 54 with state changes after - reentrancy vector",
+      "severity": "critical",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 54,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Use checks-effects-interactions pattern or ReentrancyGuard",
+        "category": "security",
+        "cwe": "CWE-841",
+        "owasp": "A03:2021 - Injection",
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": true,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Matches known vulnerability pattern",
+          "High severity finding",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.9,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 1.0,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "MEM-002",
+      "tool": "advanced_security",
+      "rule_id": "MEM-002",
+      "title": "Storage gap missing in upgradeable contract",
+      "description": "Upgradeable contract missing storage gaps",
+      "severity": "critical",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 1,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Add uint256[50] private __gap; to reserve storage slots",
+        "category": "memory",
+        "cwe": "CWE-665",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 5,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "High severity finding",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.66)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 1.0,
+          "consensus_score": 0.3333333333333333,
+          "consensus_count": 1,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.655,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "unchecked-transfer-53",
+      "tool": "fund-draining-detector",
+      "rule_id": "unchecked-transfer",
+      "title": "Unchecked Fund Transfer: Low-level ETH call",
+      "description": "Line 54: Low-level ETH call without proper verification. Missing balance check: True, Missing receiver validation: True. DAO funds can be drained to arbitrary address.",
+      "severity": "high",
+      "confidence": 0.88,
+      "location": {
+        "file": "CREATE3",
+        "line": 54,
+        "function": "unknown",
+        "contract": "CREATE3"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "transfer_type": "Low-level ETH call",
+        "has_balance_check": false,
+        "has_receiver_check": false,
+        "fix_suggestion": "Add require(recipient != address(0)) and require(balance >= amount) before transfer",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.90)",
+          "Multiple tools agree (12 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "Specific location provided",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.95,
+        "ml_features": {
+          "tool_reputation": 0.9,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 12,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.95,
+          "rule_confidence": 0.88,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.8999999999999999,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": true,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ADV-001",
+      "tool": "advanced_security",
+      "rule_id": "ADV-001",
+      "title": "Potential cross-function reentrancy",
+      "description": "External call at line 54 in function that modifies state",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 54,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Use ReentrancyGuard or checks-effects-interactions pattern",
+        "category": "security",
+        "cwe": "CWE-841",
+        "owasp": "A03:2021 - Injection",
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": true,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "LOW-006",
+      "tool": "advanced_security",
+      "rule_id": "LOW-006",
+      "title": "Low-level call without reentrancy protection",
+      "description": "External call at line 54 may be reentered",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 54,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Add reentrancy guard or use checks-effects-interactions",
+        "category": "low-level",
+        "cwe": "CWE-841",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Matches known vulnerability pattern",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 1.00)"
+        ],
+        "ml_confidence": 0.85,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.9,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 1.0,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ASM-003",
+      "tool": "advanced_security",
+      "rule_id": "ASM-003",
+      "title": "Memory operation in assembly",
+      "description": "Memory operation at line 49 can corrupt Solidity memory",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 49,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Ensure memory operations don't overlap with Solidity",
+        "category": "assembly",
+        "cwe": "CWE-119",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8700000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "LOW-001",
+      "tool": "advanced_security",
+      "rule_id": "LOW-001",
+      "title": "Call without explicit gas limit",
+      "description": "Call at line 54 forwards all gas (griefing risk)",
+      "severity": "high",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 54,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Specify gas limit: .call{gas: X}",
+        "category": "low-level",
+        "cwe": "CWE-400",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.87)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.8,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8700000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "ADV-041",
+      "tool": "advanced_security",
+      "rule_id": "ADV-041",
+      "title": "Rounding direction not specified",
+      "description": "Division at line 4 may have exploitable rounding",
+      "severity": "medium",
+      "confidence": 0.75,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 4,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "recommendation": "Explicitly specify rounding direction (favor protocol or user)",
+        "category": "security",
+        "cwe": "CWE-682",
+        "owasp": null,
+        "context_flags": {
+          "contextual_security": true,
+          "cross_function": false,
+          "flash_loan": false,
+          "oracle_manipulation": false,
+          "mev": false,
+          "delegatecall_risk": false,
+          "economic_attack": false,
+          "invariant_based": false
+        },
+        "location_cluster_size": 5,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (3 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.83)"
+        ],
+        "ml_confidence": 0.7,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.6,
+          "consensus_score": 1.0,
+          "consensus_count": 3,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.75,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "advanced_security",
+        "source_analyzer": "AdvancedSecurityAnalyzer"
+      },
+      "ml_score": 0.8340000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "variable-shadowing-41",
+      "tool": "comprehensive-security-detector",
+      "rule_id": "variable-shadowing",
+      "title": "Potential Variable Shadowing",
+      "description": "Line 42: Variable 'memory' may shadow parent contract variable.",
+      "severity": "low",
+      "confidence": 0.5,
+      "location": {
+        "file": "c3f146de8c30564a",
+        "line": 42,
+        "function": null,
+        "contract": "c3f146de8c30564a"
+      },
+      "kind": "vulnerability",
+      "evidence": {
+        "line": "bytes memory proxyChildBytecode = PROXY_BYTECODE;",
+        "variable": "memory",
+        "ml_reasoning": [
+          "High-reputation tool (score: 0.88)",
+          "Multiple tools agree (5 tools)",
+          "Includes supporting evidence",
+          "High confidence true positive (ML score: 0.86)"
+        ],
+        "ml_confidence": 0.7999999999999999,
+        "ml_features": {
+          "tool_reputation": 0.88,
+          "severity_score": 0.4,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.5,
+          "kind_score": 0.9,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.8592000000000001,
+      "ml_label": "likely_true_positive"
+    },
+    {
+      "id": "GAS-001",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-001",
+      "title": "State variable could potentially be immutable",
+      "description": "State variable at line 44 might be immutable if only set in constructor",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 44,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~2100 gas per read (SLOAD \u2192 cheaper)",
+        "recommendation": "If this variable is only set once in the constructor, declare it as immutable to save gas",
+        "cwe": "CWE-400",
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-052",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-052",
+      "title": "Use custom errors instead of string messages",
+      "description": "Require at line 51 uses string error message (expensive)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 51,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per revert",
+        "recommendation": "Define custom errors and use revert CustomError() (Solidity 0.8.4+)",
+        "cwe": "CWE-400",
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "GAS-052",
+      "tool": "gas_optimizer",
+      "rule_id": "GAS-052",
+      "title": "Use custom errors instead of string messages",
+      "description": "Require at line 55 uses string error message (expensive)",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 55,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per revert",
+        "recommendation": "Define custom errors and use revert CustomError() (Solidity 0.8.4+)",
+        "cwe": "CWE-400",
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-003",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-003",
+      "title": "Use custom errors instead of require strings",
+      "description": "Require with string at line 51 wastes deployment gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 51,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per call, significant deployment savings",
+        "recommendation": "Use custom error: error MyError(); revert MyError();",
+        "cwe": "CWE-400",
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (7 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 7,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-003",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-003",
+      "title": "Use custom errors instead of require strings",
+      "description": "Require with string at line 55 wastes deployment gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 55,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~50 gas per call, significant deployment savings",
+        "recommendation": "Use custom error: error MyError(); revert MyError();",
+        "cwe": "CWE-400",
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (6 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.71)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 6,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.7140000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-046",
+      "tool": "code_quality",
+      "rule_id": "CQ-046",
+      "title": "Commented out code detected",
+      "description": "Line 47 appears to be commented out code",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 47,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Remove commented out code or uncomment if needed",
+        "category": "style",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (5 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 5,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 59 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 59,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (8 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.70)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 1.0,
+          "consensus_count": 8,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.7020000000000001,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UGAS-005",
+      "tool": "gas_optimizer",
+      "rule_id": "UGAS-005",
+      "title": "Negative numbers cost more gas",
+      "description": "Negative number at line 1 costs extra gas",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 1,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "gas",
+      "evidence": {
+        "gas_saved": "~20 gas",
+        "recommendation": "Use subtraction or unsigned types when possible",
+        "cwe": "CWE-400",
+        "location_cluster_size": 5,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.65)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": {
+        "plugin_origin": "gas_optimizer"
+      },
+      "ml_score": 0.6539999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "CQ-023",
+      "tool": "code_quality",
+      "rule_id": "CQ-023",
+      "title": "Private/internal variable should start with underscore",
+      "description": "Private/internal variable \"returns\" at line 41 should start with _",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 41,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Prefix private/internal variables with underscore (e.g., _myVar)",
+        "category": "naming",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "UQ-014",
+      "tool": "code_quality",
+      "rule_id": "UQ-014",
+      "title": "Return statement without @return documentation",
+      "description": "Return at line 41 in undocumented function",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": 41,
+        "function": null,
+        "contract": "CREATE3"
+      },
+      "kind": "style",
+      "evidence": {
+        "recommendation": "Add @return in function NatSpec",
+        "category": "documentation",
+        "cwe": "CWE-1078",
+        "location_cluster_size": 17,
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Multiple tools agree (2 tools)",
+          "Low severity / informational",
+          "Includes supporting evidence",
+          "Uncertain classification (ML score: 0.64)"
+        ],
+        "ml_confidence": 0.75,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.6666666666666666,
+          "consensus_count": 2,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.3,
+          "evidence_score": 0.7,
+          "location_score": 0.7,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": true,
+          "has_function": false,
+          "has_evidence": true
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.6419999999999999,
+      "ml_label": "uncertain"
+    },
+    {
+      "id": "gas_heuristics_USE_CUSTOM_ERRORS",
+      "tool": "gas_heuristics",
+      "rule_id": "USE_CUSTOM_ERRORS",
+      "title": "Use custom errors instead of revert strings",
+      "description": "Custom errors reduce deployment and runtime costs compared to string messages.",
+      "severity": "info",
+      "confidence": 0.55,
+      "location": {
+        "file": "Contract_Superbuilds/lib/solmate/src/utils/CREATE3.sol",
+        "line": null,
+        "function": null,
+        "contract": null
+      },
+      "kind": "informational",
+      "evidence": {
+        "ml_reasoning": [
+          "Lower-reputation tool (score: 0.50)",
+          "Only one tool detected this issue",
+          "Low severity / informational",
+          "Uncertain classification (ML score: 0.44)"
+        ],
+        "ml_confidence": 0.55,
+        "ml_features": {
+          "tool_reputation": 0.5,
+          "severity_score": 0.2,
+          "consensus_score": 0.0,
+          "consensus_count": 0,
+          "fp_pattern_score": 1.0,
+          "tp_pattern_score": 0.5,
+          "rule_confidence": 0.55,
+          "kind_score": 0.5,
+          "evidence_score": 0.5,
+          "location_score": 0.5,
+          "on_attack_path": false,
+          "attack_path_degree": 0,
+          "attack_path_score": 0.5,
+          "has_line": false,
+          "has_function": false,
+          "has_evidence": false
+        }
+      },
+      "provenance": null,
+      "ml_score": 0.43500000000000005,
+      "ml_label": "likely_false_positive"
+    }
+  ],
+  "all_fixes": [],
+  "auto_fixed": false
+}
